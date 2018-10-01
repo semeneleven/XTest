@@ -2,28 +2,34 @@
 import inspect
 import json
 import os
+import pkgutil
 import threading
+import re
 
 import cherrypy
 import webview
 
+import util
 
-from codes.others import gray
 
 
-class Home(object):
+
+class Base(object):
+
+    def __init__(self,codes):
+        self.codes_dict=codes
 
     @cherrypy.expose
-    @cherrypy.tools.json_out()
+    #@cherrypy.tools.json_out()
     def check_code(self, data="", answer="", code=""):
 
 
-        print(inspect.getmembers(dir("codes"), predicate=inspect.ismodule))
-        codes={"gray": inspect.getmembers(gray, predicate=inspect.isfunction)[0][1]}
         print(data, answer, sep=" ~/~ ", end="!|")
-        b = codes[code](data,answer)
+        b = self.codes_dict[code](data,answer)
 
-        return  {"status":b}
+        print(b)
+
+        return  "<html><head></head><body><h1>True</h1></body></html>"
 
     @cherrypy.expose
     def index(self):
@@ -31,6 +37,8 @@ class Home(object):
 
 
 def start_server():
+
+    codes_dict=util.initialize_func_dict()
 
     conf = {
         '/': {
@@ -45,7 +53,8 @@ def start_server():
     cherrypy.config.update({'log.screen': False,
                             'server.socket_port': 9090}
                            )
-    cherrypy.quickstart(Home(), "/", conf)
+    cherrypy.quickstart(Base(codes_dict), "/", conf)
+
 
 t = threading.Thread(target=start_server)
 

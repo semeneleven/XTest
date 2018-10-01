@@ -26,5 +26,3 @@ def assert_decode(data,answ):
         print("ok!")
     else:
         print()
-
-
