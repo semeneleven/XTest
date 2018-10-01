@@ -12,7 +12,7 @@ if not os.path.exists(env_folder):
      
 if os.name=='nt':
      try:
-           subprocess.run([os.path.join(env_folder, 'Scripts', 'python'),'-m','pip'], check=True)
+           subprocess.run([os.path.join(env_folder, 'Scripts', 'python'),'-m','pip','freeze'], check=True)
      except subprocess.CalledProcessError:          
           if not os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)),'get-pip.py')):
                print("-"*10+"Downloading get-pip.py...")
@@ -29,6 +29,8 @@ if os.name=='nt':
 else:
      print("-"*10+"Downloading requered libraries...")
      subprocess.run([os.path.join(env_folder, 'bin', 'pip3'),'install','-r','requirements.txt'])
- print("-"*32)
- print("-"*32)
- print("Virtual enviroment ready for use."*32)
+print("-"*32)
+print("-"*32)
+print("Virtual enviroment ready for use.")
+print("-"*32)
+print("-"*32)
