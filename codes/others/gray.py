@@ -1,3 +1,4 @@
+# data = str(number) answ = str(number)
 def assert_code(data,answ):
 
     data=int(data, 2)
@@ -11,6 +12,7 @@ def assert_code(data,answ):
         return False
 
 
+# data = str(number) answ = str(number)
 def assert_decode(data,answ):
 
     data=int(data, 2)

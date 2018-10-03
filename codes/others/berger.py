@@ -13,6 +13,7 @@ def berger(code):
 	return check
 
 
+# data = message answ = data + r
 def assert_code(data, answ):
 
 	if data + berger(data) == answ:
@@ -21,6 +22,7 @@ def assert_code(data, answ):
 		return False
 
 
+# data = [code, r] answ = bool(check for error(true if no error))
 def assert_decode(data, answ):
 
 	num =  data[0]
@@ -47,10 +49,12 @@ def generate_for_encode():
 
 def generate_for_decode():
 	data = generate_for_encode()
-	r = berger(data)
-	return [data + r, len(r)]
+	check = berger(data)
+	if random.randint(0,10) < 5 :
+		data = generate_for_encode()
+	return data + check, len(check)
 
-#test
+#tests
 print(assert_code('1001', '100101'))
 print(assert_decode(['100101', 2], True))
 print(generate_for_encode())
