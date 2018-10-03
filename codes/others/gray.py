@@ -23,8 +23,8 @@ def assert_decode(data,answ):
         sum ^= data
 
     if answ==sum:
-        print("ok!")
+        return True
     else:
-        print()
+        return False
 
 
