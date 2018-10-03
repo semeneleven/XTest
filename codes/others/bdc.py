@@ -1,18 +1,24 @@
+import random
 
+bases = [
+    [8, 4, 2, 1],
+    [7, 4, 2, 1],
+    [5, 4, 2, 1],
+    [2, 4, 2, 1]]
 
-def ddc(N, base):
+def bdc(N, base):
     if base == [8, 4, 2, 1]:
 
-        ddc = int()
+        bdc = int()
         for i in str(N):
-            ddc *= 16
-            ddc += int(i)
+            bdc *= 16
+            bdc += int(i)
 
-        return str(bin(ddc))[2:]
+        return str(bin(bdc))[2:]
 
     else:
 
-        ddc = str()
+        bdc = str()
 
         for i in str(N):
 
@@ -25,9 +31,47 @@ def ddc(N, base):
                     four[j] = 1
 
             for j in four:
-                ddc += str(j)
+                bdc += str(j)
 
-        return ddc
+        return bdc
+
+def bdc_decode(code, base):
+    result = 0
+    for i in range(len(code)//4):
+        four = code[i*4:i*4+4]
+        num = 0
+        for j in range(len(four)) :
+            num += int(four[j])*base[j]
+        result = result * 10 + num
+    return result
+
+# data = [number, base] answ = str(code)
+def assert_code(data, answ):
+    if bdc_decode(answ, data[1]) == data[0] :
+        return True
+    else :
+        return False
+
+# data = [code, base] answ = number
+def assert_decode(data, answ):
+    if bdc_decode(data[0], data[1]) == answ :
+        return True
+    else :
+        return False
+
+def generate_to_encode():
+    return random.randint(101, 999), bases[random.randint(0,3)]
+
+def generate_to_decode():
+    data = generate_to_encode()
+    base = bases[random.randint(0,3)]
+
+    return bdc(data[0], base), base
 
 
-print(ddc(851, [7, 4, 2, 1]))
+#tests
+print(bdc(851, [7, 4, 2, 1]))
+print(assert_code([851,[5,4,2,1]],'101110000001'))
+print(assert_decode(['100101010001',[7,4,2,1]],851))
+print(generate_to_encode())
+print(generate_to_decode())
