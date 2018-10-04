@@ -29,7 +29,7 @@ class Base(object):
 
         print(b)
 
-        return  "<html><head></head><body><h1>True</h1></body></html>"
+        return  "<html><head></head><body><h1>"+b+"/h1></body></html>"
 
     @cherrypy.expose
     def index(self):
