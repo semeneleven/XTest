@@ -1,3 +1,4 @@
 xtest-env
 get-pip.py
 **/__pycache__
+.idea
