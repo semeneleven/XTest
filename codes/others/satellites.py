@@ -14,7 +14,10 @@ def satellite(vector, error_poses):
     return satellite
 
 # vector = str(code) satellites = [str(satellite),...] code_distance = number
-def assert_code(vector, satellites, code_distance):
+def assert_code(data, ans):
+    vector = data[0]
+    code_distance = data[1]
+    satellites = ans
     for satellite in satellites:
         error_vector = bin(int(vector, 2) ^ int(satellite, 2))[2:]
         if error_vector.count('1') != code_distance :
@@ -22,7 +25,9 @@ def assert_code(vector, satellites, code_distance):
     return True
 
 # vector = str(code) satellites = [str(satellite),...] ans = [number(index of satellites with min code_distance),...]
-def assert_decode(vector, satellites, ans):
+def assert_decode(data, ans):
+    vector = data[0]
+    satellites = data[1:]
     sorted(ans)
     code_distances = []
     for satellite in satellites:
@@ -65,7 +70,7 @@ def get_code_distances():
 
 # tests
 print(satellite('00010101',[2,4,1]))
-print(assert_code('11010101',['10110101','00010101'],2))
+print(assert_code(['11010101',2],['10110101','00010101']))
 print(generate_to_encode())
 print(generate_to_decode())
-print(assert_decode('00010101111',['00110101111', '00010101110', '10010101111', '11110101111', '00010101101', '10010100111'],[0,1,2,4]))
+print(assert_decode(['00010101111','00110101111', '00010101110', '10010101111', '11110101111', '00010101101', '10010100111'],[0,1,2,4]))
