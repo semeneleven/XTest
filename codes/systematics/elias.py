@@ -71,7 +71,7 @@ def generate_for_decode():
 
     return data, answ
 
-
+#test
 print(assert_code([[1, 0, 1, 0, 1], [0, 1, 1, 0, 1], [0, 0, 1, 1, 1], [0, 1, 0, 0, 1], [1, 0, 1, 0, 1]],
                   [[1, 1, 1, 0, 1], [0, 0, 0, 1, 1]]))
 print(assert_decode([[0, 0, 1, 0, 0], [0, 0, 0, 0, 1]],
