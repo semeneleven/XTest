@@ -2,6 +2,11 @@ import random
 
 def shannon_fano(data):
     alphabet = sorted(data, key = data.get, reverse = True)
+    for i in range(len(data)-1):
+        if data[alphabet[i]] == data[alphabet[i+1]] and alphabet[i] < alphabet[i+1] :
+            tmp = alphabet[i]
+            alphabet[i] = alphabet[i+1]
+            alphabet[i+1] = tmp
     result = dict.fromkeys(alphabet, '')
     get_codes(alphabet, data, result)
     return result
@@ -45,7 +50,6 @@ def generate_to_encode():
         else : rand = random.randint(1,some//2)
         data['a' + str(i+1)] = rand/100
         some -= rand
-        print(some)
     data['a' + str(len(data))] = some/100
     return data
 
