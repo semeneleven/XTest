@@ -54,7 +54,8 @@ def generate_for_decode():
 		data = generate_for_encode()
 	return data + check, len(check)
 
-#tests
+
+# tests
 print(assert_code('1001', '100101'))
 print(assert_decode(['100101', 2], True))
 print(generate_for_encode())

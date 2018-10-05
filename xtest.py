@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*- 
-import inspect
 import json
 import os
-import pkgutil
 import threading
-import re
 
 import cherrypy
 import webview
