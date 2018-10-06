@@ -39,15 +39,15 @@ def assert_decode(data, ans):
 def generate_to_encode():
     length = 5
     q = random.randint(2,16)
-    data = []
+    data = [[], q]
     for i in range(length):
-        data.append(''.join(get_letter(random.randint(0,q-1)) for i in range(length)))
-    return data, q
+        data[0].append(''.join(get_letter(random.randint(0,q-1)) for i in range(length)))
+    return data
 
 
 def generate_to_decode():
-    data_true, q = iterative(generate_to_encode())
-    data_error = data_true.copy()
+    data_true = iterative(generate_to_encode())
+    data_error = deepcopy(data_true)
 
     error_count = random.randint(1,4)
     error_place = [[],[]]
@@ -59,12 +59,12 @@ def generate_to_decode():
             error_place[1].append(column)
 
     for i in range(len(error_place[0])):
-        error = get_letter(random.randint(1,q-1))
+        error = get_letter(random.randint(1,data_true[1]-1))
         error_string, error_column = error_place[0][i], error_place[1][i]
 
-        data_error[error_string] = data_true[error_string][:error_column] + error + data_true[error_string][error_column+1:]
+        data_error[0][error_string] = data_true[0][error_string][:error_column] + error + data_true[0][error_string][error_column+1:]
 
-    return data_true, q, data_error
+    return data_true, data_error
 
 
 # tests
@@ -85,11 +85,11 @@ for code in data_encode[0]:
     print(code)
 print()
 
-data_true, _, data_error = generate_to_decode()
-for code in data_true:
+data_decode = generate_to_decode()
+for code in data_decode[0][0]:
     print(code)
 print()
 
-for code in data_error:
+for code in data_decode[1][0]:
     print(code)
 print()

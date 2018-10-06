@@ -2,19 +2,14 @@ import random
 
 
 def hemming_code(message):
-    print('Encoding...')
     length_r = 0
     if len(message) in range(10, 12):
         length_r = 4
     elif len(message) in range(12, 16):
         length_r = 5
 
-    print(message, len(message))
-
     for i in range(length_r):
         message = message[:2 ** i - 1] + '0' + message[2 ** i - 1:]
-
-    print(message, len(message))
 
     for i in range(length_r):
         r = [
@@ -29,22 +24,16 @@ def hemming_code(message):
 
         message = message[:2 ** i - 1] + str(r[0]) + message[2 ** i:]
 
-        print(r)
-
-    print(message)
     return message
 
 
 def assert_code(data, answer):
-    print('Assert encode')
     if not hemming_code(data) == answer:
         return False
     return True
 
 
 def assert_decode(data, answer):
-    print('Assert decode')
-    print(data, len(data))
     length_r = 0
     if len(data) in range(14, 16):
         length_r = 4
@@ -60,13 +49,12 @@ def assert_decode(data, answer):
                            len(data),
                            ((2 ** i) * 2))
         ]) % 2
-        print(r)
+
         syndrome.append(r)
 
     syndrome = list(reversed(syndrome))
     n = int(''.join([str(x) for x in syndrome]), 2) - 1
     corrected = data[:n] + ('0' if data[n] == '1' else '1') + data[(n + 1):]
-    print(corrected)
 
     if not corrected == answer:
         return False
@@ -80,7 +68,6 @@ def generate_for_encode():
 
 def generate_for_decode():
     encoded = hemming_code(generate_for_encode())
-    print(encoded)
     n = random.randint(0, len(encoded) - 1)
     encoded = encoded[:n] + ('0' if encoded[n] == '1' else '1') + encoded[(n + 1):]
     return encoded
