@@ -25,9 +25,8 @@ def assert_decode(data, ans):
         return True
     return False
 
-def generate_to_encode(q = random.randint(2,16)):
-    # q = random.randint(2,16)
-    return ''.join(get_letter(random.randint(0,q-1)) for i in range(random.randint(8,12))), q
+def generate_to_encode(q = random.randint(2,16), length = random.randint(8,12)):
+    return ''.join(get_letter(random.randint(0,q-1)) for i in range(length)), q
 
 def generate_to_decode():
     data = generate_to_encode()
