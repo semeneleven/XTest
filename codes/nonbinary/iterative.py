@@ -1,5 +1,4 @@
 from mod_q_code import mod_q_code, get_letter
-from copy import deepcopy
 import random
 
 def iterative(data):
