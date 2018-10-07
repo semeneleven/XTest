@@ -1,10 +1,14 @@
-# TODO improve algorithm for more then one err
 import random
 
-polynomials = {
-    4: [[1, 0, 0, 1, 1], [1, 1, 0, 0, 1], [1, 1, 1, 1, 1]],
-    3: [[1, 1, 0, 1], [1, 0, 1, 1]]
-}
+polynomials = {2: [1, 1, 1]}
+
+
+def gdc(a, b):
+    return gdc(b, a % b) if b else a
+
+
+def lcm(a, b):
+    return a * b // gdc(a, b)
 
 
 def can_correct(R, max_err):
@@ -36,21 +40,31 @@ def can_correct(R, max_err):
     return True
 
 
-def abramson(msg, polynomial):
+def fire(msg, polynomial, err_f, err_c):
+    L = err_c
+    C = err_f + err_c - 1
+
+    while L != 1 and C % (2 ** L - 1) == 0:
+        C += 1
+
+    if len(polynomial) - 1 != L:
+        raise ValueError("Invalid polynomial")
+
+    C_polynomial_num = 2 ** C + 1
+
     polynomial_num = int(''.join([str(x) for x in polynomial]), 2)
 
     gen_polynomial_num = 0
-    C_polynomial_num = 3
 
     for i in bin(C_polynomial_num)[2:]:
         gen_polynomial_num = (gen_polynomial_num << 1) ^ (polynomial_num if int(i) else 0)
 
     gen_polynomial = bin(gen_polynomial_num)[2:]
 
-    msg = msg + '0' * len(polynomial)
+    msg = msg + '0' * (lcm(2 ** L - 1, C) - len(msg))
     R = msg[msg.find('1'):]
 
-    while len(R) > len(polynomial):
+    while len(R) >= len(gen_polynomial):
         for i in range(len(gen_polynomial)):
             R = R[:(i)] + str(int(R[i]) ^ int(gen_polynomial[i])) + R[(i + 1):]
 
@@ -61,24 +75,31 @@ def abramson(msg, polynomial):
     return msg[:len(msg) - len(R)] + R
 
 
-# data = [msg,poly]
+# data = [msg,poly,err_f,err_c]
 def assert_code(data, answer):
-    if not abramson(data[0], data[1]) == answer:
+    if not fire(data[0], data[1], data[2], data[3]) == answer:
         return False
 
     return True
 
 
-# data [err_msg,poly]
+# data [err_msg,poly,err_count]
 def assert_decode(data, answer):
     msg = data[0]
     polynomial = data[1]
+    L = data[2]
+
+    if L > len(polynomial) - 1:
+        raise ValueError("Too many errors({})! Can correct only {}!".format(L, len(polynomial) - 1))
+
+    C = 2 * L - 1
+    while L != 1 and C % (2 ** L - 1) == 0:
+        C += 1
 
     polynomial_num = int(''.join([str(x) for x in polynomial]), 2)
-
     gen_polynomial_num = 0
 
-    C_polynomial_num = 3
+    C_polynomial_num = 2 ** C + 1
 
     for i in bin(C_polynomial_num)[2:]:
         gen_polynomial_num = (gen_polynomial_num << 1) ^ (polynomial_num if int(i) else 0)
@@ -90,23 +111,24 @@ def assert_decode(data, answer):
     loop_num = 0
     while True:
 
-        while len(R) > len(polynomial):
+        while len(R) >= len(gen_polynomial):
             for i in range(len(gen_polynomial)):
                 R = R[:(i)] + str(int(R[i]) ^ int(gen_polynomial[i])) + R[(i + 1):]
 
             R = R[R.find('1'):]
 
-        R = '0' * (len(polynomial) - len(R)) + R
+        R = '0' * (len(gen_polynomial) - len(R)-1) + R
+
         if R.count('1') == 0:
             break
-        elif can_correct(R, 2):
+        elif can_correct(R, L):
 
             for i in range(len(decoded) - len(R), len(decoded) - 1):
                 decoded = decoded[:i] \
                           + str(int(R[i % len(R)]) ^ int(decoded[i])) \
                           + decoded[(i + 1):]
 
-            for i in range(len(decoded)  - loop_num):
+            for i in range(len(decoded) - loop_num):
                 decoded = decoded[len(decoded) - 1:] + decoded[:len(decoded) - 1]
 
             break
@@ -117,34 +139,34 @@ def assert_decode(data, answer):
             R = decoded[decoded.find('1'):]
             loop_num += 1
 
-    if not decoded[:len(decoded) - len(polynomial)] == answer:
+
+    if not decoded[:len(decoded) - len(gen_polynomial) + 1] == answer:
         return False
 
     return True
 
 
 def generate_for_encode():
-    h = 4
-    polynomial = polynomials[h][random.randint(0, len(polynomials[h]) - 1)]
-    msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(7, 2 ** h - 1 - len(polynomial)))])
-    return [msg, polynomial]
+    polynomial = polynomials[2]
+    msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(4, 6))])
+    return [msg, polynomial, 2, 2]
 
 
 def generate_for_decode():
     data = generate_for_encode()
     msg = data[0]
     polynomial = data[1]
-    encoded = abramson(msg, polynomial)
+    encoded = fire(msg, polynomial, 2, 2)
     err = encoded
-    for i in range(random.randint(1, 2)):
+    for i in range(random.randint(1,2)):
         n = random.randint(0, len(err) - 1)
         err = err[:n] + ('0' if err[n] == '1' else '1') + err[(n + 1):]
 
-    return [err, polynomial]
+    return [err, polynomial,2]
 
 
-# print(abramson('00111110', [1, 0, 0, 1, 1]))
-# print(assert_code(['00111110', [1, 0, 0, 1, 1]], '0011111011100'))
-# print(assert_decode(['010110001100101', polynomials[4][0]], '0101100111'))
+# print(fire('110110', [1, 1, 1], 2, 2))
+# print(assert_code(['110110', [1, 1, 1], 2, 2], '110110110110'))
+# print(assert_decode(['110110011101', [1, 1, 1], 2], '110000'))
 # print(generate_for_encode())
 # print(generate_for_decode())
