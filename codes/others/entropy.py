@@ -21,7 +21,7 @@ def entropy(probs, max=False):
     return entropy
 
 
-def conditional_entropy(cond_probs, probs, max=False):
+def conditional_entropy(cond_probs):
     entropy = 0
 
     for x in cond_probs:
@@ -30,6 +30,6 @@ def conditional_entropy(cond_probs, probs, max=False):
 
     return entropy
 
-    
+
 # tests
 print(entropy({'a':0.35,'b':0.15,'d':0.3,'c':0.2}, True))
