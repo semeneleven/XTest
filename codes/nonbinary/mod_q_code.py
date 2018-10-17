@@ -8,7 +8,7 @@ def mod_q_code(code, q):
 
 
 def get_letter(num):
-    if num >= 10 :
+    if num >= 10 and num < 16 :
         string = 'ABCDEF'
         return string[num-10]
     return str(num)
@@ -38,7 +38,7 @@ def generate_to_decode():
     return data
 
 # tests
-# print(mod_q_code('A01B6D1139A24', 14))
+# print(mod_q_code('A01B6D1139A24', 16))
 # print(assert_code(['A01B6D1139A24', 14],'A01B6D1139A24D'))
 # print(assert_decode(['A01B6D1139A24B', 14], False))
 # print(generate_to_encode(8))

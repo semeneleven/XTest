@@ -1,4 +1,4 @@
-from mod_q_code import mod_q_code, get_letter
+from codes.nonbinary.mod_q_code import mod_q_code, get_letter
 import random
 
 def iterative(data):
