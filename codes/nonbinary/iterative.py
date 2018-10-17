@@ -77,6 +77,7 @@ ans = ['13031',
        '03100',
        '12010',
        '0013']
+       
 print(assert_code(data, ans))
 
 data_encode = generate_to_encode()
