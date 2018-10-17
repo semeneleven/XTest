@@ -28,7 +28,9 @@ def initialize_func_dict():
             print("Found submodule %s " % (modname))
             module = __import__(modname, fromlist="dummy");
             print(modname[modname.rfind(".") + 1:])
-            codes_dict.update(
-                {modname[modname.rfind(".") + 1:]: inspect.getmembers(module, predicate=inspect.isfunction)[0][1]})
+            methods = inspect.getmembers(module, predicate=inspect.isfunction)
+            if methods:
+                codes_dict.update(
+                    {modname[modname.rfind(".") + 1:]: methods[0][1]})
 
     return codes_dict
