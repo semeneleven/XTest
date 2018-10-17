@@ -17,7 +17,6 @@ class Base(object):
         self.codes_dict=codes
 
     @cherrypy.expose
-    #@cherrypy.tools.json_out()
     def check_code(self, data="", answer="", code=""):
 
 
