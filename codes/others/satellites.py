@@ -43,7 +43,7 @@ def assert_decode(data, ans):
         return False
 
 
-def generate_to_encode():
+def generate_for_encode():
     length = random.randint(8, 12)
     code_distance = random.randint(1, 3)
     vector = ''
@@ -52,8 +52,8 @@ def generate_to_encode():
     return vector, code_distance
 
 
-def generate_to_decode():
-    vector = generate_to_encode()[0]
+def generate_for_decode():
+    vector = generate_for_encode()[0]
     satellites = []
     code_distances = get_code_distances()
     for code_distance in code_distances:
@@ -76,6 +76,6 @@ def get_code_distances():
 # tests
 print(satellite('00010101', [2, 4, 1]))
 print(assert_code(['11010101', 2], ['10110101', '00010101']))
-print(generate_to_encode())
-print(generate_to_decode())
+print(generate_for_encode())
+print(generate_for_decode())
 print(assert_decode(['00010101111',['00110101111', '00010101110', '10010101111', '11110101111', '00010101101', '10010100111']],[0, 1, 2, 4]))

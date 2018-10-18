@@ -25,11 +25,11 @@ def assert_decode(data, ans):
         return True
     return False
 
-def generate_to_encode(q = random.randint(2,16), length = random.randint(8,12)):
+def generate_for_encode(q = random.randint(2,16), length = random.randint(8,12)):
     return ''.join(get_letter(random.randint(0,q-1)) for i in range(length)), q
 
-def generate_to_decode():
-    data = generate_to_encode()
+def generate_for_decode():
+    data = generate_for_encode()
     w_error = ['',data[1]]
     print(data)
     if random.randint(1,10) > 4 :
@@ -41,5 +41,5 @@ def generate_to_decode():
 # print(mod_q_code('A01B6D1139A24', 16))
 # print(assert_code(['A01B6D1139A24', 14],'A01B6D1139A24D'))
 # print(assert_decode(['A01B6D1139A24B', 14], False))
-# print(generate_to_encode(8))
-# print(generate_to_decode())
+# print(generate_for_encode(8))
+# print(generate_for_decode())

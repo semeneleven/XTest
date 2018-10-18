@@ -2,19 +2,23 @@
  <html>
     <head>
       <link href="/static/css/style.css" rel="stylesheet">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
-      <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     </head>
     <body>
-      <div id="generator">
-          <h3>Code this: 10110</h3>
-          <form name="gray" action="check_code" method="post">
-              <label><input name="answer" type="number"></label>
-              <input type="hidden" name="data" value="10110">
-              <input type="hidden" name="code" value="gray">
-              <button type="submit">Check!</button>
-          </form>
-      </div>
+        <div class="container">
+            <div id="main">
+                <div id="systematics" class="main-menu-button-1">
+                    <p class="main-text">Систематичні</p>
+                </div>
+                <div id="cyclics" class="main-menu-button-2">
+                    <p class="main-text">Циклічні</p>
+                </div>
+                <div id="nonbinary" class="main-menu-button-1">
+                    <p class="main-text">Недвійкові</p>
+                </div>
+                <div id="others" class="main-menu-button-2 end">
+                    <p class="main-text">Інші</p>
+                </div>
+            </div>
+        </div>
     </body>
  </html>

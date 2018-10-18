@@ -35,7 +35,7 @@ def assert_decode(data, ans):
     return False
 
 
-def generate_to_encode():
+def generate_for_encode():
     length = 5
     q = random.randint(2,16)
     data = []
@@ -44,8 +44,8 @@ def generate_to_encode():
     return data, q
 
 
-def generate_to_decode():
-    data_true, q = iterative(generate_to_encode())
+def generate_for_decode():
+    data_true, q = iterative(generate_for_encode())
     data_error = data_true.copy()
 
     error_count = random.randint(1,4)
@@ -80,12 +80,12 @@ ans = ['13031',
        
 print(assert_code(data, ans))
 
-data_encode = generate_to_encode()
+data_encode = generate_for_encode()
 for code in data_encode[0]:
     print(code)
 print()
 
-data_true, _, data_error = generate_to_decode()
+data_true, _, data_error = generate_for_decode()
 for code in data_true:
     print(code)
 print()

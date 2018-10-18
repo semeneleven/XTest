@@ -87,7 +87,7 @@ def assert_decode(data, ans):
     return bool == ans
 
 
-def generate_to_encode():
+def generate_for_encode():
     data = []
 
     funcs = ['permutation', 'accommodation', 'certain_combination', 'all_combination', 'qualitative_change']
@@ -112,8 +112,8 @@ def generate_to_encode():
     return data
 
 
-def generate_to_decode():
-    data = generate_to_encode()
+def generate_for_decode():
+    data = generate_for_encode()
 
     word = ''.join(data[1][random.randint(0,len(data[1])-1)] for i in range(random.randint(1,data[2])))
 
@@ -126,5 +126,5 @@ data = ['qualitative_change', 'abcd', 3, 4]
 ans = ['abd','cdc','bcd','bdb']
 print(assert_decode(['accommodation','abcd',3,['acd']],True))
 print(assert_code(data, ans))
-print(generate_to_encode())
-print(generate_to_decode())
+print(generate_for_encode())
+print(generate_for_decode())

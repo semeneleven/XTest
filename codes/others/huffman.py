@@ -37,7 +37,7 @@ def assert_code(data, ans):
         return False
 
 
-def generate_to_encode():
+def generate_for_encode():
     data = { 'a' + str(i+1) : 0 for i in range(random.randint(6,9)) }
     some = 100
     for i in range(len(data)-1):
@@ -55,5 +55,5 @@ data = { 'a1': 0.25, 'a2': 0.25, 'a3': 0.2, 'a4': 0.15, 'a5': 0.15 }
 ans = {'a4': '110', 'a5': '111', 'a1': '01', 'a2': '10', 'a3': '00'}
 print(huffman(data))
 print(assert_code(data, ans))
-data = generate_to_encode()
+data = generate_for_encode()
 print(data)
