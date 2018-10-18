@@ -17,15 +17,41 @@ class Base(object):
         self.codes_dict=codes
 
     @cherrypy.expose
-    def check_code(self, data="", answer="", code=""):
+    @cherrypy.tools.json_out()
+    def code(module_name):
+
+        return {'name' : module_name, 'description': ''}
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def cyclics(self):
+        code_names = get_code_names('cyclics')
+
+        return {'codes' : code_names}
 
 
-        print(data, answer, sep=" ~/~ ", end="!|")
-        b = self.codes_dict[code](data,answer)
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def others(self):
+        code_names = get_code_names('others')
 
-        print(b)
+        return {'codes' : code_names}
 
-        return  "<html><head></head><body><h1>"+b+"/h1></body></html>"
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def nonbinary(self):
+        code_names = get_code_names('nonbinary')
+
+        return {'codes' : code_names}
+
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def systematics(self):
+        code_names - get_code_names('systematics')
+
+        return {'codes' : code_names}
 
     @cherrypy.expose
     def index(self):
