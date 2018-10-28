@@ -15,18 +15,46 @@ class Base(object):
         pass
 
     @cherrypy.expose
+    @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def test(self, module_name):
-        data = util.get_gen_encode(module_name)()
+    def decoderesult(self):
+        module_name = cherrypy.request.json["module_name"]
+        data = cherrypy.request.json["data"]
+        answer = cherrypy.request.json["answer"]
+
+        return {'result': util.get_decodes_method(module_name)(data, answer)}
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def decodedata(self):
+        module_name = cherrypy.request.json["module_name"]
+        data = util.get_gen_decode(module_name)()
         response = {'view': util.create_view(module_name, data),
                     'data': data}
 
         return response
 
     @cherrypy.expose
+    @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
-    def code(self, module_name):
-        return {'name': module_name, 'description': ''}
+    def encoderesult(self):
+        module_name = cherrypy.request.json["module_name"]
+        data = cherrypy.request.json["data"]
+        answer = cherrypy.request.json["answer"]
+
+        return {'result': util.get_encodes_method(module_name)(data,answer)}
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def encodedata(self):
+        module_name = cherrypy.request.json["module_name"]
+        data = util.get_gen_encode(module_name)()
+        response = {'view': util.create_view(module_name, data),
+                    'data': data}
+
+        return response
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
@@ -57,6 +85,15 @@ class Base(object):
         return {'codes': code_names}
 
     @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def code_details(self):
+        # TODO
+        module_name = cherrypy.request.json["module_name"]
+
+        return {'name': module_name, 'description': 'heh'}
+
+    @cherrypy.expose
     def index(self):
         return open('public/html/index.html')
 
@@ -65,7 +102,8 @@ def start_server():
     conf = {
         '/': {
             'tools.sessions.on': True,
-            'tools.staticdir.root': os.path.abspath(os.getcwd())
+            'tools.staticdir.root': os.path.abspath(os.getcwd()),
+
         },
         '/static': {
             'tools.staticdir.on': True,

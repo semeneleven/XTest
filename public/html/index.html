@@ -1,22 +1,31 @@
  <!DOCTYPE html>
  <html>
     <head>
-      <link href="/static/css/style.css" rel="stylesheet">
+        <link href="/static/css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="/static/js/main.js"></script>
     </head>
     <body>
         <div class="container">
             <div id="main">
-                <div id="systematics" class="main-menu-button-1">
+                <div id="systematics" class="main-menu-button-1" onclick="getCodes(this.id)">
                     <p class="main-text">Систематичні</p>
                 </div>
-                <div id="cyclics" class="main-menu-button-2">
+                <div id="cyclics" class="main-menu-button-2" onclick="getCodes(this.id)">
                     <p class="main-text">Циклічні</p>
                 </div>
-                <div id="nonbinary" class="main-menu-button-1">
+                <div id="nonbinary" class="main-menu-button-1" onclick="getCodes(this.id)">
                     <p class="main-text">Недвійкові</p>
                 </div>
-                <div id="others" class="main-menu-button-2 end">
+                <div id="others" class="main-menu-button-2 end" onclick="getCodes(this.id)">
                     <p class="main-text">Інші</p>
+                </div>
+            </div>
+            <div id="codes" style="display: none">
+
+            </div>
+            <div id="code" style="display: none">
+                <div class="teory">
+                    HEhe
                 </div>
             </div>
         </div>
