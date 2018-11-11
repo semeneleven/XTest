@@ -1,7 +1,7 @@
 polynomials = {
-    1: [1,0,0,1,1],
-    3: [1,1,1,1,1],
-    5: [1,1,1]
+    1: [1, 0, 0, 1, 1],
+    3: [1, 1, 1, 1, 1],
+    5: [1, 1, 1]
 }
 
 
@@ -35,21 +35,20 @@ def can_correct(R, max_err):
 
 
 def multiply(a, b):
-    result = (a if int(b[len(b)-1]) else 0)
-    for i in range(len(b)-1):
-        result = (a << (i+1) if int(b[len(b)-i -2]) else 0) ^ (result)
+    result = (a if int(b[len(b) - 1]) else 0)
+    for i in range(len(b) - 1):
+        result = (a << (i + 1) if int(b[len(b) - i - 2]) else 0) ^ (result)
     return result
 
 
 def bch(msg, d):
-
     gen_polynomial_num = int("".join([str(x) for x in polynomials[1]]), 2)
-    for i in range(3, d-1, 2):
-            gen_polynomial_num = multiply(gen_polynomial_num, polynomials[i])
+    for i in range(3, d - 1, 2):
+        gen_polynomial_num = multiply(gen_polynomial_num, polynomials[i])
 
-    gen_polynomial =bin(gen_polynomial_num)[2:]
+    gen_polynomial = bin(gen_polynomial_num)[2:]
 
-    msg += '0'*(15-len(msg))
+    msg += '0' * (15 - len(msg))
     R = msg[msg.find('1'):]
 
     while len(R) >= len(gen_polynomial):
@@ -58,7 +57,7 @@ def bch(msg, d):
 
         R = R[R.find('1'):]
 
-    R = '0' * (len(gen_polynomial) - len(R)-1) + R
+    R = '0' * (len(gen_polynomial) - len(R) - 1) + R
     return msg[:len(msg) - len(R)] + R
 
 
@@ -82,15 +81,15 @@ def assert_decode(data, answer):
                 R = R[:(j)] + str(int(R[j]) ^ int(gen_polynomial[j])) + R[(j + 1):]
 
             R = R[R.find('1'):]
-        R = '0' * (len(gen_polynomial) - len(R)-1) + R
+        R = '0' * (len(gen_polynomial) - len(R) - 1) + R
         print(decoded, R)
         if R.count('1') == 0:
             break
-        elif can_correct(R,(d-1)//2):
+        elif can_correct(R, (d - 1) // 2):
             for j in range(len(decoded) - len(R), len(decoded) - 1):
                 print(j)
                 decoded = decoded[:j] \
-                          + str(int(R[j % (len(decoded)-len(R))]) ^ int(decoded[j])) \
+                          + str(int(R[j % (len(decoded) - len(R))]) ^ int(decoded[j])) \
                           + decoded[(j + 1):]
 
             for j in range(len(decoded) - i):
@@ -109,5 +108,9 @@ def assert_decode(data, answer):
     return True
 
 
-print(bch('10101', 7))
-print(assert_decode(['111011001000111', 7],'10101'))
+# TODO assert code and generators
+def get_details():
+    return {'view_type': 'standard'}
+
+# print(bch('10101', 7))
+# print(assert_decode(['111011001000111', 7],'10101'))

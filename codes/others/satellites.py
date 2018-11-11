@@ -49,11 +49,11 @@ def generate_for_encode():
     vector = ''
     for i in range(length):
         vector += str(random.randint(0, 1))
-    return vector, code_distance
+    return {'message': [vector, code_distance]}
 
 
 def generate_for_decode():
-    vector = generate_for_encode()[0]
+    vector = generate_for_encode()['message'][0]
     satellites = []
     code_distances = get_code_distances()
     for code_distance in code_distances:
@@ -73,9 +73,9 @@ def get_code_distances():
     return code_distances
 
 
-# tests
-print(satellite('00010101', [2, 4, 1]))
-print(assert_code(['11010101', 2], ['10110101', '00010101']))
-print(generate_for_encode())
-print(generate_for_decode())
-print(assert_decode(['00010101111',['00110101111', '00010101110', '10010101111', '11110101111', '00010101101', '10010100111']],[0, 1, 2, 4]))
+def get_details():
+    return {'view_type': 'standard'}
+
+# tests print(satellite('00010101', [2, 4, 1])) print(assert_code(['11010101', 2], ['10110101', '00010101'])) print(
+# generate_for_encode()) print(generate_for_decode()) print(assert_decode(['00010101111',['00110101111',
+# '00010101110', '10010101111', '11110101111', '00010101101', '10010100111']],[0, 1, 2, 4]))

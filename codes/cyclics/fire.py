@@ -117,7 +117,7 @@ def assert_decode(data, answer):
 
             R = R[R.find('1'):]
 
-        R = '0' * (len(gen_polynomial) - len(R)-1) + R
+        R = '0' * (len(gen_polynomial) - len(R) - 1) + R
 
         if R.count('1') == 0:
             break
@@ -139,7 +139,6 @@ def assert_decode(data, answer):
             R = decoded[decoded.find('1'):]
             loop_num += 1
 
-
     if not decoded[:len(decoded) - len(gen_polynomial) + 1] == answer:
         return False
 
@@ -149,21 +148,23 @@ def assert_decode(data, answer):
 def generate_for_encode():
     polynomial = polynomials[2]
     msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(4, 6))])
-    return [msg, polynomial, 2, 2]
+    return {'message': [msg, polynomial, 2, 2]}
 
 
 def generate_for_decode():
-    data = generate_for_encode()
+    data = generate_for_encode()['message']
     msg = data[0]
     polynomial = data[1]
     encoded = fire(msg, polynomial, 2, 2)
     err = encoded
-    for i in range(random.randint(1,2)):
+    for i in range(random.randint(1, 2)):
         n = random.randint(0, len(err) - 1)
         err = err[:n] + ('0' if err[n] == '1' else '1') + err[(n + 1):]
 
-    return [err, polynomial,2]
+    return [err, polynomial, 2]
 
+def get_details():
+    return {'view_type': 'standard'}
 
 # print(fire('110110', [1, 1, 1], 2, 2))
 # print(assert_code(['110110', [1, 1, 1], 2, 2], '110110110110'))

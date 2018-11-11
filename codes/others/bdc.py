@@ -65,19 +65,23 @@ def assert_decode(data, answ):
 
 
 def generate_for_encode():
-    return random.randint(101, 999), bases[random.randint(0, 3)]
+    return {'message': [random.randint(101, 999), bases[random.randint(0, 3)]]}
 
 
 def generate_for_decode():
-    data = generate_for_encode()
+    data = generate_for_encode()['message']
     base = bases[random.randint(0, 3)]
 
     return bdc(data[0], base), base
 
 
+def get_details():
+    return {'view_type': 'standard'}
+
+
 # tests
-print(bdc(851, [7, 4, 2, 1]))
-print(assert_code([851, [5, 4, 2, 1]], '101110000001'))
-print(assert_decode(['100101010001', [7, 4, 2, 1]], 851))
-print(generate_for_encode())
-print(generate_for_decode())
+# print(bdc(851, [7, 4, 2, 1]))
+# print(assert_code([851, [5, 4, 2, 1]], '101110000001'))
+# print(assert_decode(['100101010001', [7, 4, 2, 1]], 851))
+# print(generate_for_encode())
+# print(generate_for_decode())

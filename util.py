@@ -10,7 +10,6 @@ import codes
 
 def get_code_names(category):
     names = []
-
     path_info = get_path_info()
     for i in range(len(path_info[0])):
 
@@ -19,7 +18,6 @@ def get_code_names(category):
         for importer, modname, ispkg in pkgutil.iter_modules(path, path_info[1][i]):
             if category in modname:
                 names.append(modname[modname.rfind(".") + 1:])
-
     return names
 
 
@@ -58,7 +56,7 @@ def get_method(method_name):
 
 def create_view(modname, data):
     tempalte = open('templates/' + modname + '.html', 'r')
-    print(pystache.render(tempalte.read(), data))
+    return pystache.render(tempalte.read(), data)
 
 
 def get_encodes_method(modname):

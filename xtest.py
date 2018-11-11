@@ -42,8 +42,7 @@ class Base(object):
         module_name = cherrypy.request.json["module_name"]
         data = cherrypy.request.json["data"]
         answer = cherrypy.request.json["answer"]
-
-        return {'result': util.get_encodes_method(module_name)(data,answer)}
+        return {'result': util.get_encodes_method(module_name)(data, answer)}
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
@@ -91,11 +90,11 @@ class Base(object):
         # TODO
         module_name = cherrypy.request.json["module_name"]
 
-        return {'name': module_name, 'description': 'heh'}
+        return {'name': module_name, 'description': "<p class='theory-text'>" + 'Description' + '</p>'}
 
-    @cherrypy.expose
-    def index(self):
-        return open('public/html/index.html')
+    # @cherrypy.expose
+    # def index(self):
+    #     return open('static/html/index.html')
 
 
 def start_server():
@@ -107,7 +106,7 @@ def start_server():
         },
         '/static': {
             'tools.staticdir.on': True,
-            'tools.staticdir.dir': 'public',
+            'tools.staticdir.dir': 'static',
         }
     }
     cherrypy.config.update({'log.screen': False,
@@ -116,10 +115,11 @@ def start_server():
     cherrypy.quickstart(Base(), "/", conf)
 
 
-t = threading.Thread(target=start_server)
-
-t.daemon = True
-t.start()
-
-webview.create_window("PyBrowse", "http://localhost:9090", width=600,
-                      height=550, resizable=True, fullscreen=False)
+start_server();
+# t = threading.Thread(target=start_server)
+#
+# t.daemon = True
+# t.start()
+#
+# webview.create_window("PyBrowse", "http://localhost:9090", width=600,
+#                      height=550, resizable=True, fullscreen=False)

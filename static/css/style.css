@@ -1,0 +1,180 @@
+
+
+/* define defaults for start page. */
+
+*{
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    height:100vh;
+    width: 100vw;
+    padding: 0;
+    color: #E7F5DC;
+    background-color: #C0DFD8;
+}
+#main{
+    height:100%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 250px;
+    min-height: 500px;
+    background-color: inherit;
+}
+#codes{
+    height: max-content;
+    width: 100%;
+    padding: 5% 10%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: space-between;
+    flex-basis: 125px;
+    min-height: 300px;
+    background-color: inherit;
+}
+#code{
+    height: 75%;
+    width: 100%;
+    padding: 5% 10%;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: flex-start;
+    flex-basis: 250px;
+    min-height: 450px;
+    background-color: inherit;
+}
+#test{
+    height: 75%;
+    width: 100%;
+    padding: 5% 10%;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    flex-basis: 250px;
+    min-height: 450px;
+    background-color: inherit;
+}
+#check{
+    width: 125px;
+    height: 40px;
+    background-color: #64AC8F;
+    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
+}
+#bottom{
+    height: 15%;
+    width: 100%;
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-basis: 125px;
+    background-color: inherit;
+}
+#back{
+    width: 125px;
+    height: 40px;
+    background-color: #64AC8F;
+    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
+}
+
+.back-text{
+    text-align: center;
+    margin-top: 7px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 18px;
+}
+.main-text{
+    margin: 10px 20px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 18px;
+    word-wrap: break-word;
+}
+
+
+.main-menu-button-1{
+    width: 80%;
+    height: 20%;
+    background-color: #64AC8F;
+    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
+}
+.main-menu-button-2{
+    width: 80%;
+    height: 20%;
+    background-color: #94D6BA;
+    box-shadow: 3px 0px 4px rgba(0, 0, 0, 0.25), inset 0px 5px 4px rgba(0, 0, 0, 0.25);
+}
+.end{
+    box-shadow: 3px 2px 4px 1px rgba(0, 0, 0, 0.25), inset 0px 5px 4px rgba(0, 0, 0, 0.25);
+}
+
+.code-plate-1{
+    width: 125px;
+    height: 125px;
+    margin: 5px;
+    background: #64AC8F;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.code-plate-2{
+    width: 125px;
+    height: 125px;
+    margin: 5px;
+    background: #94D6BA;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+#theory{
+    width: 100%;
+    height: 60%;
+    margin-bottom: 20px;
+    background: #E7F5DC;
+    border: 3px solid #4C6255;/*linear-gradient(132.51deg, #4C6255 0%, #C0DFD8 100%);*/
+}
+
+.theory-text{
+    color: black;
+}
+
+.button-container{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-end;
+    flex-basis: 125px;
+
+}
+.central-button{
+    flex-grow: 2;
+}
+.side-button{
+    height: 40px;
+    width: 125px;
+}
+

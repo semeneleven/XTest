@@ -120,6 +120,10 @@ def assert_decode(data, answer):
     return True
 
 
-print(hemming('01011111010', [1, 1, 0, 0, 1]))
-print(assert_code(['01011111010', [1, 1, 0, 0, 1]], '011101010001010'))
-print(assert_decode(['011101010001010', [1, 1, 0, 0, 1]], '01011111010'))
+# TODO generators
+def get_details():
+    return {'view_type': 'standard'}
+
+# print(hemming('01011111010', [1, 1, 0, 0, 1]))
+# print(assert_code(['01011111010', [1, 1, 0, 0, 1]], '011101010001010'))
+# print(assert_decode(['011101010001010', [1, 1, 0, 0, 1]], '01011111010'))

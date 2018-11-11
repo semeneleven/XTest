@@ -109,11 +109,11 @@ def generate_for_encode():
     else :
         data.append(1)
 
-    return data
+    return {'message': data}
 
 
 def generate_for_decode():
-    data = generate_for_encode()
+    data = generate_for_encode()['message']
 
     word = ''.join(data[1][random.randint(0,len(data[1])-1)] for i in range(random.randint(1,data[2])))
 
@@ -121,10 +121,14 @@ def generate_for_decode():
 
     return data
 
+
+def get_details():
+    return {'view_type': 'standard'}
+
 # tests
-data = ['qualitative_change', 'abcd', 3, 4]
-ans = ['abd','cdc','bcd','bdb']
-print(assert_decode(['accommodation','abcd',3,['acd']],True))
-print(assert_code(data, ans))
-print(generate_for_encode())
-print(generate_for_decode())
+# data = ['qualitative_change', 'abcd', 3, 4]
+# ans = ['abd','cdc','bcd','bdb']
+# print(assert_decode(['accommodation','abcd',3,['acd']],True))
+# print(assert_code(data, ans))
+# print(generate_for_encode())
+# print(generate_for_decode())

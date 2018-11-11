@@ -155,12 +155,12 @@ def generate_for_encode():
     m = random.randint(3,4)
     b = random.randint(2,m-1)
     message = ''.join([str(random.randint(0,1)) for i in range(sum_C(b,m))])
-    return [m, b, message]
+    return {'message': [m, b, message]}
 
 
 def generate_for_decode():
 
-    generated = generate_for_encode()
+    generated = generate_for_encode()['message']
     return [reed_muller(generated) if i == 2 else generated[i] for i in range(len(generated))]
 
 print(assert_code([4, 2, '01101011010'], '0110001111111010'))

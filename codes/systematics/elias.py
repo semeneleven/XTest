@@ -44,11 +44,11 @@ def generate_for_encode():
         for j in range(5):
             data[i].append(random.randint(0, 1))
 
-    return data
+    return {'message': data}
 
 
 def generate_for_decode():
-    answ = generate_for_encode()
+    answ = generate_for_encode()['message']
 
     data=[[],[]]
 
@@ -72,9 +72,9 @@ def generate_for_decode():
     return data, answ
 
 #test
-print(assert_code([[1, 0, 1, 0, 1], [0, 1, 1, 0, 1], [0, 0, 1, 1, 1], [0, 1, 0, 0, 1], [1, 0, 1, 0, 1]],
-                  [[1, 1, 1, 0, 1], [0, 0, 0, 1, 1]]))
-print(assert_decode([[0, 0, 1, 0, 0], [0, 0, 0, 0, 1]],
-                    [[0, 0, 0, 0, 0], [1, 0, 0, 1, 0], [1, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 0, 1]]))
-print(generate_for_encode())
-print(generate_for_decode())
+# print(assert_code([[1, 0, 1, 0, 1], [0, 1, 1, 0, 1], [0, 0, 1, 1, 1], [0, 1, 0, 0, 1], [1, 0, 1, 0, 1]],
+#                   [[1, 1, 1, 0, 1], [0, 0, 0, 1, 1]]))
+# print(assert_decode([[0, 0, 1, 0, 0], [0, 0, 0, 0, 1]],
+#                     [[0, 0, 0, 0, 0], [1, 0, 0, 1, 0], [1, 0, 0, 0, 0], [1, 1, 1, 1, 0], [1, 1, 1, 0, 1]]))
+# print(generate_for_encode())
+# print(generate_for_decode())

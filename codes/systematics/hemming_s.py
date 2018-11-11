@@ -63,11 +63,11 @@ def assert_decode(data, answer):
 
 
 def generate_for_encode():
-    return str().join([str(random.randint(0, 1)) for x in range(random.randint(10, 15))])
+    return {'message': str().join([str(random.randint(0, 1)) for x in range(random.randint(10, 15))])}
 
 
 def generate_for_decode():
-    encoded = hemming_code(generate_for_encode())
+    encoded = hemming_code(generate_for_encode()['message'])
     n = random.randint(0, len(encoded) - 1)
     encoded = encoded[:n] + ('0' if encoded[n] == '1' else '1') + encoded[(n + 1):]
     return encoded

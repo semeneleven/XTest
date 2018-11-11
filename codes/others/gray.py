@@ -1,7 +1,6 @@
-# data = str(number) answ = str(number)
 import random
 
-
+# data = str(number) answ = str(number)
 def assert_code(data, answ):
     data = int(data, 2)
     answ = int(answ, 2)
@@ -36,5 +35,9 @@ def generate_for_encode():
 
 
 def generate_for_decode():
-    data = int(generate_for_encode(), 2)
+    data = int(generate_for_encode()["message"], 2)
     return data ^ (data >> 1)
+
+
+def get_details():
+    return {'view_type': 'standard'}
