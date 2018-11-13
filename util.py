@@ -75,4 +75,8 @@ def get_gen_decode(modname):
     return get_method('generate_for_decode')[modname]
 
 
+def get_details(modname):
+    return get_method('get_details')[modname]
+
+
 

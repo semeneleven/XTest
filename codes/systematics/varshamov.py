@@ -176,6 +176,13 @@ def generator_correction_step():
     return [G, encoded]
 
 
+def get_details():
+    return {
+        'view_type': 'entropy',
+        'generators': ['generator_init_step', 'generator_build_G_step', 'generator_code_step', 'generator_build_H_step', 'generator_correction_step'],
+        'steps': ['initializing_step', 'building_G_step', 'code_step', 'building_H_step', 'correction_step']
+    }
+
 # print(initializing_step([17, 4], [17, 1, 9, 8]))
 # print(building_G_step([1, 3], [
 #     [[1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 0],

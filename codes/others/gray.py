@@ -31,7 +31,7 @@ def assert_decode(data, answ):
 
 
 def generate_for_encode():
-    return {'message' :''.join([str(random.randint(0, 1)) for i in range(0, random.randint(6, 8))])}
+    return {'message': ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(6, 8))])}
 
 
 def generate_for_decode():

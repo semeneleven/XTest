@@ -17,6 +17,31 @@ class Base(object):
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
+    def stepcheck(self):
+        module_name = cherrypy.request.json["module_name"]
+        step = cherrypy.request.json["step"]
+        data = cherrypy.request.json["data"]
+        answer = cherrypy.request.json["answer"]
+
+        return  {'result': util.get_method(step)[module_name](data, answer)}
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def stepgenerators(self):
+        module_name = cherrypy.request.json["module_name"]
+        step = cherrypy.request.json["step"]
+        generator = cherrypy.request.json["generator"]
+
+        data = util.get_method(generator)[module_name]()
+
+        return {'view': util.create_view(step, data),
+                    'data': data}
+
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
     def decoderesult(self):
         module_name = cherrypy.request.json["module_name"]
         data = cherrypy.request.json["data"]
@@ -55,6 +80,8 @@ class Base(object):
 
         return response
 
+
+
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def cyclics(self):
@@ -83,18 +110,11 @@ class Base(object):
 
         return {'codes': code_names}
 
+
+
     @cherrypy.expose
-    @cherrypy.tools.json_in()
-    @cherrypy.tools.json_out()
-    def code_details(self):
-        # TODO
-        module_name = cherrypy.request.json["module_name"]
-
-        return {'name': module_name, 'description': "<p class='theory-text'>" + 'Description' + '</p>'}
-
-    # @cherrypy.expose
-    # def index(self):
-    #     return open('static/html/index.html')
+    def index(self):
+        return open('static/html/index.html')
 
 
 def start_server():
