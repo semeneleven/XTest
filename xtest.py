@@ -80,6 +80,14 @@ class Base(object):
 
         return response
 
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
+    def codedetails(self):
+        # TODO
+        module_name = cherrypy.request.json["module_name"]
+
+        return {'name': module_name, 'description': 'heh'}
 
 
     @cherrypy.expose
@@ -135,11 +143,11 @@ def start_server():
     cherrypy.quickstart(Base(), "/", conf)
 
 
-start_server();
-# t = threading.Thread(target=start_server)
-#
-# t.daemon = True
-# t.start()
-#
-# webview.create_window("PyBrowse", "http://localhost:9090", width=600,
-#                      height=550, resizable=True, fullscreen=False)
+
+t = threading.Thread(target=start_server)
+
+t.daemon = True
+t.start()
+
+webview.create_window("PyBrowse", "http://localhost:9090", width=600,
+                     height=550, resizable=True, fullscreen=False)
