@@ -27,22 +27,25 @@
                     <div></div>
                 </div>
                 <div class="button-container">
-                    <button class="side-button">Exam</button>
-                    <button class="side-button" onclick="beginTest()">Test</button>
+                    <div class="regular-button"><p class="button-text">Exam</p></div>
+                    <div class="regular-button" onclick="beginTest()"><p class = "button-text">Test</p></div>
                 </div>
             </div>
             <div id="test" style="display: none">
                 <div id="task">
 
                 </div>
-                <div id="check" onclick="check()">
-                    <p class="back-text">
+                <div id="check" class="regular-button" onclick="check()">
+                    <p class="button-text">
                     Check
                     </p>
+                    <p id="rightAnswer" style="display: none; color: forestgreen">True</p>
+                    <p id="wrongAnswer" style="display: none; color: firebrick">False</p>
+                </div>
             </div>
             <div id="bottom" style="display: none">
-                <div id="back" onclick="goBack()">
-                    <p class="back-text">
+                <div id="back" class="regular-button" onclick="goBack()">
+                    <p class="button-text">
                     Back
                     </p>
                 </div>

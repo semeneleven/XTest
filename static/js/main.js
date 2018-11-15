@@ -2,6 +2,17 @@
 currentCategory= '';
 currentCode = '';
 currentData = '';
+
+currenteEncoderEndpoit = '';
+currenteResultEndpoit = '';
+
+currentStep = 0;
+currentGenerator =  0;
+stepsTask = false;
+
+generators= null;
+steps = null;
+
 waitResponse = false;
 
 
@@ -60,7 +71,7 @@ function getCodeDetails(codeName) {
     document.getElementById("codes").style.display = 'none';
 
 
-    const url = 'http://localhost:9090/code_details';
+    const url = 'http://localhost:9090/codedetails';
     console.log(codeName);
 
     fetch(url,{
@@ -78,12 +89,21 @@ function getCodeDetails(codeName) {
             return response.json()
         })
         .then( parsedJson =>{
-            console.log(parsedJson['description'], parsedJson['name']);
+
             this.codeDiv = document.getElementById("code");
             this.codeDiv.style.display = 'flex';
             this.theory= document.getElementById("theory");
             clear(this.theory);
             this.theory.innerHTML = parsedJson['description'];
+
+            if("generators" in parsedJson){
+                generators = parsedJson["generators"];
+                steps = parsedJson["steps"];
+                stepsTask = true;
+                currentGenerator = 0;
+                currentStep = 0;
+            }
+
             currentCode = codeName;
 
         })
@@ -93,11 +113,20 @@ function beginTest() {
 
     if(currentCode===''&&!waitResponse) {
         waitResponse=true;
-        setTimeout(beginTest, 200);
+        setTimeout(beginTest, 100);
     }
+
     document.getElementById("code").style.display = 'none';
 
-    const url = 'http://localhost:9090/encodedata';
+    if(stepsTask){
+        currenteEncoderEndpoit = "stepgenerators";
+    }
+    else {
+        currenteEncoderEndpoit = "encodedata";
+    }
+
+
+    const url = 'http://localhost:9090/'+currenteEncoderEndpoit;
     fetch(url,{
           method: 'POST',
           headers: {
@@ -105,7 +134,9 @@ function beginTest() {
               'Accept': 'application/json'
           },
           body: JSON.stringify({
-            module_name: currentCode,
+              module_name: currentCode,
+              step: steps!=null?steps[currentStep]:'',
+              generator: generators!=null?generators[currentGenerator]:''
           })
         })
         .then( response => {
@@ -114,17 +145,28 @@ function beginTest() {
         })
         .then( parsedJson =>{
             console.log(parsedJson['data'], parsedJson['view']);
+
             this.taskDiv = document.getElementById("task");
             clear(this.taskDiv);
             this.taskDiv.innerHTML = parsedJson['view'];
+
             document.getElementById("test").style.display = 'flex';
             currentData=parsedJson['data']['message']
+
+
         })
 }
 
 function check(){
 
-    const url = 'http://localhost:9090/encoderesult';
+     if(stepsTask){
+        currenteResultEndpoit = "stepcheck";
+    }
+    else {
+        currenteResultEndpoit = "encoderesult";
+    }
+
+    const url = 'http://localhost:9090/'+currenteResultEndpoit;
     fetch(url,{
           method: 'POST',
           headers: {
@@ -134,7 +176,8 @@ function check(){
           body: JSON.stringify({
               'module_name': currentCode,
               'data':currentData,
-              'answer': document.getElementById("answer").value
+              'answer': document.getElementById("answer").value,
+              'step': steps!=null?steps[currentStep]:'',
           })
         })
         .then( response => {
@@ -143,9 +186,26 @@ function check(){
         })
         .then( parsedJson =>{
             console.log(parsedJson);
+
+            document.getElementById('rightAnswer').style.display=' none';
+            document.getElementById('wrongAnswer').style.display=' none';
+
             if(parsedJson['result']){
-                document.getElementById('trueAnswer').style.display='block';
-                 setTimeout(goBack, 1400);
+                document.getElementById('rightAnswer').style.display=' inline-flex';
+
+
+                 if(stepsTask){
+                    if(currentStep===(steps.length-1)){
+                        stepsTask = false;
+                    }else{
+                        currentStep+=1;
+                        currentGenerator+=1;
+                        beginTest();
+                    }
+                }
+            }
+            else{
+                document.getElementById('wrongAnswer').style.display=' inline-flex';
             }
         })
 }
