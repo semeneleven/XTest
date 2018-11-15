@@ -86,8 +86,10 @@ class Base(object):
     def codedetails(self):
         # TODO
         module_name = cherrypy.request.json["module_name"]
-
-        return {'name': module_name, 'description': 'heh'}
+        return {'name': module_name,
+                'description': "<p class='theory-text'>" + 'Description' + '</p>',
+                'details': util.get_details(module_name)()
+                }
 
 
     @cherrypy.expose

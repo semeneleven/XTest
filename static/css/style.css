@@ -33,6 +33,9 @@ body, html {
     min-height: 500px;
     background-color: inherit;
 }
+.end{
+    box-shadow: 3px 2px 4px 1px rgba(0, 0, 0, 0.25), inset 0px 5px 4px rgba(0, 0, 0, 0.25);
+}
 #codes{
     height: max-content;
     width: 100%;
@@ -60,6 +63,14 @@ body, html {
     min-height: 450px;
     background-color: inherit;
 }
+#theory{
+    width: 100%;
+    height: 60%;
+    margin-bottom: 20px;
+    background: #E7F5DC;
+    border: 3px solid #4C6255;/*linear-gradient(132.51deg, #4C6255 0%, #C0DFD8 100%);*/
+    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
+}
 #test{
     height: 75%;
     width: 100%;
@@ -68,17 +79,11 @@ body, html {
     display: flex;
     flex-flow: column;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-content: center;
     flex-basis: 250px;
     min-height: 450px;
     background-color: inherit;
-}
-#check{
-    width: 125px;
-    height: 40px;
-    background-color: #64AC8F;
-    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
 }
 #bottom{
     height: 15%;
@@ -90,14 +95,10 @@ body, html {
     flex-basis: 125px;
     background-color: inherit;
 }
-#back{
-    width: 125px;
-    height: 40px;
-    background-color: #64AC8F;
-    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
-}
 
-.back-text{
+
+
+.button-text{
     text-align: center;
     margin-top: 7px;
     font-family: Noto Sans;
@@ -115,6 +116,10 @@ body, html {
     font-size: 18px;
     word-wrap: break-word;
 }
+.theory-text{
+    color: black;
+}
+
 
 
 .main-menu-button-1{
@@ -129,9 +134,18 @@ body, html {
     background-color: #94D6BA;
     box-shadow: 3px 0px 4px rgba(0, 0, 0, 0.25), inset 0px 5px 4px rgba(0, 0, 0, 0.25);
 }
-.end{
-    box-shadow: 3px 2px 4px 1px rgba(0, 0, 0, 0.25), inset 0px 5px 4px rgba(0, 0, 0, 0.25);
+.central-button{
+    flex-grow: 2;
 }
+.regular-button{
+    margin-top: 5px;
+    height: 40px;
+    width: 125px;
+    background-color: #64AC8F;
+    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
+}
+
+
 
 .code-plate-1{
     width: 125px;
@@ -149,17 +163,6 @@ body, html {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
-#theory{
-    width: 100%;
-    height: 60%;
-    margin-bottom: 20px;
-    background: #E7F5DC;
-    border: 3px solid #4C6255;/*linear-gradient(132.51deg, #4C6255 0%, #C0DFD8 100%);*/
-}
-
-.theory-text{
-    color: black;
-}
 
 .button-container{
     height: 20%;
@@ -170,11 +173,5 @@ body, html {
     flex-basis: 125px;
 
 }
-.central-button{
-    flex-grow: 2;
-}
-.side-button{
-    height: 40px;
-    width: 125px;
-}
+
 
