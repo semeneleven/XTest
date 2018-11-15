@@ -170,21 +170,17 @@ function check(){
         currenteResultEndpoit = "encoderesult";
     }
 
-    answersRequest = null;
+    var answersRequest = null;
     answers = document.getElementsByName("answer");
 
     if(answers.length===1)
         answersRequest = answers[0].value;
     else {
-        answersRequest = new Array(0);
-
-        for(var answer in answers)
+        answersRequest = new Array();
+        for(var answer of answers){
             answersRequest.push(answer.value)
+        }
     }
-
-
-
-
 
     const url = 'http://localhost:9090/'+currenteResultEndpoit;
     fetch(url,{
