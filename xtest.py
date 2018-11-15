@@ -145,11 +145,11 @@ def start_server():
     cherrypy.quickstart(Base(), "/", conf)
 
 
-
-t = threading.Thread(target=start_server)
-
-t.daemon = True
-t.start()
-
-webview.create_window("PyBrowse", "http://localhost:9090", width=600,
-                     height=550, resizable=True, fullscreen=False)
+start_server()
+# t = threading.Thread(target=start_server)
+#
+# t.daemon = True
+# t.start()
+#
+# # webview.create_window("PyBrowse", "http://localhost:9090", width=600,
+#                     height=550, resizable=True, fullscreen=False)

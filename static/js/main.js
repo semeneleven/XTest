@@ -96,9 +96,9 @@ function getCodeDetails(codeName) {
             clear(this.theory);
             this.theory.innerHTML = parsedJson['description'];
 
-            if("generators" in parsedJson){
-                generators = parsedJson["generators"];
-                steps = parsedJson["steps"];
+            if(parsedJson["details"]["generators"] !== undefined){
+                generators = parsedJson["details"]["generators"];
+                steps = parsedJson["details"]["steps"];
                 stepsTask = true;
                 currentGenerator = 0;
                 currentStep = 0;
@@ -151,7 +151,7 @@ function beginTest() {
             this.taskDiv.innerHTML = parsedJson['view'];
 
             document.getElementById("test").style.display = 'flex';
-            currentData=parsedJson['data']['message']
+            currentData=parsedJson['data']
 
 
         })

@@ -127,13 +127,13 @@ def generate_for_encode():
     h = 4
     polynomial = polynomials[h][random.randint(0, len(polynomials[h]) - 1)]
     msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(7, 2 ** h - 1 - len(polynomial)))])
-    return {'message': [msg, polynomial]}
+    return {'message': msg, 'poly': polynomial}
 
 
 def generate_for_decode():
     data = generate_for_encode()['message']
-    msg = data[0]
-    polynomial = data[1]
+    msg = data['message']
+    polynomial = data['poly']
     encoded = abramson(msg, polynomial)
     err = encoded
     for i in range(random.randint(1, 2)):

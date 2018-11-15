@@ -14,8 +14,10 @@ body, html {
 }
 
 .container {
+    overflow: auto;
     height:100vh;
     width: 100vw;
+    margin: 0 !important;
     padding: 0;
     color: #E7F5DC;
     background-color: #C0DFD8;
@@ -73,9 +75,10 @@ body, html {
 }
 #test{
     height: 75%;
-    width: 100%;
-    padding: 5% 10%;
+    width: 80%;
+    padding: 5% 2%;
     margin: auto;
+    margin-top: 20px;
     display: flex;
     flex-flow: column;
     flex-direction: column;
@@ -83,7 +86,8 @@ body, html {
     align-content: center;
     flex-basis: 250px;
     min-height: 450px;
-    background-color: inherit;
+    background-color: rgba(176, 176, 176, 0.5);
+    border: 2px solid #313131;
 }
 #bottom{
     height: 15%;
@@ -174,4 +178,12 @@ body, html {
 
 }
 
+#task{
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
 
