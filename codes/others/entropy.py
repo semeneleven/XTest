@@ -12,9 +12,10 @@ def inf_quantity(probs, code):
 
 
 def entropy(probs, max=False):
-    entropy = 0.0
+    entropy = float(0)
 
     for key in probs:
+        print(probs[key])
         entropy -= probs[key] * math.log2(probs[key])
 
     if max:
@@ -42,7 +43,8 @@ def inf_quantity_step(data, ans):
 
 # data = {probs}, ans = [max_entropy, entropy]
 def entropy_step(data, ans):
-    if ans[0] == entropy(data, max=True) and ans[1] == entropy(data):
+    print(entropy(data, max=True), entropy(data))
+    if float(ans[0]) == round(entropy(data, max=True), 3) and float(ans[1]) == round(entropy(data), 3):
         return True
     return False
 
@@ -76,13 +78,13 @@ def generator_inf_quantity_step():
 
     code = ''.join('x'+str(random.randint(1,4)) for i in range(random.randint(4,6)))
 
-    return {'probs' : probs, 'code' : code}
-
+    # return {'probs' : probs, 'code' : code}
+    return {'probs': {'x1':0.28,'x2':0.04,'x3':0.19,'x4':0.49}, 'code':'x2x2x4x1x3'} #14.549
 
 def generator_entropy_step():
     data = get_probs(4)
 
-    return {'message': data}
+    return {'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}
 
 
 def generator_conditional_entropy_step():
@@ -108,4 +110,6 @@ def get_details():
 # print(generator_inf_quantity_step()['message'])
 # print(get_probs(4))
 # print(generator_conditional_entropy_step())
-print(inf_quantity({'x1':0.4,'x2':0.06,'x3':0.07,'x4':0.47}, 'x2x1x3x2'))
+# print(inf_quantity({'x1':0.28,'x2':0.04,'x3':0.19,'x4':0.49}, 'x2x2x4x1x3'))
+print(entropy({'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}, True))
+print(entropy({'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}))
