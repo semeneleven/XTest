@@ -90,15 +90,17 @@ function getCodeDetails(codeName) {
         })
         .then( parsedJson =>{
 
+            console.log(parsedJson);
             this.codeDiv = document.getElementById("code");
             this.codeDiv.style.display = 'flex';
             this.theory= document.getElementById("theory");
             clear(this.theory);
             this.theory.innerHTML = parsedJson['description'];
 
-            if("generators" in parsedJson){
-                generators = parsedJson["generators"];
-                steps = parsedJson["steps"];
+            console.log(parsedJson["details"]["generators"])
+            if(parsedJson["details"]["generators"]!=undefined){
+                generators = parsedJson["details"]["generators"];
+                steps = parsedJson["details"]["steps"];
                 stepsTask = true;
                 currentGenerator = 0;
                 currentStep = 0;
@@ -151,7 +153,7 @@ function beginTest() {
             this.taskDiv.innerHTML = parsedJson['view'];
 
             document.getElementById("test").style.display = 'flex';
-            currentData=parsedJson['data']['message']
+            currentData=parsedJson['data']
 
 
         })
