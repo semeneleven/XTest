@@ -151,5 +151,10 @@ start_server()
 # t.daemon = True
 # t.start()
 #
+<<<<<<< HEAD
 # webview.create_window("PyBrowse", "http://localhost:9090", width=600,
 #                      height=550, resizable=True, fullscreen=False)
+=======
+# # webview.create_window("PyBrowse", "http://localhost:9090", width=600,
+#                     height=550, resizable=True, fullscreen=False)
+>>>>>>> 7dbf3b701ba287ff529842ffac3d2cce97a43e38

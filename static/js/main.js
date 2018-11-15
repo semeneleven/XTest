@@ -97,8 +97,12 @@ function getCodeDetails(codeName) {
             clear(this.theory);
             this.theory.innerHTML = parsedJson['description'];
 
+<<<<<<< HEAD
             console.log(parsedJson["details"]["generators"])
             if(parsedJson["details"]["generators"]!=undefined){
+=======
+            if(parsedJson["details"]["generators"] !== undefined){
+>>>>>>> 7dbf3b701ba287ff529842ffac3d2cce97a43e38
                 generators = parsedJson["details"]["generators"];
                 steps = parsedJson["details"]["steps"];
                 stepsTask = true;
