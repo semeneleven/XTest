@@ -112,6 +112,9 @@ function getCodeDetails(codeName) {
 
 function beginTest() {
 
+    document.getElementById('rightAnswer').style.display=' none';
+    document.getElementById('wrongAnswer').style.display=' none';
+
     if(currentCode===''&&!waitResponse) {
         waitResponse=true;
         setTimeout(beginTest, 100);
@@ -167,6 +170,22 @@ function check(){
         currenteResultEndpoit = "encoderesult";
     }
 
+    answersRequest = null;
+    answers = document.getElementsByName("answer");
+
+    if(answers.length===1)
+        answersRequest = answers[0].value;
+    else {
+        answersRequest = new Array(0);
+
+        for(var answer in answers)
+            answersRequest.push(answer.value)
+    }
+
+
+
+
+
     const url = 'http://localhost:9090/'+currenteResultEndpoit;
     fetch(url,{
           method: 'POST',
@@ -177,7 +196,7 @@ function check(){
           body: JSON.stringify({
               'module_name': currentCode,
               'data':currentData,
-              'answer': document.getElementById("answer").value,
+              'answer': answersRequest,
               'step': steps!=null?steps[currentStep]:'',
           })
         })

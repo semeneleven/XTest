@@ -63,7 +63,8 @@ def abramson(msg, polynomial):
 
 # data = [msg,poly]
 def assert_code(data, answer):
-    if not abramson(data[0], data[1]) == answer:
+    print(data, answer)
+    if not abramson(data['message'], data['poly']) == answer:
         return False
 
     return True
@@ -131,7 +132,7 @@ def generate_for_encode():
 
 
 def generate_for_decode():
-    data = generate_for_encode()['message']
+    data = generate_for_encode()
     msg = data['message']
     polynomial = data['poly']
     encoded = abramson(msg, polynomial)
