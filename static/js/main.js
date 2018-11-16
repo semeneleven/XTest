@@ -112,6 +112,9 @@ function getCodeDetails(codeName) {
 
 function beginTest() {
 
+    document.getElementById('rightAnswer').style.display=' none';
+    document.getElementById('wrongAnswer').style.display=' none';
+
     if(currentCode===''&&!waitResponse) {
         waitResponse=true;
         setTimeout(beginTest, 100);
@@ -175,7 +178,6 @@ function check(){
     else {
         answersRequest = new Array();
         for(var answer of answers){
-            console.log(answer)
             answersRequest.push(answer.value)
         }
     }

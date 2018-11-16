@@ -2,7 +2,8 @@ import random
 
 # data = str(number) answ = str(number)
 def assert_code(data, answ):
-    data = int(data, 2)
+    print(data, answ)
+    data = int(data['message'], 2)
     answ = int(answ, 2)
 
     if (data ^ (data >> 1)) == answ:
@@ -15,7 +16,7 @@ def assert_code(data, answ):
 
 # data = str(number) answ = str(number)
 def assert_decode(data, answ):
-    data = int(data, 2)
+    data = int(data['message'], 2)
     answ = int(answ, 2)
 
     sum = data
