@@ -43,15 +43,19 @@ def inf_quantity_step(data, ans):
 
 # data = {probs}, ans = [max_entropy, entropy]
 def entropy_step(data, ans):
-    print(entropy(data, max=True), entropy(data))
-    if float(ans[0]) == round(entropy(data, max=True), 3) and float(ans[1]) == round(entropy(data), 3):
+    if float(ans[0]) == round(entropy(data['message'], max=True), 3) and float(ans[1]) == round(entropy(data['message']), 3):
         return True
     return False
 
 
 # data = [[yx1,...], [yx2,...],...], ans = number
 def conditional_entropy_step(data, ans):
-    if ans == conditional_entropy(data):
+    cond_probs = []
+
+    for i in range(3):
+        cond_probs.append(data['message']['x'+str(i+1)].copy())
+
+    if float(ans) == round(conditional_entropy(cond_probs),3):
         return True
     return False
 
@@ -78,24 +82,26 @@ def generator_inf_quantity_step():
 
     code = ''.join('x'+str(random.randint(1,4)) for i in range(random.randint(4,6)))
 
-    # return {'probs' : probs, 'code' : code}
-    return {'probs': {'x1':0.28,'x2':0.04,'x3':0.19,'x4':0.49}, 'code':'x2x2x4x1x3'} #14.549
+    return {'probs' : probs, 'code' : code}
+    # return {'probs': {'x1':0.28,'x2':0.04,'x3':0.19,'x4':0.49}, 'code':'x2x2x4x1x3'} #14.549
 
 def generator_entropy_step():
     data = get_probs(4)
 
-    return {'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}
+    return {'message': data}
+    # return {'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45} # 2.0 1.604
 
 
 def generator_conditional_entropy_step():
-    data = [[], [], []]
+    data = {'x1':[],'x2':[],'x3':[]}
 
     for y in range(3):
         yx = get_probs(3)
         for i in range(3):
-            data[i].append(yx['x'+str(i+1)])
+            data['x'+str(i+1)].append(yx['x'+str(i+1)])
 
     return {'message': data}
+    # return {'message': {'x1':[0.2,0.17,0.01], 'x2':[0.32,0.09,0.39], 'x3':[0.48,0.74,0.6]}} #3.606
 
 
 def get_details():
@@ -111,5 +117,5 @@ def get_details():
 # print(get_probs(4))
 # print(generator_conditional_entropy_step())
 # print(inf_quantity({'x1':0.28,'x2':0.04,'x3':0.19,'x4':0.49}, 'x2x2x4x1x3'))
-print(entropy({'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}, True))
-print(entropy({'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}))
+# print(entropy({'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}, True))
+# print(entropy({'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}))

@@ -1,11 +1,11 @@
 <div id="generator">
-    <h3>вычислите максимальную и обычную энтропию источка с алфавитом сообщений:</h3>
-    <table>
+    <h3>вычислите максимальную и безусловную энтропию источка с алфавитом сообщений:</h3>
+    <table>{{#message}}
         {{#x1}}<tr><td> x1 = {{.}} </td></tr>{{/x1}}
         {{#x2}}<tr><td> x2 = {{.}} </td></tr>{{/x2}}
         {{#x3}}<tr><td> x3 = {{.}} </td></tr>{{/x3}}
         {{#x4}}<tr><td> x4 = {{.}} </td></tr>{{/x4}}
-    </table>
+    {{/message}}</table>
     <lable>Максимальная энтропия : <input type="text" name="answer"></lable>
     <lable>Энтропия : <input type="text" name="answer"></lable>
 </div>
