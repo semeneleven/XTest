@@ -72,17 +72,18 @@ def qualitative_change(alphabet, word_len, words = []):
 
 # data = ['function', 'alphabet', word_len, int(quantity of words)], ans = [word,...]
 def assert_code(data, ans):
-    if not len(ans) == data[3]:
+    answer = ans.split(' ')
+    if not len(answer) == data['n']:
         return False
 
-    bool, _ = globals()[data[0]](data[1], data[2], ans)
+    bool, _ = globals()[data['type']](data['alphabet'], data['q'], answer)
 
     return bool
 
 
 # data = ['function', 'alphabet', word_len, ['word']], ans = True or False(is word matches code requirement)
 def assert_decode(data, ans):
-    bool, _ = globals()[data[0]](data[1], data[2], data[3])
+    bool, _ = globals()[data['type']](data['alphabet'], data['q'], data['n'])
 
     return bool == ans
 
@@ -99,7 +100,7 @@ def generate_for_encode():
     if data[0] == 'permutation':
         data.append(len(data[1]))
     else :
-        data.append(random.randint(1,len(data[1])))
+        data.append(random.randint(2,len(data[1])))
 
     _, n = globals()[data[0]](data[1], data[2])
     if n > 5:
@@ -109,15 +110,15 @@ def generate_for_encode():
     else :
         data.append(1)
 
-    return {'message': data}
+    return {'type': data[0],'alphabet':data[1],'q':data[2],'n':data[3]}
 
 
 def generate_for_decode():
-    data = generate_for_encode()['message']
+    data = generate_for_encode()
 
-    word = ''.join(data[1][random.randint(0,len(data[1])-1)] for i in range(random.randint(1,data[2])))
+    word = ''.join(data['alphabet'][random.randint(0,len(data[alphabet])-1)] for i in range(random.randint(1,data['q'])))
 
-    data[3] = [word]
+    data['n'] = [word]
 
     return data
 
