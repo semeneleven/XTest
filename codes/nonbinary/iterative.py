@@ -3,11 +3,11 @@ import random
 
 
 def iterative(data):
-    q = data[1]
+    q = data['q']
     result = []
 
-    for i in range(len(data[0])):
-        result.append(mod_q_code(data[0][i], q))
+    for i in range(len(data['matrix'])):
+        result.append(mod_q_code(data['matrix'][i], q))
 
     checks = ''
 
@@ -23,7 +23,15 @@ def iterative(data):
 
 # data = [[matrix], q], ans = [matrix]
 def assert_code(data, ans):
+    print(data['matrix'])
+    result = []
+    for i in range(len(data['matrix'])):
+        result.append(data['matrix'][i]+ans[i])
+    result.append(ans[len(ans) - 1])
+    print(result)
+
     code = iterative(data)
+
     if code[0] == ans:
         return True
     return False
@@ -31,7 +39,7 @@ def assert_code(data, ans):
 
 # data = [[matrix], q](data_true), ans = [matrix]
 def assert_decode(data, ans):
-    if data[0] == ans:
+    if data['matrix'] == ans:
         return True
     return False
 
@@ -42,11 +50,11 @@ def generate_for_encode():
     data = []
     for i in range(length):
         data.append(''.join(get_letter(random.randint(0, q - 1)) for i in range(length)))
-    return {'message': [data, q]}
+    return {'matrix': data,'q': q}
 
 
 def generate_for_decode():
-    data_true, q = iterative(generate_for_encode()['message'])
+    data_true, q = iterative(generate_for_encode())
     data_error = data_true.copy()
 
     error_count = random.randint(1, 4)
@@ -65,7 +73,7 @@ def generate_for_decode():
         data_error[error_string] = data_true[error_string][:error_column] + error + data_true[error_string][
                                                                                     error_column + 1:]
 
-    return data_true, q, data_error
+    return {'data_true': data_true,'q': q,'data_error': data_error}
 
 def get_details():
     return {'view_type': 'standard'}
