@@ -89,7 +89,7 @@ def generator_entropy_step():
     data = get_probs(4)
 
     return {'message': data}
-    # return {'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45} # 2.0 1.604
+    # return {'message':{'x1':0.28,'x2':0.01,'x3':0.26,'x4':0.45}} # 2.0 1.604
 
 
 def generator_conditional_entropy_step():

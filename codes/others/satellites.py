@@ -17,30 +17,45 @@ def satellite(vector, error_poses):
 
 # data = [str(vector), code_distance] ans = [str(satellite),...]
 def assert_code(data, ans):
-    vector = data[0]
-    code_distance = data[1]
-    satellites = ans
+    vector = data['vector']
+    code_distance = int(data['code_distance'])
+    satellites = ans.split(' ')
+
+    if len(satellites) < 5:
+        return False
+
+    for i in range(len(satellites)):
+        for j in range(i+1, len(satellites)):
+            if satellites[i] == satellites[j]:
+                return False
+
     for satellite in satellites:
         error_vector = bin(int(vector, 2) ^ int(satellite, 2))[2:]
-        if error_vector.count('1') != code_distance:
+        if error_vector.count('1') != code_distance or len(satellite) != len(vector):
             return False
     return True
 
 
 # data = [str(vector), [str(satellite),...]] ans = [number(index of satellites with min code_distance),...]
 def assert_decode(data, ans):
-    vector = data[0]
-    satellites = data[1]
-    sorted(ans)
+    vector = data['vector']
+    satellites = data['satellites']
+    answears = []
+
+    for i in range(len(ans)):
+        if ans[i] :
+            answears.append(i)
+
     code_distances = []
     for satellite in satellites:
         error_vector = bin(int(vector, 2) ^ int(satellite, 2))[2:]
         code_distances.append(error_vector.count('1'))
+
     min_code_distances = [i for i, x in enumerate(code_distances) if x == min(code_distances)]
-    if min_code_distances == ans:
+
+    if min_code_distances == answers:
         return True
-    else:
-        return False
+    return False
 
 
 def generate_for_encode():
@@ -49,11 +64,11 @@ def generate_for_encode():
     vector = ''
     for i in range(length):
         vector += str(random.randint(0, 1))
-    return {'message': [vector, code_distance]}
+    return {'vector': vector,'code_distance': code_distance}
 
 
 def generate_for_decode():
-    vector = generate_for_encode()['message'][0]
+    vector = generate_for_encode()['vector']
     satellites = []
     code_distances = get_code_distances()
     for code_distance in code_distances:
@@ -63,7 +78,7 @@ def generate_for_decode():
             if rand not in error_poses:
                 error_poses.append(rand)
         satellites.append(satellite(vector, error_poses))
-    return vector, satellites
+    return {'vector': vector,'sattelites': satellites}
 
 
 def get_code_distances():

@@ -16,29 +16,31 @@ def get_letter(num):
 
 
 def assert_code(data, ans):
-    code = mod_q_code(data[0], data[1])
+    code = mod_q_code(data['message'], int(data['q']))
     if code == ans:
         return True
     return False
 
 
 def assert_decode(data, ans):
-    istrue = data == mod_q_code(data[0][:len(data[0]) - 1], data[1])
+    istrue = data == mod_q_code(data['message'][:len(data['message']) - 1], int(data['q']))
     if ans == istrue:
         return True
     return False
 
 
-def generate_for_encode(q=random.randint(2, 16), length=random.randint(8, 12)):
-    return {'message': [''.join(get_letter(random.randint(0, q - 1)) for i in range(length)), q]}
+def generate_for_encode():
+    q = random.randint(2, 16)
+    length = random.randint(8, 12)
+    return {'message': ''.join(get_letter(random.randint(0, q - 1)) for i in range(length)), 'q': q}
 
 
 def generate_for_decode():
-    data = generate_for_encode()['message']
-    w_error = ['', data[1]]
+    data = generate_for_encode()
+    w_error = {'message': '', 'q': data['q']}
     print(data)
     if random.randint(1, 10) > 4:
-        w_error[0] = data[0][:len(data[0]) - 1] + get_letter(random.randint(0, data[1] - 1))
+        w_error['message'] = data['message'][:len(data['message']) - 1] + get_letter(random.randint(0, data['q'] - 1))
         return w_error
     return data
 
