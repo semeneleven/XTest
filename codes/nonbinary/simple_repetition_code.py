@@ -5,15 +5,15 @@ def simple_rep_code(code):
     return code * 2
 
 
-def assert_encode(data, ans):
-    code = simple_rep_code(data)
+def assert_code(data, ans):
+    code = simple_rep_code(data['message'])
     if code == ans:
         return True
     return False
 
 
 def assert_decode(data, ans):
-    code = data[:len(data) // 2]
+    code = data['message'][:len(data['message']) // 2]
     if code == ans:
         return True
     return False
