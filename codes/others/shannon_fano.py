@@ -3,7 +3,7 @@ import random
 def shannon_fano(data):
     alphabet = sorted(data, key = data.get, reverse = True)
     for i in range(len(data)-1):
-        if data[alphabet[i]] == data[alphabet[i+1]] and alphabet[i] < alphabet[i+1] :
+        if data[alphabet[i]] == data[alphabet[i+1]] and alphabet[i] > alphabet[i+1] :
             tmp = alphabet[i]
             alphabet[i] = alphabet[i+1]
             alphabet[i+1] = tmp
@@ -35,15 +35,15 @@ def get_groups(alphabet, data):
 
 
 def assert_code(data, ans):
-    codes = shannon_fano(data)
-    if codes == ans :
-        return True
-    else :
-        return False
+    codes = shannon_fano(data['message'])
+    for i in range(len(ans)):
+        if ans[i] != codes['a'+str(i+1)]:
+            return False
+    return True
 
 
 def generate_for_encode():
-    data = { 'a' + str(i+1) : 0 for i in range(random.randint(6,9)) }
+    data = { 'a' + str(i+1) : 0 for i in range(8) }
     some = 100
     for i in range(len(data)-1):
         if some > 40 : rand = random.randint(1,40)
