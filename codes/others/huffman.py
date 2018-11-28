@@ -6,6 +6,7 @@ def huffman(p):
         return dict(zip(sorted(p, key=p.get), ['0', '1']))
 
     p_prime = p.copy()
+    print(p)
     a1, a2 = lowest_prob_pair(p)
     p1, p2 = p_prime.pop(a1), p_prime.pop(a2)
     p_prime[a1 + a2] = p1 + p2
@@ -30,15 +31,15 @@ def lowest_prob_pair(p):
 
 
 def assert_code(data, ans):
-    codes = huffman(data)
-    if codes == ans:
-        return True
-    else:
-        return False
+    codes = huffman(data['message'])
+    for i in range(len(ans)):
+        if ans[i] != codes['a'+str(i+1)]:
+            return False
+    return True
 
 
 def generate_for_encode():
-    data = {'a' + str(i + 1): 0 for i in range(random.randint(6, 9))}
+    data = {'a' + str(i + 1): 0 for i in range(9)}
     some = 100
     for i in range(len(data) - 1):
         if some > 40:
@@ -48,12 +49,13 @@ def generate_for_encode():
         data['a' + str(i + 1)] = rand / 100
         some -= rand
     data['a' + str(len(data))] = some / 100
-    return {'message': data}
+    # return {'message': data}
+    return {'message':{'a1': 0.38, 'a2': 0.02, 'a3': 0.21, 'a4': 0.04, 'a5': 0.13, 'a6': 0.09, 'a7': 0.05, 'a8': 0.04, 'a9': 0.04}}
 
 
 def get_details():
     return {
-        'view_type': 'huffman',
+        'view_type': 'standard',
         'only_encode': True
     }
 
