@@ -56,6 +56,9 @@ def generate_for_decode():
 def get_details():
     return {'view_type': 'standard'}
 
+
+def get_name():
+    return 'Бергера'
 # tests
 # print(assert_code('1001', '100101'))
 # print(assert_decode(['100101', 2], True))

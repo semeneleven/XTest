@@ -48,6 +48,9 @@ def generate_for_decode():
 def get_details():
     return {'view_type': 'standard'}
 
+
+def get_name():
+    return 'Модуль Q'
 # tests
 # print(mod_q_code('A01B6D1139A24', 16))
 # print(assert_code(['A01B6D1139A24', 14],'A01B6D1139A24D'))

@@ -124,6 +124,9 @@ def assert_decode(data, answer):
 def get_details():
     return {'view_type': 'standard'}
 
+
+def get_name():
+    return 'Хемминга'
 # print(hemming('01011111010', [1, 1, 0, 0, 1]))
 # print(assert_code(['01011111010', [1, 1, 0, 0, 1]], '011101010001010'))
 # print(assert_decode(['011101010001010', [1, 1, 0, 0, 1]], '01011111010'))

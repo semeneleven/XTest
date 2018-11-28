@@ -75,8 +75,13 @@ def generate_for_decode():
 
     return {'data_true': data_true,'q': q,'data_error': data_error}
 
+
 def get_details():
     return {'view_type': 'standard'}
+
+
+def get_name():
+    return 'Итеративный'
 # tests
 # x = ['1303',
 #      '2021',

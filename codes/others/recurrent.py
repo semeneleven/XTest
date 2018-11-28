@@ -13,8 +13,8 @@ def recurrent(msg, t):
 
 # data = [msg,t]
 def assert_code(data, answer):
-    msg = data[0]
-    t = data[1]
+    msg = data['message']
+    t = data['step']
 
     if not recurrent(msg, t) == answer:
         return False
@@ -32,15 +32,15 @@ def assert_decode(data, answer):
 
 def generate_for_encode():
     t = random.randint(1, 3)
-    msg = ''.join([str(random.randint(0, 1)) for i in range(4, random.randint(5, 8))])
+    msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(5, 8))])
 
-    return {'message': [msg, t]}
+    return {'message': '1000001', 'step': 3}#{'message': msg, 'step': t}
 
 
 def generate_for_decode():
-    data = generate_for_encode()['message']
-    msg = data[0]
-    t = data[1]
+    data = generate_for_encode()
+    msg = data['message']
+    t = data['step']
     check = recurrent(msg, t)
     n = random.randint(0, len(msg) - 1)
     err_msg = msg[:n] + ('0' if msg[n] == '1' else '1') + msg[(n + 1):]
@@ -50,3 +50,7 @@ def generate_for_decode():
 
 def get_details():
     return {'view_type': 'standard'}
+
+
+def get_name():
+    return 'Реккурентные'

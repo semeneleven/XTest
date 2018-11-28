@@ -1,3 +1,5 @@
+import random
+
 polynomials = {
     1: [1, 0, 0, 1, 1],
     3: [1, 1, 1, 1, 1],
@@ -108,9 +110,32 @@ def assert_decode(data, answer):
     return True
 
 
-# TODO assert code and generators
+def assert_code(data, answer):
+
+    if answer == bch(data['message'], int(data['d'])):
+        return True
+
+    return False
+
+
+def generate_for_encode():
+    d = [3, 5, 7][random.randint(0, 2)]
+    k = {
+        3: 11,
+        5: 7,
+        7: 5,
+    }
+    msg = "".join([str(random.randint(0, 1)) for x in range(k[d])])
+
+    return {'message': msg, 'k': k[d], 'd': d}
+
 def get_details():
     return {'view_type': 'standard'}
 
-# print(bch('10101', 7))
+
+def get_name():
+    return 'БЧХ'
+
+#print(bch('11010', 7))
 # print(assert_decode(['111011001000111', 7],'10101'))
+# print({'message':'00010', 'd':7})

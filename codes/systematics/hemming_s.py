@@ -24,11 +24,14 @@ def hemming_code(message):
 
         message = message[:2 ** i - 1] + str(r[0]) + message[2 ** i:]
 
-    return message
+    return str(message)
 
 
 def assert_code(data, answer):
-    if not hemming_code(data) == answer:
+
+    print(data, answer)
+    print(hemming_code(data['message']))
+    if not hemming_code(data['message']) == str(answer):
         return False
     return True
 
@@ -73,5 +76,11 @@ def generate_for_decode():
     return encoded
 
 
-print(assert_code('011001010001', '10011100010100001'))
-print(assert_decode('1010000101101111001', '1011000101101111001'))
+def get_details():
+    return {'view_type': 'standard'}
+
+
+def get_name():
+    return 'Хемминга'
+#print(assert_code('011001010001', '10011100010100001'))
+#print(assert_decode('1010000101101111001', '1011000101101111001'))

@@ -126,6 +126,9 @@ def generate_for_decode():
 def get_details():
     return {'view_type': 'standard'}
 
+
+def get_name():
+    return 'Первичный недвоичные'
 # tests
 # data = ['qualitative_change', 'abcd', 3, 4]
 # ans = ['abd','cdc','bcd','bdb']

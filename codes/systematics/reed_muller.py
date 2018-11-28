@@ -45,8 +45,7 @@ def sum_C(b, m):
 
 
 def generate_matrix(m, b):
-
-    if not m>b:
+    if not m > b:
         raise ValueError
 
     k = sum_C(b, m)
@@ -83,9 +82,9 @@ def generate_matrix(m, b):
 
 
 def reed_muller(data, m=0, b=0, msg=''):
-    msg = data[2]
-    b = data[1]
-    m = data[0]
+    msg = data['message']
+    b = data['b']
+    m = data['m']
 
     matrix = generate_matrix(m, b)
     result = []
@@ -103,7 +102,6 @@ def reed_muller(data, m=0, b=0, msg=''):
 
 # data = [m, b, msg]
 def assert_code(data, answer):
-
     if not reed_muller(data) == answer:
         return False
 
@@ -151,19 +149,27 @@ def assert_decode(data, answer):
 
 
 def generate_for_encode():
-
-    m = random.randint(3,4)
-    b = random.randint(2,m-1)
-    message = ''.join([str(random.randint(0,1)) for i in range(sum_C(b,m))])
-    return {'message': [m, b, message]}
+    m = random.randint(3, 4)
+    b = random.randint(2, m - 1)
+    if m==4 and b == 3:
+        b-=1
+    message = ''.join([str(random.randint(0, 1)) for i in range(sum_C(b, m))])
+    return {'message': message, 'm': m, 'b': b, 'matrix': generate_matrix(m, b),
+            'zeros': [0 for i in range(2**m)],'k': sum_C(b, m), 'cols': (2**m)*1.4, 'c':2**m}
 
 
 def generate_for_decode():
-
     generated = generate_for_encode()['message']
     return [reed_muller(generated) if i == 2 else generated[i] for i in range(len(generated))]
 
-print(assert_code([4, 2, '01101011010'], '0110001111111010'))
-print(assert_decode([4, 2, '0110001111111010'], '01101011010'))
-print(generate_for_encode())
-print(generate_for_decode())
+
+def get_details():
+    return {'view_type': 'standard'}
+
+
+def get_name():
+    return 'Рида-Маллера'
+# print(assert_code([4, 2, '01101011010'], '0110001111111010'))
+# print(assert_decode([4, 2, '0110001111111010'], '01101011010'))
+# print(generate_for_encode())
+# print(generate_for_decode())

@@ -23,7 +23,7 @@ class Base(object):
         data = cherrypy.request.json["data"]
         answer = cherrypy.request.json["answer"]
 
-        return  {'result': util.get_method(step)[module_name](data, answer)}
+        return {'result': util.get_method(step)[module_name](data, answer)}
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
@@ -36,8 +36,7 @@ class Base(object):
         data = util.get_method(generator)[module_name]()
 
         return {'view': util.create_view(step, data),
-                    'data': data}
-
+                'data': data}
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
@@ -91,36 +90,45 @@ class Base(object):
                 'details': util.get_details(module_name)()
                 }
 
-
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def cyclics(self):
-        code_names = util.get_code_names('cyclics')
+        code_modules_names = util.get_code_names('cyclics')
+        code_names = {}
+        for code in code_modules_names:
+            code_names.update({code: util.get_name(code)()})
 
         return {'codes': code_names}
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def others(self):
-        code_names = util.get_code_names('others')
+        code_modules_names = util.get_code_names('others')
+        code_names = {}
+        for code in code_modules_names:
+            code_names.update({code: util.get_name(code)()})
 
         return {'codes': code_names}
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def nonbinary(self):
-        code_names = util.get_code_names('nonbinary')
+        code_modules_names = util.get_code_names('nonbinary')
+        code_names = {}
+        for code in code_modules_names:
+            code_names.update({code: util.get_name(code)()})
 
         return {'codes': code_names}
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def systematics(self):
-        code_names = util.get_code_names('systematics')
+        code_modules_names = util.get_code_names('systematics')
+        code_names = {}
+        for code in code_modules_names:
+            code_names.update({code: util.get_name(code)()})
 
         return {'codes': code_names}
-
-
 
     @cherrypy.expose
     def index(self):

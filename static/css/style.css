@@ -152,16 +152,16 @@ body, html {
 
 
 .code-plate-1{
-    width: 125px;
-    height: 125px;
+    width: 150px;
+    height: 150px;
     margin: 5px;
     background: #64AC8F;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .code-plate-2{
-    width: 125px;
-    height: 125px;
+    width: 150px;
+    height: 150px;
     margin: 5px;
     background: #94D6BA;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -178,7 +178,8 @@ body, html {
 
 }
 
-#task{
+.task{
+    width: 100%;
     display: flex;
     flex-flow: column;
     flex-direction: column;
@@ -186,4 +187,53 @@ body, html {
     align-items: flex-start;
     margin-bottom: 5px;
 }
+.matrix{
+    margin-left: 15px;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+}
+.matrix p{
+    font-family: "Arial";
+    margin: 1px 3px;
+    font-size: 20px;
+}
+.matrix-side-text-area{
 
+    font-family: "Arial";
+    padding-top: 0px;
+    font-size: 20px;
+    color: #E7F5DC;
+    border: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: inherit;
+    width: 16px;
+    height: calc(100% + 24px);
+    line-height: 1.2;
+    resize:none;
+    overflow: hidden;
+}
+.matrix-bottom-text-area{
+
+    padding-left: 0px;
+    margin-left: 16px;
+    font-family: "Arial";
+    font-size: 20px;
+    color: #E7F5DC;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: inherit;
+    resize:none;
+    overflow: hidden;
+    letter-spacing: 6px;
+}
+
+.read p{
+    font-family: "Arial";
+    margin: 1px 1px;
+    font-size: 20px;
+}
+
+.up{
+    margin-top: -5%;
+}

@@ -79,6 +79,8 @@ def get_details():
     return {'view_type': 'standard'}
 
 
+def get_name():
+    return 'ДДК'
 # tests
 # print(bdc(851, [7, 4, 2, 1]))
 # print(assert_code([851, [5, 4, 2, 1]], '101110000001'))

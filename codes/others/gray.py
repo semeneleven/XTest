@@ -2,7 +2,6 @@ import random
 
 # data = str(number) answ = str(number)
 def assert_code(data, answ):
-    print(data, answ)
     data = int(data['message'], 2)
     answ = int(answ, 2)
 
@@ -42,3 +41,7 @@ def generate_for_decode():
 
 def get_details():
     return {'view_type': 'standard'}
+
+
+def get_name():
+    return 'Грея'

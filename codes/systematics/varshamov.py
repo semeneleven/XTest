@@ -183,6 +183,9 @@ def get_details():
         'steps': ['initializing_step', 'building_G_step', 'code_step', 'building_H_step', 'correction_step']
     }
 
+
+def get_name():
+    return 'Варшамова'
 # print(initializing_step([17, 4], [17, 1, 9, 8]))
 # print(building_G_step([1, 3], [
 #     [[1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 0],

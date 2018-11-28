@@ -29,6 +29,10 @@ def generate_for_decode():
 
 def get_details():
     return {'view_type': 'standard'}
+
+
+def get_name():
+    return 'Простого повторения'
 # tests
 # print(simple_rep_code('1001'))
 # print(assert_encode('297639', '297639297639'))

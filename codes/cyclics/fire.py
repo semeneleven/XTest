@@ -77,7 +77,7 @@ def fire(msg, polynomial, err_f, err_c):
 
 # data = [msg,poly,err_f,err_c]
 def assert_code(data, answer):
-    if not fire(data[0], data[1], data[2], data[3]) == answer:
+    if not fire(data['message'], data['poly'], data['err_f'], data['err_c']) == answer:
         return False
 
     return True
@@ -148,13 +148,13 @@ def assert_decode(data, answer):
 def generate_for_encode():
     polynomial = polynomials[2]
     msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(4, 6))])
-    return {'message': [msg, polynomial, 2, 2]}
+    return {'message': msg,'poly': polynomial,'err_f': 2,'err_c': 2}
 
 
 def generate_for_decode():
-    data = generate_for_encode()['message']
-    msg = data[0]
-    polynomial = data[1]
+    data = generate_for_encode()
+    msg = data['message']
+    polynomial = data['poly']
     encoded = fire(msg, polynomial, 2, 2)
     err = encoded
     for i in range(random.randint(1, 2)):
@@ -163,10 +163,14 @@ def generate_for_decode():
 
     return [err, polynomial, 2]
 
+
 def get_details():
     return {'view_type': 'standard'}
 
-# print(fire('110110', [1, 1, 1], 2, 2))
+
+def get_name():
+    return 'Файра'
+#print(fire('110110', [1, 1, 1], 2, 2))
 # print(assert_code(['110110', [1, 1, 1], 2, 2], '110110110110'))
 # print(assert_decode(['110110011101', [1, 1, 1], 2], '110000'))
 # print(generate_for_encode())

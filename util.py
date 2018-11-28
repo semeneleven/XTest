@@ -78,5 +78,5 @@ def get_gen_decode(modname):
 def get_details(modname):
     return get_method('get_details')[modname]
 
-
-
+def get_name(modname):
+    return get_method('get_name')[modname]

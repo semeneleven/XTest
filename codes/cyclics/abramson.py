@@ -148,7 +148,10 @@ def get_details():
     return {'view_type': 'standard'}
 
 
-# print(abramson('00111110', [1, 0, 0, 1, 1]))
+def get_name():
+    return 'Абрамсона'
+
+#print(abramson('00111110', [1, 0, 0, 1, 1]))
 # print(assert_code(['00111110', [1, 0, 0, 1, 1]], '0011111011100'))
 # print(assert_decode(['010110001100101', polynomials[4][0]], '0101100111'))
 # print(generate_for_encode())

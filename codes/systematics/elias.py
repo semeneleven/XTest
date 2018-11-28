@@ -2,18 +2,20 @@ import random
 
 
 def assert_code(data, answ):
+    data=data['message']
+    print(answ)
     for i in range(len(data)):
         sum = 0
         for j in range(len(data[i])):
             sum ^= data[i][j]
-        if not sum == answ[0][i]:
+        if not sum == int(answ[0][i]):
             return False
 
     for i in range(len(data)):
         sum = 0
         for j in range(len(data[i])):
             sum ^= data[j][i]
-        if not sum == answ[1][i]:
+        if not sum == int(answ[1][i]):
             return False
 
     return True
@@ -71,6 +73,13 @@ def generate_for_decode():
 
     return data, answ
 
+
+def get_details():
+    return {'view_type': 'standard'}
+
+
+def get_name():
+    return 'Элиаса'
 #test
 # print(assert_code([[1, 0, 1, 0, 1], [0, 1, 1, 0, 1], [0, 0, 1, 1, 1], [0, 1, 0, 0, 1], [1, 0, 1, 0, 1]],
 #                   [[1, 1, 1, 0, 1], [0, 0, 0, 1, 1]]))

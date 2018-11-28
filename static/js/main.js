@@ -38,7 +38,10 @@ function getCodes(category) {
             this.color = 0;
             this.codesDiv = document.getElementById("codes");
             clear(this.codes);
-            for(code in parsedJson['codes']){
+
+            console.log(parsedJson['codes']);
+
+            Object.keys(parsedJson['codes']).forEach(function (code) {
                 div = document.createElement('div');
                 par = document.createElement('p');
 
@@ -49,7 +52,7 @@ function getCodes(category) {
                 }
                 this.color = (this.color + 1)%2;
 
-                div.id = parsedJson['codes'][code];
+                div.id = code;
                 div.onclick = (ev) => {
 
                     getCodeDetails(ev.target.id)
@@ -60,7 +63,7 @@ function getCodes(category) {
 
                 div.appendChild(par);
                 this.codesDiv.appendChild(div)
-            }
+            })
             this.codesDiv.style.display = 'flex'
         })
 

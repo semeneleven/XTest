@@ -43,7 +43,7 @@ def assert_decode(data, ans):
     answears = []
 
     for i in range(len(ans)):
-        if ans[i] :
+        if ans[i]:
             answears.append(i)
 
     code_distances = []
@@ -53,7 +53,7 @@ def assert_decode(data, ans):
 
     min_code_distances = [i for i, x in enumerate(code_distances) if x == min(code_distances)]
 
-    if min_code_distances == answers:
+    if min_code_distances == answears:
         return True
     return False
 
@@ -91,6 +91,9 @@ def get_code_distances():
 def get_details():
     return {'view_type': 'standard'}
 
+
+def get_name():
+    return 'Спутники'
 # tests print(satellite('00010101', [2, 4, 1])) print(assert_code(['11010101', 2], ['10110101', '00010101'])) print(
 # generate_for_encode()) print(generate_for_decode()) print(assert_decode(['00010101111',['00110101111',
 # '00010101110', '10010101111', '11110101111', '00010101101', '10010100111']],[0, 1, 2, 4]))

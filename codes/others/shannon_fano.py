@@ -56,9 +56,13 @@ def generate_for_encode():
 
 def get_details():
     return {
-        'view_type': 'huffman',
+        'view_type': 'standard',
         'only_encode': True
     }
+
+
+def get_name():
+    return 'Шенона-Фано'
 # tests print(shannon_fano({'a1':0.15, 'a2':0.24, 'a3':0.1, 'a4':0.13, 'a5':0.26, 'a6':0.12})) print(assert_code({
 # 'a1':0.15, 'a2':0.25, 'a3':0.1, 'a4':0.13, 'a5':0.25, 'a6':0.12}, {'a1':'011','a2':'10','a3':'000','a4':'010',
 # 'a5':'11','a6':'001'})) data = generate_for_encode() print(data) print(shannon_fano(data))

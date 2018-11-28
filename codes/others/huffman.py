@@ -53,10 +53,13 @@ def generate_for_encode():
 
 def get_details():
     return {
-        'view_type': 'huffman',
+        'view_type': 'standard',
         'only_encode': True
     }
 
+
+def get_name():
+    return 'Хаффмана'
 # tests
 
 # data = { 'a1': 0.25, 'a2': 0.25, 'a3': 0.2, 'a4': 0.15, 'a5': 0.15 }
