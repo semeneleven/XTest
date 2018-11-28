@@ -50,7 +50,9 @@ def bdc_decode(code, base):
 
 # data = [number, base] answ = str(code)
 def assert_code(data, answ):
-    if bdc_decode(answ, data[1]) == data[0]:
+    print(answ)
+    print(bdc_decode(answ, data['base']))
+    if bdc_decode(answ, data['base']) == data['message']:
         return True
     else:
         return False
@@ -58,21 +60,21 @@ def assert_code(data, answ):
 
 # data = [code, base] answ = number
 def assert_decode(data, answ):
-    if bdc_decode(data[0], data[1]) == answ:
+    if bdc_decode(data['message'], data['base']) == answ:
         return True
     else:
         return False
 
 
 def generate_for_encode():
-    return {'message': [random.randint(101, 999), bases[random.randint(0, 3)]]}
+    return {'message': random.randint(101, 999),'base': bases[random.randint(0, 3)]}
 
 
 def generate_for_decode():
-    data = generate_for_encode()['message']
+    data = generate_for_encode()
     base = bases[random.randint(0, 3)]
 
-    return bdc(data[0], base), base
+    return bdc(data['message'], base), base
 
 
 def get_details():

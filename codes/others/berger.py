@@ -15,7 +15,7 @@ def berger(code):
 
 # data = message answ = data + r
 def assert_code(data, answ):
-    if data + berger(data) == answ:
+    if data['message'] + berger(data['message']) == answ:
         return True
     else:
         return False
