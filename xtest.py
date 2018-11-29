@@ -17,6 +17,16 @@ class Base(object):
     @cherrypy.expose
     @cherrypy.tools.json_in()
     @cherrypy.tools.json_out()
+    def exam(self):
+        module_name = cherrypy.request.json["module_name"]
+        amount_of_tasks = util.get_details(module_name)()['exam_tasks']
+        data = {'count': [x for x in range(amount_of_tasks)]}
+        return {'view': util.create_view('exam', data, 'exam'),
+                'exam_tasks': amount_of_tasks}
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    @cherrypy.tools.json_out()
     def stepcheck(self):
         module_name = cherrypy.request.json["module_name"]
         step = cherrypy.request.json["step"]
@@ -35,7 +45,7 @@ class Base(object):
 
         data = util.get_method(generator)[module_name]()
 
-        return {'view': util.create_view(step, data),
+        return {'view': util.create_view(step, data,'encode'),
                 'data': data}
 
     @cherrypy.expose
@@ -54,7 +64,7 @@ class Base(object):
     def decodedata(self):
         module_name = cherrypy.request.json["module_name"]
         data = util.get_gen_decode(module_name)()
-        response = {'view': util.create_view(module_name, data,'decode'),
+        response = {'view': util.create_view(module_name, data, 'decode'),
                     'data': data}
 
         return response
@@ -74,7 +84,7 @@ class Base(object):
     def encodedata(self):
         module_name = cherrypy.request.json["module_name"]
         data = util.get_gen_encode(module_name)()
-        response = {'view': util.create_view(module_name, data,'encode'),
+        response = {'view': util.create_view(module_name, data, 'encode'),
                     'data': data}
 
         return response

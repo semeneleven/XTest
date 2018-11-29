@@ -56,7 +56,8 @@ def generate_for_encode():
 def get_details():
     return {
         'view_type': 'standard',
-        'only_encode': True
+        'only_encode': True,
+        'exam_tasks': 2
     }
 
 

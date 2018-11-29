@@ -130,7 +130,8 @@ def generate_for_encode():
     return {'message': msg, 'k': k[d], 'd': d}
 
 def get_details():
-    return {'view_type': 'standard'}
+    return {'view_type': 'standard',
+            'exam_tasks': 2}
 
 
 def get_name():

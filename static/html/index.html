@@ -27,7 +27,7 @@
                     <div></div>
                 </div>
                 <div class="button-container">
-                    <div class="regular-button"><p class="button-text">Exam</p></div>
+                    <div class="regular-button" onclick="startExam()"><p class="button-text">Exam</p></div>
                     <div class="regular-button" onclick="showModal()"><p class = "button-text">Test</p></div>
                 </div>
             </div>
@@ -36,6 +36,15 @@
                   <div class="regular-button to-center" onclick="beginEncode()"><p class = "button-text">Encode</p></div>
                   <div class="regular-button to-center" onclick="beginDecode()"><p class = "button-text">Decode</p></div>
               </div>
+            </div>
+             <div id="modalResultWindow" class="modal">
+              <div class="modal-content">
+                  <p id="resultText" class="to-center"></p>
+                  <p id="result" class="to-center"></p>
+              </div>
+            </div>
+            <div id="exam">
+
             </div>
             <div id="test" style="display: none">
                 <div id="task">

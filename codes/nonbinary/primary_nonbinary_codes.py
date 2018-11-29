@@ -124,7 +124,8 @@ def generate_for_decode():
 
 
 def get_details():
-    return {'view_type': 'standard'}
+    return {'view_type': 'standard',
+            'exam_tasks': 6}
 
 
 def get_name():

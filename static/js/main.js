@@ -19,6 +19,12 @@ onlyEncode = false;
 encode = false;
 decode = false;
 
+isExam = false;
+currentAnswer = null;
+currentExamTask = 0;
+examTasks = 0;
+rightExamAnswers = 0;
+
 function getCodes(category) {
 
     document.getElementById("main").style.display = 'none';
@@ -75,7 +81,7 @@ function getCodes(category) {
 function getCodeDetails(codeName) {
 
     document.getElementById("codes").style.display = 'none';
-
+    isExam = false;
 
     const url = 'http://localhost:9090/codedetails';
     console.log(codeName);
@@ -135,7 +141,7 @@ function showModal(){
         var modal = document.getElementById('modalWindow');
         modal.style.display = 'block';
         window.onclick = function (event) {
-            if (event.target == modal) {
+            if (event.target === modal) {
                 modal.style.display = "none";
             }
         }
@@ -146,6 +152,8 @@ function showModal(){
 function beginEncode() {
 
     encode = true;
+    currentAnswer = null;
+
     document.getElementById('modalWindow').style.display=' none';
 
     document.getElementById('rightAnswer').style.display=' none';
@@ -202,6 +210,7 @@ function beginEncode() {
 function beginDecode() {
 
     decode = true;
+    currentAnswer = null;
 
     document.getElementById('modalWindow').style.display=' none';
 
@@ -248,19 +257,78 @@ function beginDecode() {
         })
 }
 
+function showResultModal(){
+
+    if(onlyEncode)
+        beginEncode();
+    else {
+        var modal = document.getElementById('modalResultWindow');
+        var resultTextParagraph = document.getElementById('resultText');
+        var resultParagraph = document.getElementById('result');
+        resultTextParagraph.innerText = "Правильных ответов: " + rightExamAnswers +" из " + examTasks;
+        resultParagraph.innerText = "Оценка: " + (rightExamAnswers/examTasks*100).toFixed(1);
+        modal.style.display = 'block';
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
+}
+
+async function check() {
+
+    if (encode)
+        currentAnswer = await checkEncode();
+    if (decode)
+        currentAnswer = await checkDecode();
+
+    console.log(isExam, currentAnswer, currentExamTask, examTasks);
+
+    if (isExam) {
+        if (currentAnswer) {
+            document.getElementById("answered" + currentExamTask).classList.add('true-answered');
+            rightExamAnswers +=1;
+        }
+        else
+            document.getElementById("answered" + currentExamTask).classList.add('false-answered');
+
+        currentExamTask += 1;
+        if(stepsTask){
+            if(currentStep === (steps.length - 1)){
+                stepsTask = false;
+                isExam = false;
+                goBack();
+                showResultModal();
+                return
+            }else{
+                 currentStep += 1;
+                 currentGenerator += 1;
+                 beginEncode();
+            }
+        }else {
+
+            if (currentExamTask === examTasks) {
+                isExam = false;
+                onlyEncode = false;
+                goBack();
+                showResultModal();
+                return
+            }
 
 
-function check(){
-
-    if(encode)
-        checkEncode();
-    if(decode)
-        checkDecode()
+            if (currentExamTask < examTasks / 2 && !stepsTask||onlyEncode)
+                beginEncode();
+            else
+                beginDecode();
+        }
+    }
 }
 
 
-function checkEncode() {
-    if(stepsTask){
+async function checkEncode() {
+    if (stepsTask) {
         currenteResultEndpoit = "stepcheck";
     }
     else {
@@ -270,60 +338,67 @@ function checkEncode() {
     var answersRequest = null;
     answers = document.getElementsByName("answer");
 
-    if(answers.length===1)
+    if (answers.length === 1)
         answersRequest = answers[0].value;
     else {
         answersRequest = new Array();
-        for(var answer of answers){
+        for (var answer of answers) {
             answersRequest.push(answer.value)
         }
     }
 
-    const url = 'http://localhost:9090/'+currenteResultEndpoit;
-    fetch(url,{
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-              'module_name': currentCode,
-              'data':currentData,
-              'answer': answersRequest,
-              'step': steps!=null?steps[currentStep]:'',
-          })
+    const url = 'http://localhost:9090/' + currenteResultEndpoit;
+    return await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            'module_name': currentCode,
+            'data': currentData,
+            'answer': answersRequest,
+            'step': steps != null ? steps[currentStep] : '',
         })
-        .then( response => {
+    })
+        .then(response => {
             console.log(response.status);
             return response.json()
         })
-        .then( parsedJson =>{
+        .then(parsedJson => {
             console.log(parsedJson);
 
-            document.getElementById('rightAnswer').style.display=' none';
-            document.getElementById('wrongAnswer').style.display=' none';
+            document.getElementById('rightAnswer').style.display = ' none';
+            document.getElementById('wrongAnswer').style.display = ' none';
 
-            if(parsedJson['result']){
-                document.getElementById('rightAnswer').style.display=' inline-flex';
+            currentAnswer = parsedJson['result'];
+
+            if(!isExam){
+
+                if (parsedJson['result']) {
+                    document.getElementById('rightAnswer').style.display = ' inline-flex';
 
 
-                 if(stepsTask){
-                    if(currentStep===(steps.length-1)){
-                        stepsTask = false;
-                    }else{
-                        currentStep+=1;
-                        currentGenerator+=1;
-                        beginEncode();
+                    if (stepsTask) {
+
+                        if (currentStep === (steps.length - 1)) {
+                            stepsTask = false;
+                        } else {
+                            currentStep += 1;
+                            currentGenerator += 1;
+                            beginEncode();
+                        }
                     }
                 }
+                else {
+                    document.getElementById('wrongAnswer').style.display = ' inline-flex';
+                }
             }
-            else{
-                document.getElementById('wrongAnswer').style.display=' inline-flex';
-            }
+            return parsedJson['result']
         })
 }
 
-function checkDecode() {
+async function checkDecode() {
 
     currenteResultEndpoit = "decoderesult";
 
@@ -340,7 +415,7 @@ function checkDecode() {
     }
 
     const url = 'http://localhost:9090/'+currenteResultEndpoit;
-    fetch(url,{
+    return await fetch(url,{
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -362,13 +437,60 @@ function checkDecode() {
             document.getElementById('rightAnswer').style.display=' none';
             document.getElementById('wrongAnswer').style.display=' none';
 
-            if(parsedJson['result']){
-                document.getElementById('rightAnswer').style.display=' inline-flex';
+            currentAnswer = parsedJson['result'];
+
+            if(!isExam) {
+
+                if (parsedJson['result']) {
+                    document.getElementById('rightAnswer').style.display = ' inline-flex';
+                }
+                else {
+                    document.getElementById('wrongAnswer').style.display = ' inline-flex';
+                }
             }
-            else{
-                document.getElementById('wrongAnswer').style.display=' inline-flex';
-            }
+
+            return parsedJson['result'];
         })
+}
+
+
+function startExam(){
+    isExam = true;
+    rightExamAnswers = 0;
+
+    if(currentCode===''&&!waitResponse) {
+        waitResponse=true;
+        setTimeout(beginEncode, 100);
+    }
+
+    var exam = document.getElementById("exam");
+
+    const url = 'http://localhost:9090/exam';
+    fetch(url,{
+                method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              module_name: currentCode,
+
+          })
+        })
+        .then( response => {
+            console.log(response.status);
+            return response.json()
+        })
+        .then( parsedJson =>{
+            console.log(parsedJson['view']);
+            exam.innerHTML = parsedJson['view'];
+            examTasks = parsedJson['exam_tasks'];
+        });
+
+    document.getElementById("code").style.display = 'none';
+    exam.style.display = 'flex';
+    currentExamTask = 0;
+    beginEncode()
 }
 
 
@@ -383,7 +505,7 @@ function goBack() {
         currentCategory=''
     }else if(document.getElementById("test").style.display==='flex'){
         document.getElementById("test").style.display='none';
-
+        document.getElementById("exam").style.display='none';
         document.getElementById("bottom").style.display = 'flex';
         currentData='';
         getCodeDetails(currentCode)

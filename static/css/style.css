@@ -89,6 +89,36 @@ body, html {
     background-color: rgba(176, 176, 176, 0.5);
     border: 2px solid #313131;
 }
+
+#exam{
+    height: 25px;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-basis: 150px;
+    margin-bottom: -10px;
+}
+
+.bar-element{
+    height: 15px;
+    width: 45px;
+    background-color: gray;
+    margin: 0 4px;
+}
+
+.true-answered{
+    background-color: green;
+}
+
+.false-answered{
+    background-color: red;
+}
+
 #bottom{
     height: 15%;
     width: 100%;
@@ -254,11 +284,12 @@ body, html {
 
 .modal-content {
     background-color: #fefefe;
+    color: rgba(0,0,0,0.7);
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     width: 20%;

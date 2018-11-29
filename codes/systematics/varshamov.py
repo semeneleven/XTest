@@ -181,7 +181,8 @@ def get_details():
         'view_type': 'entropy',
         'generators': ['generator_init_step', 'generator_build_G_step', 'generator_code_step', 'generator_build_H_step', 'generator_correction_step'],
         'steps': ['initializing_step', 'building_G_step', 'code_step', 'building_H_step', 'correction_step'],
-        'only_encode': True
+        'only_encode': True,
+        'exam_tasks': 2
     }
 
 

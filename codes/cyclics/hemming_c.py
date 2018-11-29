@@ -122,7 +122,8 @@ def assert_decode(data, answer):
 
 # TODO generators
 def get_details():
-    return {'view_type': 'standard'}
+    return {'view_type': 'standard',
+            'exam_tasks': 2}
 
 
 def get_name():
