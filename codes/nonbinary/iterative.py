@@ -39,7 +39,7 @@ def assert_code(data, ans):
 
 # data = [[matrix], q](data_true), ans = [matrix]
 def assert_decode(data, ans):
-    if data['matrix'] == ans:
+    if data['data_true'] == ans:
         return True
     return False
 

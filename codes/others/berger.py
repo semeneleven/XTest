@@ -14,20 +14,20 @@ def berger(code):
 
 
 # data = message answ = data + r
-def assert_code(data, answ):
-    if data['message'] + berger(data['message']) == answ:
+def assert_code(data, ans):
+    if data['message'] + berger(data['message']) == ans:
         return True
     else:
         return False
 
 
 # data = [code, r] answ = bool(check for error(true if no error))
-def assert_decode(data, answ):
-    num = data[0]
-    r = data[1]
+def assert_decode(data, ans):
+    num = data['message']
+    r = data['r']
     k = len(num)
 
-    if (num[(k - r):] == berger(num[:(k - r)])) == answ:
+    if not (num[(k - r):] == berger(num[:(k - r)])) == (ans[0] == 'true'):
         return True
     else:
         return False
@@ -48,9 +48,9 @@ def generate_for_encode():
 def generate_for_decode():
     data = generate_for_encode()['message']
     check = berger(data)
-    if random.randint(0, 10) < 5:
-        data = generate_for_encode()
-    return data + check, len(check)
+    if random.randint(0, 10) < 7:
+        data = generate_for_encode()['message']
+    return {'message': data + check,'r': len(check)}
 
 
 def get_details():

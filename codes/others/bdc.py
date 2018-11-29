@@ -8,33 +8,22 @@ bases = [
 
 
 def bdc(N, base):
-    if base == [8, 4, 2, 1]:
 
-        bdc = int()
-        for i in str(N):
-            bdc *= 16
-            bdc += int(i)
+    bdc = str()
 
-        return str(bin(bdc))[2:]
+    for i in str(N):
+        four = [0, 0, 0, 0]
+        current_number = int(i)
 
-    else:
+        for j in range(len(base)):
+            if current_number >= base[j]:
+                current_number -= base[j]
+                four[j] = 1
 
-        bdc = str()
+        for j in four:
+            bdc += str(j)
 
-        for i in str(N):
-
-            four = [0, 0, 0, 0]
-            current_number = int(i)
-
-            for j in range(len(base)):
-                if current_number >= base[j]:
-                    current_number -= base[j]
-                    four[j] = 1
-
-            for j in four:
-                bdc += str(j)
-
-        return bdc
+    return bdc
 
 
 def bdc_decode(code, base):
@@ -59,8 +48,9 @@ def assert_code(data, answ):
 
 
 # data = [code, base] answ = number
-def assert_decode(data, answ):
-    if bdc_decode(data['message'], data['base']) == answ:
+def assert_decode(data, ans):
+    print(bdc_decode(data['message'], data['base']))
+    if bdc_decode(data['message'], data['base']) == int(ans):
         return True
     else:
         return False
@@ -74,7 +64,7 @@ def generate_for_decode():
     data = generate_for_encode()
     base = bases[random.randint(0, 3)]
 
-    return bdc(data['message'], base), base
+    return {'message': bdc(data['message'], base),'base': base}
 
 
 def get_details():

@@ -23,8 +23,8 @@ def assert_code(data, ans):
 
 
 def assert_decode(data, ans):
-    istrue = data == mod_q_code(data['message'][:len(data['message']) - 1], int(data['q']))
-    if ans == istrue:
+    istrue = data['message'] == mod_q_code(data['message'][:len(data['message']) - 1], int(data['q']))
+    if not (ans[0] == 'true') == istrue:
         return True
     return False
 
@@ -37,9 +37,10 @@ def generate_for_encode():
 
 def generate_for_decode():
     data = generate_for_encode()
+    data['message'] = mod_q_code(data['message'], data['q'])
     w_error = {'message': '', 'q': data['q']}
     print(data)
-    if random.randint(1, 10) > 4:
+    if random.randint(1, 10) > 6:
         w_error['message'] = data['message'][:len(data['message']) - 1] + get_letter(random.randint(0, data['q'] - 1))
         return w_error
     return data
