@@ -85,7 +85,7 @@ def assert_code(data, ans):
 def assert_decode(data, ans):
     bool, _ = globals()[data['type']](data['alphabet'], data['q'], data['n'])
 
-    return bool == ans
+    return bool == (ans[0] == 'true')
 
 
 def generate_for_encode():
@@ -116,9 +116,9 @@ def generate_for_encode():
 def generate_for_decode():
     data = generate_for_encode()
 
-    word = ''.join(data['alphabet'][random.randint(0,len(data[alphabet])-1)] for i in range(random.randint(1,data['q'])))
+    word = ''.join(data['alphabet'][random.randint(0,len(data['alphabet'])-1)] for i in range(random.randint(1,data['q'])))
 
-    data['n'] = [word]
+    data['n'] = word
 
     return data
 

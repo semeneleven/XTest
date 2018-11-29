@@ -1,7 +1,10 @@
 <div class="task">
+    <style type="text/css">
+        p {
+            margin: 0;
+        }
+    </style>
     <h3>закодируйте сообщение при q={{q}}</h3>
-    {{#matrix}}<table>
-        {{#.}}<tr>  {{.}}  <input name="answer" type="text" maxlength="1" size="1"></tr>{{/.}}
-    </table>{{/matrix}}
+    {{#matrix}}<p> {{.}}  <input name="answer" type="text" maxlength="1" size="1"></p>{{/matrix}}
     <input type="text" name="answer" maxlength="5" size="5">
 </div>

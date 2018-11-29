@@ -43,7 +43,7 @@ def assert_decode(data, ans):
     answears = []
 
     for i in range(len(ans)):
-        if ans[i]:
+        if ans[i] == 'true':
             answears.append(i)
 
     code_distances = []
@@ -78,7 +78,7 @@ def generate_for_decode():
             if rand not in error_poses:
                 error_poses.append(rand)
         satellites.append(satellite(vector, error_poses))
-    return {'vector': vector,'sattelites': satellites}
+    return {'vector': vector,'satellites': satellites}
 
 
 def get_code_distances():
