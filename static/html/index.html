@@ -28,8 +28,14 @@
                 </div>
                 <div class="button-container">
                     <div class="regular-button"><p class="button-text">Exam</p></div>
-                    <div class="regular-button" onclick="beginTest()"><p class = "button-text">Test</p></div>
+                    <div class="regular-button" onclick="showModal()"><p class = "button-text">Test</p></div>
                 </div>
+            </div>
+            <div id="modalWindow" class="modal">
+              <div class="modal-content">
+                  <div class="regular-button to-center" onclick="beginEncode()"><p class = "button-text">Encode</p></div>
+                  <div class="regular-button to-center" onclick="beginDecode()"><p class = "button-text">Decode</p></div>
+              </div>
             </div>
             <div id="test" style="display: none">
                 <div id="task">

@@ -54,7 +54,7 @@ class Base(object):
     def decodedata(self):
         module_name = cherrypy.request.json["module_name"]
         data = util.get_gen_decode(module_name)()
-        response = {'view': util.create_view(module_name, data),
+        response = {'view': util.create_view(module_name, data,'decode'),
                     'data': data}
 
         return response
@@ -74,7 +74,7 @@ class Base(object):
     def encodedata(self):
         module_name = cherrypy.request.json["module_name"]
         data = util.get_gen_encode(module_name)()
-        response = {'view': util.create_view(module_name, data),
+        response = {'view': util.create_view(module_name, data,'encode'),
                     'data': data}
 
         return response

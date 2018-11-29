@@ -36,7 +36,7 @@ def generate_for_encode():
 
 def generate_for_decode():
     data = int(generate_for_encode()["message"], 2)
-    return data ^ (data >> 1)
+    return {'message': bin(data ^ (data >> 1))[2:]}
 
 
 def get_details():

@@ -109,7 +109,8 @@ def get_details():
     return {
         'view_type': 'entropy',
         'generators': ['generator_inf_quantity_step', 'generator_entropy_step', 'generator_conditional_entropy_step'],
-        'steps': ['inf_quantity_step', 'entropy_step', 'conditional_entropy_step']
+        'steps': ['inf_quantity_step', 'entropy_step', 'conditional_entropy_step'],
+        'only_encode': True
     }
 
 

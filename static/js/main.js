@@ -15,6 +15,9 @@ steps = null;
 
 waitResponse = false;
 
+onlyEncode = false;
+encode = false;
+decode = false;
 
 function getCodes(category) {
 
@@ -93,12 +96,22 @@ function getCodeDetails(codeName) {
         })
         .then( parsedJson =>{
 
+            onlyEncode = false;
+            encode = false;
+            decode = false;
+            stepsTask = false;
+            waitResponse=false;
+
             console.log(parsedJson);
             this.codeDiv = document.getElementById("code");
             this.codeDiv.style.display = 'flex';
             this.theory= document.getElementById("theory");
             clear(this.theory);
             this.theory.innerHTML = parsedJson['description'];
+
+            if(parsedJson["details"]["only_encode"] !== undefined&&parsedJson["details"]["only_encode"]===true){
+                onlyEncode = true;
+            }
 
             if(parsedJson["details"]["generators"] !== undefined){
                 generators = parsedJson["details"]["generators"];
@@ -113,14 +126,34 @@ function getCodeDetails(codeName) {
         })
 }
 
-function beginTest() {
+
+function showModal(){
+
+    if(onlyEncode)
+        beginEncode();
+    else {
+        var modal = document.getElementById('modalWindow');
+        modal.style.display = 'block';
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
+}
+
+function beginEncode() {
+
+    encode = true;
+    document.getElementById('modalWindow').style.display=' none';
 
     document.getElementById('rightAnswer').style.display=' none';
     document.getElementById('wrongAnswer').style.display=' none';
 
     if(currentCode===''&&!waitResponse) {
         waitResponse=true;
-        setTimeout(beginTest, 100);
+        setTimeout(beginEncode, 100);
     }
 
     document.getElementById("code").style.display = 'none';
@@ -164,9 +197,70 @@ function beginTest() {
         })
 }
 
+
+
+function beginDecode() {
+
+    decode = true;
+
+    document.getElementById('modalWindow').style.display=' none';
+
+    document.getElementById('rightAnswer').style.display=' none';
+    document.getElementById('wrongAnswer').style.display=' none';
+
+    if(currentCode===''&&!waitResponse) {
+        waitResponse=true;
+        setTimeout(beginEncode, 100);
+    }
+
+    document.getElementById("code").style.display = 'none';
+
+    currenteEncoderEndpoit = "decodedata";
+
+
+    const url = 'http://localhost:9090/'+currenteEncoderEndpoit;
+    fetch(url,{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              module_name: currentCode,
+
+          })
+        })
+        .then( response => {
+            console.log(response.status);
+            return response.json()
+        })
+        .then( parsedJson =>{
+            console.log(parsedJson['data'], parsedJson['view']);
+
+            this.taskDiv = document.getElementById("task");
+            clear(this.taskDiv);
+            this.taskDiv.innerHTML = parsedJson['view'];
+
+            document.getElementById("test").style.display = 'flex';
+            currentData=parsedJson['data']
+
+
+        })
+}
+
+
+
 function check(){
 
-     if(stepsTask){
+    if(encode)
+        checkEncode();
+    if(decode)
+        checkDecode()
+}
+
+
+function checkEncode() {
+    if(stepsTask){
         currenteResultEndpoit = "stepcheck";
     }
     else {
@@ -219,9 +313,57 @@ function check(){
                     }else{
                         currentStep+=1;
                         currentGenerator+=1;
-                        beginTest();
+                        beginEncode();
                     }
                 }
+            }
+            else{
+                document.getElementById('wrongAnswer').style.display=' inline-flex';
+            }
+        })
+}
+
+function checkDecode() {
+
+    currenteResultEndpoit = "decoderesult";
+
+    var answersRequest = null;
+    answers = document.getElementsByName("answer");
+
+    if(answers.length===1)
+        answersRequest = answers[0].value;
+    else {
+        answersRequest = new Array();
+        for(var answer of answers){
+            answersRequest.push(answer.value)
+        }
+    }
+
+    const url = 'http://localhost:9090/'+currenteResultEndpoit;
+    fetch(url,{
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+              'module_name': currentCode,
+              'data':currentData,
+              'answer': answersRequest,
+          })
+        })
+        .then( response => {
+            console.log(response.status);
+            return response.json()
+        })
+        .then( parsedJson =>{
+            console.log(parsedJson);
+
+            document.getElementById('rightAnswer').style.display=' none';
+            document.getElementById('wrongAnswer').style.display=' none';
+
+            if(parsedJson['result']){
+                document.getElementById('rightAnswer').style.display=' inline-flex';
             }
             else{
                 document.getElementById('wrongAnswer').style.display=' inline-flex';

@@ -54,8 +54,8 @@ def get_method(method_name):
     return codes_dict
 
 
-def create_view(modname, data):
-    tempalte = open('templates/' + modname + '.html', 'r')
+def create_view(modname, data, func_type):
+    tempalte = open('templates/' + func_type + '/' + modname + '.html', 'r')
     return pystache.render(tempalte.read(), data)
 
 
