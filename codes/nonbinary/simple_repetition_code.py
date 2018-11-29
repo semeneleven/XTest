@@ -24,7 +24,7 @@ def generate_for_encode():
 
 
 def generate_for_decode():
-    return generate_for_encode()['message'] * 2
+    return {'message' : generate_for_encode()['message'] * 2}
 
 
 def get_details():
