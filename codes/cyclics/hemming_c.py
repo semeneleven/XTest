@@ -7,9 +7,9 @@ polynomials = {
 
 
 def multiply(a, b):
-    result = (a if int(b[len(b)-1]) else 0)
-    for i in range(len(b)-1):
-        result = (a << (i+1) if int(b[len(b)-i -2]) else 0) ^ (result)
+    result = (a if int(b[len(b) - 1]) else 0)
+    for i in range(len(b) - 1):
+        result = (a << (i + 1) if int(b[len(b) - i - 2]) else 0) ^ (result)
     return result
 
 
@@ -46,9 +46,10 @@ def hemming(msg, polynomial):
     encoded_num = multiply(int(msg, 2), polynomial)
 
     encoded = bin(encoded_num)[2:]
-    encoded = '0'*(2**(len(polynomial)-1) - len(encoded) -1)+encoded
+    encoded = '0' * (2 ** (len(polynomial) - 1) - len(encoded) - 1) + encoded
 
     return encoded
+
 
 # data = [msg,poly]
 def assert_code(data, answer):
@@ -66,8 +67,7 @@ def assert_decode(data, answer):
     decoded = msg
     R = msg
 
-    for i in range(len(decoded)-len(polynomial)+2):
-
+    for i in range(len(decoded) - len(polynomial) + 2):
 
         while len(R) >= len(polynomial):
             for j in range(len(polynomial)):
@@ -98,9 +98,9 @@ def assert_decode(data, answer):
 
     while True:
 
-        polynomial_num_tmp =polynomial_num << (len(decoded)-len(polynomial) - decoded.find('1'))
-        result += '0'*decoded.find('1')
-        decoded =decoded[decoded.find('1'):]
+        polynomial_num_tmp = polynomial_num << (len(decoded) - len(polynomial) - decoded.find('1'))
+        result += '0' * decoded.find('1')
+        decoded = decoded[decoded.find('1'):]
 
         if len(decoded) < len(polynomial):
             break
@@ -108,11 +108,11 @@ def assert_decode(data, answer):
         polynomial_tmp = bin(polynomial_num_tmp)[2:]
 
         for i in range(len(decoded)):
-            decoded = decoded[:i]+str(int(decoded[i])^int(polynomial_tmp[i]))+decoded[i+1:]
+            decoded = decoded[:i] + str(int(decoded[i]) ^ int(polynomial_tmp[i])) + decoded[i + 1:]
         decoded = decoded[1:]
         result += '1'
 
-    result += '0'*((len(msg) - len(polynomial)+1)-len(result))
+    result += '0' * ((len(msg) - len(polynomial) + 1) - len(result))
 
     if not result == answer:
         return False
@@ -120,6 +120,14 @@ def assert_decode(data, answer):
     return True
 
 
-print(hemming('01011111010', [1, 1, 0, 0, 1]))
-print(assert_code(['01011111010', [1, 1, 0, 0, 1]], '011101010001010'))
-print(assert_decode(['011101010001010', [1, 1, 0, 0, 1]], '01011111010'))
+# TODO generators
+def get_details():
+    return {'view_type': 'standard',
+            'exam_tasks': 2}
+
+
+def get_name():
+    return 'Хемминга'
+# print(hemming('01011111010', [1, 1, 0, 0, 1]))
+# print(assert_code(['01011111010', [1, 1, 0, 0, 1]], '011101010001010'))
+# print(assert_decode(['011101010001010', [1, 1, 0, 0, 1]], '01011111010'))

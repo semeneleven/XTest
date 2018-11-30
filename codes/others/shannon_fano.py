@@ -3,7 +3,7 @@ import random
 def shannon_fano(data):
     alphabet = sorted(data, key = data.get, reverse = True)
     for i in range(len(data)-1):
-        if data[alphabet[i]] == data[alphabet[i+1]] and alphabet[i] < alphabet[i+1] :
+        if data[alphabet[i]] == data[alphabet[i+1]] and alphabet[i] > alphabet[i+1] :
             tmp = alphabet[i]
             alphabet[i] = alphabet[i+1]
             alphabet[i+1] = tmp
@@ -35,15 +35,15 @@ def get_groups(alphabet, data):
 
 
 def assert_code(data, ans):
-    codes = shannon_fano(data)
-    if codes == ans :
-        return True
-    else :
-        return False
+    codes = shannon_fano(data['message'])
+    for i in range(len(ans)):
+        if ans[i] != codes['a'+str(i+1)]:
+            return False
+    return True
 
 
-def generate_to_encode():
-    data = { 'a' + str(i+1) : 0 for i in range(random.randint(6,9)) }
+def generate_for_encode():
+    data = { 'a' + str(i+1) : 0 for i in range(8) }
     some = 100
     for i in range(len(data)-1):
         if some > 40 : rand = random.randint(1,40)
@@ -51,11 +51,19 @@ def generate_to_encode():
         data['a' + str(i+1)] = rand/100
         some -= rand
     data['a' + str(len(data))] = some/100
-    return data
+    return {'message': data}
 
-# tests
-print(shannon_fano({'a1':0.15, 'a2':0.24, 'a3':0.1, 'a4':0.13, 'a5':0.26, 'a6':0.12}))
-print(assert_code({'a1':0.15, 'a2':0.25, 'a3':0.1, 'a4':0.13, 'a5':0.25, 'a6':0.12}, {'a1':'011','a2':'10','a3':'000','a4':'010','a5':'11','a6':'001'}))
-data = generate_to_encode()
-print(data)
-print(shannon_fano(data))
+
+def get_details():
+    return {
+        'view_type': 'standard',
+        'only_encode': True,
+        'exam_tasks': 2
+    }
+
+
+def get_name():
+    return 'Шенона-Фано'
+# tests print(shannon_fano({'a1':0.15, 'a2':0.24, 'a3':0.1, 'a4':0.13, 'a5':0.26, 'a6':0.12})) print(assert_code({
+# 'a1':0.15, 'a2':0.25, 'a3':0.1, 'a4':0.13, 'a5':0.25, 'a6':0.12}, {'a1':'011','a2':'10','a3':'000','a4':'010',
+# 'a5':'11','a6':'001'})) data = generate_for_encode() print(data) print(shannon_fano(data))

@@ -1,0 +1,335 @@
+
+
+/* define defaults for start page. */
+
+*{
+    box-sizing: border-box;
+}
+
+h3{
+    margin:3px 0;
+}
+
+p{
+    margin: 2px 0;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    overflow: auto;
+    height:100vh;
+    width: 100vw;
+    margin: 0 !important;
+    padding: 0;
+    color: #E7F5DC;
+    background-color: #C0DFD8;
+}
+#main{
+    height:100%;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 250px;
+    min-height: 500px;
+    background-color: inherit;
+}
+.end{
+    box-shadow: 3px 2px 4px 1px rgba(0, 0, 0, 0.25), inset 0px 5px 4px rgba(0, 0, 0, 0.25);
+}
+#codes{
+    height: max-content;
+    width: 100%;
+    padding: 5% 10%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: space-between;
+    flex-basis: 125px;
+    min-height: 300px;
+    background-color: inherit;
+}
+#code{
+    height: 75%;
+    width: 100%;
+    padding: 5% 10%;
+    margin: auto;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: flex-start;
+    flex-basis: 250px;
+    min-height: 450px;
+    background-color: inherit;
+}
+#theory{
+    width: 100%;
+    height: 60%;
+    margin-bottom: 20px;
+    background: #E7F5DC;
+    border: 3px solid #4C6255;/*linear-gradient(132.51deg, #4C6255 0%, #C0DFD8 100%);*/
+    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
+}
+#test{
+    height: 75%;
+    width: 80%;
+    padding: 5% 2%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    flex-basis: 250px;
+    min-height: 450px;
+    background-color: rgba(176, 176, 176, 0.5);
+    border: 2px solid #313131;
+}
+
+#exam{
+    height: 25px;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    flex-basis: 150px;
+    margin-bottom: -10px;
+}
+
+.bar-element{
+    height: 15px;
+    width: 45px;
+    background-color: gray;
+    margin: 0 4px;
+}
+
+.true-answered{
+    background-color: green;
+}
+
+.false-answered{
+    background-color: red;
+}
+
+#bottom{
+    height: 15%;
+    width: 100%;
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-basis: 125px;
+    background-color: inherit;
+}
+
+
+
+.button-text{
+    text-align: center;
+    margin-top: 7px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 18px;
+}
+.main-text{
+    margin: 10px 20px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 18px;
+    word-wrap: break-word;
+}
+.theory-text{
+    color: black;
+}
+
+
+
+.main-menu-button-1{
+    width: 80%;
+    height: 20%;
+    background-color: #64AC8F;
+    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
+}
+.main-menu-button-2{
+    width: 80%;
+    height: 20%;
+    background-color: #94D6BA;
+    box-shadow: 3px 0px 4px rgba(0, 0, 0, 0.25), inset 0px 5px 4px rgba(0, 0, 0, 0.25);
+}
+.central-button{
+    flex-grow: 2;
+}
+.regular-button{
+    margin-top: 5px;
+    height: 40px;
+    width: 125px;
+    background-color: #64AC8F;
+    box-shadow: 3px 0px 4px 1px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.code-plate-1{
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    background: #64AC8F;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.code-plate-2{
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    background: #94D6BA;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.button-container{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-end;
+    flex-basis: 125px;
+
+}
+
+.task{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+.matrix{
+    margin-left: 15px;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+}
+.matrix p{
+    font-family: "Arial";
+    margin: 1px 3px;
+    font-size: 20px;
+}
+.matrix-side-text-area{
+
+    font-family: "Arial";
+    padding-top: 0px;
+    font-size: 20px;
+    color: #E7F5DC;
+    border: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: inherit;
+    width: 16px;
+    height: calc(100% + 24px);
+    line-height: 1.2;
+    resize:none;
+    overflow: hidden;
+}
+.matrix-bottom-text-area{
+
+    padding-left: 0px;
+    margin-left: 16px;
+    font-family: "Arial";
+    font-size: 20px;
+    color: #E7F5DC;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: inherit;
+    resize:none;
+    overflow: hidden;
+    letter-spacing: 6px;
+}
+
+.read p{
+    font-family: "Arial";
+    margin: 1px 1px;
+    font-size: 20px;
+}
+
+.up{
+    margin-top: -5%;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    color: rgba(0,0,0,0.7);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 20%;
+    min-width: 250px;
+}
+
+.to-center{
+    align-self: center;
+}
+#rightAnswer{
+    display: none;
+    color: forestgreen;
+    align-self: center;
+    margin-left: 10px;
+}
+#wrongAnswer{
+    display: none;
+    color: firebrick;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.text-area-row{
+    padding: 0;
+    padding-top: 2px;
+    margin-bottom: -5px;
+    font-family: "Arial";
+    font-size: 20px;
+    color: #E7F5DC;
+    border: 0;
+    background-color: inherit;
+    resize:none;
+    overflow: hidden;
+    letter-spacing: 6px;
+}

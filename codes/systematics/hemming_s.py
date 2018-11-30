@@ -24,16 +24,20 @@ def hemming_code(message):
 
         message = message[:2 ** i - 1] + str(r[0]) + message[2 ** i:]
 
-    return message
+    return str(message)
 
 
 def assert_code(data, answer):
-    if not hemming_code(data) == answer:
+
+    print(data, answer)
+    print(hemming_code(data['message']))
+    if not hemming_code(data['message']) == str(answer):
         return False
     return True
 
 
 def assert_decode(data, answer):
+    data = data['message']
     length_r = 0
     if len(data) in range(14, 16):
         length_r = 4
@@ -63,15 +67,22 @@ def assert_decode(data, answer):
 
 
 def generate_for_encode():
-    return str().join([str(random.randint(0, 1)) for x in range(random.randint(10, 15))])
+    return {'message': str().join([str(random.randint(0, 1)) for x in range(random.randint(10, 15))])}
 
 
 def generate_for_decode():
-    encoded = hemming_code(generate_for_encode())
+    encoded = hemming_code(generate_for_encode()['message'])
     n = random.randint(0, len(encoded) - 1)
     encoded = encoded[:n] + ('0' if encoded[n] == '1' else '1') + encoded[(n + 1):]
-    return encoded
+    return {'message': encoded}
 
 
-print(assert_code('011001010001', '10011100010100001'))
-print(assert_decode('1010000101101111001', '1011000101101111001'))
+def get_details():
+    return {'view_type': 'standard',
+            'exam_tasks': 2}
+
+
+def get_name():
+    return 'Хемминга'
+#print(assert_code('011001010001', '10011100010100001'))
+#print(assert_decode('1010000101101111001', '1011000101101111001'))

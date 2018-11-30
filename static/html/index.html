@@ -1,0 +1,74 @@
+ <!DOCTYPE html>
+ <html>
+    <head>
+        <link href="/static/css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="/static/js/main.js"></script>
+        <script type="text/javascript" src="/static/js/front.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="main">
+                <div id="systematics" class="main-menu-button-1" onclick="getCodes(this.id)">
+                    <p class="main-text">Систематичні</p>
+                </div>
+                <div id="cyclics" class="main-menu-button-2" onclick="getCodes(this.id)">
+                    <p class="main-text">Циклічні</p>
+                </div>
+                <div id="nonbinary" class="main-menu-button-1" onclick="getCodes(this.id)">
+                    <p class="main-text">Недвійкові</p>
+                </div>
+                <div id="others" class="main-menu-button-2 end" onclick="getCodes(this.id)">
+                    <p class="main-text">Інші</p>
+                </div>
+            </div>
+            <div id="codes" style="display: none">
+            </div>
+            <div id="code" style="display: none">
+                <div id="theory">
+                    <div></div>
+                </div>
+                <div class="button-container">
+                    <div class="regular-button" onclick="startExam()"><p class="button-text">Exam</p></div>
+                    <div class="regular-button" onclick="showModal()"><p class = "button-text">Test</p></div>
+                </div>
+            </div>
+            <div id="modalWindow" class="modal">
+              <div class="modal-content">
+                  <div class="regular-button to-center" onclick="beginEncode()"><p class = "button-text">Encode</p></div>
+                  <div class="regular-button to-center" onclick="beginDecode()"><p class = "button-text">Decode</p></div>
+              </div>
+            </div>
+             <div id="modalResultWindow" class="modal">
+              <div class="modal-content">
+                  <p id="resultText" class="to-center"></p>
+                  <p id="result" class="to-center"></p>
+              </div>
+            </div>
+            <div id="exam">
+
+            </div>
+            <div id="test" style="display: none">
+                <div id="task">
+
+                </div>
+                <div style="display:inline-flex;">
+                    <div id="check" class="regular-button" onclick="check()">
+                        <p class="button-text">
+                        Check
+                        </p>
+
+                    </div>
+                    <p id="rightAnswer" >True</p>
+                    <p id="wrongAnswer" style="display: none; color: firebrick">False</p>
+                </div>
+            </div>
+            <div id="bottom" style="display: none">
+                <div id="back" class="regular-button" onclick="goBack()">
+                    <p class="button-text">
+                    Back
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+ </html>

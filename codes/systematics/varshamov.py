@@ -176,23 +176,35 @@ def generator_correction_step():
     return [G, encoded]
 
 
-print(initializing_step([17, 4], [17, 1, 9, 8]))
-print(building_G_step([1, 3], [
-    [[1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 0],
-     [0, 0, 0, 0, 0, 1]],
-    [[0, 0, 1, 1], [0, 1, 0, 1], [1, 0, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0], [1, 1, 0, 0]]
-]))
-print(code_step([[[1, 0, 0, 0, 0, 0, 0, 0, 1, 1], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1], [0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-                  [0, 0, 0, 1, 0, 0, 0, 1, 1, 0], [0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
-                  [0, 0, 0, 0, 0, 1, 1, 1, 0, 0]], '001110'], '0011100101'))
+def get_details():
+    return {
+        'view_type': 'entropy',
+        'generators': ['generator_init_step', 'generator_build_G_step', 'generator_code_step', 'generator_build_H_step', 'generator_correction_step'],
+        'steps': ['initializing_step', 'building_G_step', 'code_step', 'building_H_step', 'correction_step'],
+        'only_encode': True,
+        'exam_tasks': 5
+    }
 
-print(building_H_step([gen_E(6), [[0, 0, 1, 1], [0, 1, 0, 1], [1, 0, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0], [1, 1, 0, 0]]],
-                      [[[0, 0, 1, 0, 0, 1], [0, 1, 0, 1, 0, 1], [1, 0, 0, 1, 1, 0], [1, 1, 1, 0, 0, 0]], gen_E(4)]))
 
-print(correction_step([compose(gen_E(6), standard_C), '001110'], '0011100101'))
-
-print(generator_init_step())
-print(generator_build_G_step())
-print(generator_code_step())
-print(generator_build_H_step())
-print(generator_correction_step())
+def get_name():
+    return 'Варшамова'
+# print(initializing_step([17, 4], [17, 1, 9, 8]))
+# print(building_G_step([1, 3], [
+#     [[1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 0],
+#      [0, 0, 0, 0, 0, 1]],
+#     [[0, 0, 1, 1], [0, 1, 0, 1], [1, 0, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0], [1, 1, 0, 0]]
+# ]))
+# print(code_step([[[1, 0, 0, 0, 0, 0, 0, 0, 1, 1], [0, 1, 0, 0, 0, 0, 0, 1, 0, 1], [0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+#                   [0, 0, 0, 1, 0, 0, 0, 1, 1, 0], [0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
+#                   [0, 0, 0, 0, 0, 1, 1, 1, 0, 0]], '001110'], '0011100101'))
+#
+# print(building_H_step([gen_E(6), [[0, 0, 1, 1], [0, 1, 0, 1], [1, 0, 0, 1], [0, 1, 1, 0], [1, 0, 1, 0], [1, 1, 0, 0]]],
+#                       [[[0, 0, 1, 0, 0, 1], [0, 1, 0, 1, 0, 1], [1, 0, 0, 1, 1, 0], [1, 1, 1, 0, 0, 0]], gen_E(4)]))
+#
+# print(correction_step([compose(gen_E(6), standard_C), '001110'], '0011100101'))
+#
+# print(generator_init_step())
+# print(generator_build_G_step())
+# print(generator_code_step())
+# print(generator_build_H_step())
+# print(generator_correction_step())

@@ -72,22 +72,23 @@ def qualitative_change(alphabet, word_len, words = []):
 
 # data = ['function', 'alphabet', word_len, int(quantity of words)], ans = [word,...]
 def assert_code(data, ans):
-    if not len(ans) == data[3]:
+    answer = ans.split(' ')
+    if not len(answer) == data['n']:
         return False
 
-    bool, _ = globals()[data[0]](data[1], data[2], ans)
+    bool, _ = globals()[data['type']](data['alphabet'], data['q'], answer)
 
     return bool
 
 
 # data = ['function', 'alphabet', word_len, ['word']], ans = True or False(is word matches code requirement)
 def assert_decode(data, ans):
-    bool, _ = globals()[data[0]](data[1], data[2], data[3])
+    bool, _ = globals()[data['type']](data['alphabet'], data['q'], data['n'])
 
-    return bool == ans
+    return bool == (ans[0] == 'true')
 
 
-def generate_to_encode():
+def generate_for_encode():
     data = []
 
     funcs = ['permutation', 'accommodation', 'certain_combination', 'all_combination', 'qualitative_change']
@@ -99,7 +100,7 @@ def generate_to_encode():
     if data[0] == 'permutation':
         data.append(len(data[1]))
     else :
-        data.append(random.randint(1,len(data[1])))
+        data.append(random.randint(2,len(data[1])))
 
     _, n = globals()[data[0]](data[1], data[2])
     if n > 5:
@@ -109,22 +110,30 @@ def generate_to_encode():
     else :
         data.append(1)
 
+    return {'type': data[0],'alphabet':data[1],'q':data[2],'n':data[3]}
+
+
+def generate_for_decode():
+    data = generate_for_encode()
+
+    word = ''.join(data['alphabet'][random.randint(0,len(data['alphabet'])-1)] for i in range(random.randint(1,data['q'])))
+
+    data['n'] = word
+
     return data
 
 
-def generate_to_decode():
-    data = generate_to_encode()
+def get_details():
+    return {'view_type': 'standard',
+            'exam_tasks': 6}
 
-    word = ''.join(data[1][random.randint(0,len(data[1])-1)] for i in range(random.randint(1,data[2])))
 
-    data[3] = [word]
-
-    return data
-
+def get_name():
+    return 'Первичный недвоичные'
 # tests
-data = ['qualitative_change', 'abcd', 3, 4]
-ans = ['abd','cdc','bcd','bdb']
-print(assert_decode(['accommodation','abcd',3,['acd']],True))
-print(assert_code(data, ans))
-print(generate_to_encode())
-print(generate_to_decode())
+# data = ['qualitative_change', 'abcd', 3, 4]
+# ans = ['abd','cdc','bcd','bdb']
+# print(assert_decode(['accommodation','abcd',3,['acd']],True))
+# print(assert_code(data, ans))
+# print(generate_for_encode())
+# print(generate_for_decode())

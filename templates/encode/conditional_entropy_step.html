@@ -1,0 +1,12 @@
+<div id="generator">
+    <h3>вычислите условную энтропию источка с алфавитом сообщений:</h3>
+    <table>
+        <tr><td>Y/X </td><td> Y1 </td><td> Y2 </td><td> Y3 </td></tr>
+        {{#message}}
+            <tr><td>X1 </td>{{#x1}}<td> {{.}} </td>{{/x1}}</tr>
+            <tr><td>X2 </td>{{#x2}}<td> {{.}} </td>{{/x2}}</tr>
+            <tr><td>X3 </td>{{#x3}}<td> {{.}} </td>{{/x3}}</tr>
+        {{/message}}
+    </table>
+    <lable>Условная энтропия : <input type="text" name="answer"></lable>
+</div>

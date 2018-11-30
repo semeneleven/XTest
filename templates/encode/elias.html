@@ -1,0 +1,14 @@
+<div class="task">
+    <h3>Закодируйте сообщение: </h3>
+        <div class="matrix">
+            <div>
+                {{#message}}
+                <p>{{#.}} {{.}}{{/.}}</p>
+                {{/message}}
+            </div>
+            <div>
+                <textarea placeholder="00000" rows="5" cols="1" maxlength="5" class="matrix-side-text-area" name="answer" type="text" ></textarea>
+            </div>
+        </div>
+   <textarea placeholder="00000" rows="1" cols="7" maxlength="5" class="matrix-bottom-text-area" name="answer" type="text" ></textarea>
+</div>

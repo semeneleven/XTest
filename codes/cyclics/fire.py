@@ -77,7 +77,7 @@ def fire(msg, polynomial, err_f, err_c):
 
 # data = [msg,poly,err_f,err_c]
 def assert_code(data, answer):
-    if not fire(data[0], data[1], data[2], data[3]) == answer:
+    if not fire(data['message'], data['poly'], data['err_f'], data['err_c']) == answer:
         return False
 
     return True
@@ -85,9 +85,9 @@ def assert_code(data, answer):
 
 # data [err_msg,poly,err_count]
 def assert_decode(data, answer):
-    msg = data[0]
-    polynomial = data[1]
-    L = data[2]
+    msg = data['message']
+    polynomial = data['poly']
+    L = int(data['err_c'][0])
 
     if L > len(polynomial) - 1:
         raise ValueError("Too many errors({})! Can correct only {}!".format(L, len(polynomial) - 1))
@@ -117,7 +117,7 @@ def assert_decode(data, answer):
 
             R = R[R.find('1'):]
 
-        R = '0' * (len(gen_polynomial) - len(R)-1) + R
+        R = '0' * (len(gen_polynomial) - len(R) - 1) + R
 
         if R.count('1') == 0:
             break
@@ -139,7 +139,6 @@ def assert_decode(data, answer):
             R = decoded[decoded.find('1'):]
             loop_num += 1
 
-
     if not decoded[:len(decoded) - len(gen_polynomial) + 1] == answer:
         return False
 
@@ -149,23 +148,35 @@ def assert_decode(data, answer):
 def generate_for_encode():
     polynomial = polynomials[2]
     msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(4, 6))])
-    return [msg, polynomial, 2, 2]
+    return {'message': msg,'poly': polynomial,'err_f': 2,'err_c': 2}
 
 
 def generate_for_decode():
     data = generate_for_encode()
-    msg = data[0]
-    polynomial = data[1]
+    msg = data['message']
+    polynomial = data['poly']
     encoded = fire(msg, polynomial, 2, 2)
     err = encoded
-    for i in range(random.randint(1,2)):
-        n = random.randint(0, len(err) - 1)
-        err = err[:n] + ('0' if err[n] == '1' else '1') + err[(n + 1):]
+    err_count = random.randint(1, 2)
+    n = random.randint(0, len(err) - 2)
+    for i in range(err_count):
+        err = err[:n + i] + ('0' if err[n + i] == '1' else '1') + err[(n + i + 1):]
+    if err_count == 1:
+        err_count = str(err_count) + " ошибку"
+    else:
+        err_count = str(err_count) + " ошибки"
 
-    return [err, polynomial,2]
+    return {'message': err, 'poly': polynomial, 'err_c': err_count}
 
 
-# print(fire('110110', [1, 1, 1], 2, 2))
+def get_details():
+    return {'view_type': 'standard',
+            'exam_tasks': 2}
+
+
+def get_name():
+    return 'Файра'
+#print(fire('110110', [1, 1, 1], 2, 2))
 # print(assert_code(['110110', [1, 1, 1], 2, 2], '110110110110'))
 # print(assert_decode(['110110011101', [1, 1, 1], 2], '110000'))
 # print(generate_for_encode())

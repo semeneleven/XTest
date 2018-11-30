@@ -63,7 +63,8 @@ def abramson(msg, polynomial):
 
 # data = [msg,poly]
 def assert_code(data, answer):
-    if not abramson(data[0], data[1]) == answer:
+    print(data, answer)
+    if not abramson(data['message'], data['poly']) == answer:
         return False
 
     return True
@@ -71,8 +72,8 @@ def assert_code(data, answer):
 
 # data [err_msg,poly]
 def assert_decode(data, answer):
-    msg = data[0]
-    polynomial = data[1]
+    msg = data['message']
+    polynomial = data['poly']
 
     polynomial_num = int(''.join([str(x) for x in polynomial]), 2)
 
@@ -127,23 +128,31 @@ def generate_for_encode():
     h = 4
     polynomial = polynomials[h][random.randint(0, len(polynomials[h]) - 1)]
     msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(7, 2 ** h - 1 - len(polynomial)))])
-    return [msg, polynomial]
+    return {'message': msg, 'poly': polynomial}
 
 
 def generate_for_decode():
     data = generate_for_encode()
-    msg = data[0]
-    polynomial = data[1]
+    msg = data['message']
+    polynomial = data['poly']
     encoded = abramson(msg, polynomial)
     err = encoded
     for i in range(random.randint(1, 2)):
         n = random.randint(0, len(err) - 1)
         err = err[:n] + ('0' if err[n] == '1' else '1') + err[(n + 1):]
 
-    return [err, polynomial]
+    return {'message':err,'poly': polynomial}
 
 
-# print(abramson('00111110', [1, 0, 0, 1, 1]))
+def get_details():
+    return {'view_type': 'standard',
+            'exam_tasks': 2}
+
+
+def get_name():
+    return 'Абрамсона'
+
+#print(abramson('00111110', [1, 0, 0, 1, 1]))
 # print(assert_code(['00111110', [1, 0, 0, 1, 1]], '0011111011100'))
 # print(assert_decode(['010110001100101', polynomials[4][0]], '0101100111'))
 # print(generate_for_encode())

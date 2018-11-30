@@ -1,0 +1,9 @@
+<div class="task">
+    <style type="text/css">
+        p {
+            margin: 5px;
+        }
+    </style>
+    <h3>Дан кодовый вектор {{vector}}. отметьте все кодовые векторы с наименшим кодовым расстоянием к нему</h3>
+    {{#satellites}}<p>{{.}} <input type="checkbox" value="false" onchange="changeval()" name="answer"></p>{{/satellites}}
+</div>
