@@ -129,6 +129,25 @@ def generate_for_encode():
 
     return {'message': msg, 'k': k[d], 'd': d}
 
+
+def generate_for_decode():
+    data = generate_for_encode()
+    msg = data['message']
+    k = data['k']
+    d = data['d']
+    encoded = bch(msg, d);
+    err = encoded
+    err_count = random.randint(1, 2)
+    n = random.randint(0, len(err) - 2)
+    for i in range(err_count):
+        err = err[:n+i] + ('0' if err[n+i] == '1' else '1') + err[(n+i + 1):]
+    if err_count==1:
+        err_count = str(err_count) + " ошибку"
+    else:
+        err_count = str(err_count) + " ошибки"
+    return {'message': err, 'err_c': err_count, 'd': d}
+
+
 def get_details():
     return {'view_type': 'standard',
             'exam_tasks': 2}

@@ -182,7 +182,7 @@ def get_details():
         'generators': ['generator_init_step', 'generator_build_G_step', 'generator_code_step', 'generator_build_H_step', 'generator_correction_step'],
         'steps': ['initializing_step', 'building_G_step', 'code_step', 'building_H_step', 'correction_step'],
         'only_encode': True,
-        'exam_tasks': 2
+        'exam_tasks': 5
     }
 
 

@@ -1,0 +1,18 @@
+<div class="task">
+    <h3>Найдите и исправте ошибку: </h3>
+        <div class="matrix">
+            <div>
+                {{#message}}
+                 <textarea rows="1" cols="6" maxlength="5"
+                           class="text-area-row" type="text" name="answer" >{{#.}}{{.}}{{/.}}</textarea>
+                <br>
+                {{/message}}
+            </div>
+            <div>
+                <textarea disabled="true" placeholder="00000" rows="5" cols="1"
+                          maxlength="5" class="matrix-side-text-area" style="margin-left: -6px;" type="text" >{{#vertical}}{{.}}{{/vertical}}</textarea>
+            </div>
+        </div>
+   <textarea placeholder="00000" disabled="true" rows="1" cols="7" maxlength="5"
+             class="matrix-bottom-text-area" type="text" >{{#horizontal}}{{.}}{{/horizontal}}</textarea>
+</div>

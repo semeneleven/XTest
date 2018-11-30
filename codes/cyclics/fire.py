@@ -85,9 +85,9 @@ def assert_code(data, answer):
 
 # data [err_msg,poly,err_count]
 def assert_decode(data, answer):
-    msg = data[0]
-    polynomial = data[1]
-    L = data[2]
+    msg = data['message']
+    polynomial = data['poly']
+    L = int(data['err_c'][0])
 
     if L > len(polynomial) - 1:
         raise ValueError("Too many errors({})! Can correct only {}!".format(L, len(polynomial) - 1))
@@ -157,11 +157,16 @@ def generate_for_decode():
     polynomial = data['poly']
     encoded = fire(msg, polynomial, 2, 2)
     err = encoded
-    for i in range(random.randint(1, 2)):
-        n = random.randint(0, len(err) - 1)
-        err = err[:n] + ('0' if err[n] == '1' else '1') + err[(n + 1):]
+    err_count = random.randint(1, 2)
+    n = random.randint(0, len(err) - 2)
+    for i in range(err_count):
+        err = err[:n + i] + ('0' if err[n + i] == '1' else '1') + err[(n + i + 1):]
+    if err_count == 1:
+        err_count = str(err_count) + " ошибку"
+    else:
+        err_count = str(err_count) + " ошибки"
 
-    return [err, polynomial, 2]
+    return {'message': err, 'poly': polynomial, 'err_c': err_count}
 
 
 def get_details():

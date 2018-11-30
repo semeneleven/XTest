@@ -7,8 +7,8 @@
                 {{/matrix}}
             </div>
             <div>
-                <textarea disabled="true" rows="{{k}}" cols="1" maxlength="{{k}}" class="matrix-side-text-area" type="text" >{{message}}</textarea>
+                <textarea placeholder="{{#zeros}}0{{/zeros}}" rows="{{k}}" cols="1" maxlength="{{k}}" class="matrix-side-text-area" name="answer" type="text" ></textarea>
             </div>
         </div>
-   <textarea placeholder="{{#zeros}}0{{/zeros}}" rows="1" cols="{{cols}}" maxlength="{{c}}" class="matrix-bottom-text-area" name="answer" type="text" ></textarea>
+   <textarea disabled="true"  rows="1" cols="{{cols}}" maxlength="{{c}}" class="matrix-bottom-text-area"  type="text" >{{coded}}</textarea>
 </div>

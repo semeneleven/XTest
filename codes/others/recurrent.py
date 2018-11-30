@@ -24,7 +24,7 @@ def assert_code(data, answer):
 
 # data = [check, t, err_msg]
 def assert_decode(data, answer):
-    if not recurrent(answer, data[1]) == data[0]:
+    if not recurrent(answer, data['step']) == data['checker']:
         return False
 
     return True
@@ -34,7 +34,7 @@ def generate_for_encode():
     t = random.randint(1, 3)
     msg = ''.join([str(random.randint(0, 1)) for i in range(0, random.randint(5, 8))])
 
-    return {'message': '1000001', 'step': 3}#{'message': msg, 'step': t}
+    return {'message': msg, 'step': t}
 
 
 def generate_for_decode():
@@ -45,7 +45,7 @@ def generate_for_decode():
     n = random.randint(0, len(msg) - 1)
     err_msg = msg[:n] + ('0' if msg[n] == '1' else '1') + msg[(n + 1):]
 
-    return [check, t, err_msg]
+    return {'checker': check, 'step': t, 'message': err_msg}
 
 
 def get_details():

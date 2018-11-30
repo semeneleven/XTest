@@ -81,10 +81,10 @@ def generate_matrix(m, b):
     return matrix
 
 
-def reed_muller(data, m=0, b=0, msg=''):
-    msg = data['message']
-    b = data['b']
-    m = data['m']
+def reed_muller(data, msg='', b=0, m=0):
+    msg = data['message'] if msg == '' else msg
+    b = int(data['b']) if b == 0 else b
+    m = int(data['m']) if m == 0 else m
 
     matrix = generate_matrix(m, b)
     result = []
@@ -110,39 +110,43 @@ def assert_code(data, answer):
 
 # data = [m, b, code]
 def assert_decode(data, answer):
-    matrix = generate_matrix(data[0], data[1])
-    code = data[2]
-    b = data[1]
-    m = data[0]
-
-    indexes = []
-    for i in range(b):
-        indexes.extend(get_combinations(m, i + 1))
-
-    decoded = []
-
-    for i in range(len(matrix) - 1, 0, -1):
-        delta = 0
-        k_arr = []
-        for j in range(b):
-            if j == 0:
-                k_arr.extend(find_pair(matrix[indexes[i - 1][j]]))
-                delta = k_arr[1] - k_arr[0]
-            else:
-                first_k = find_pair(matrix[indexes[i - 1][j]])[1]
-                second_k = first_k + delta
-                k_arr.append(first_k)
-                k_arr.append(second_k)
-
-        decoded.insert(0, sum([int(code[k]) for k in k_arr]) % 2)
-
-        if b > 1 and i == C(b, m) - 1:
-            b -= 1
-
-    # TODO if added code with errors
-    decoded.insert(0, str(code[0]))
-
-    if not "".join([str(x) for x in decoded]) == answer:
+    # matrix = generate_matrix(data[0], data[1])
+    # code = data[2]
+    # b = data[1]
+    # m = data[0]
+    #
+    # indexes = []
+    # for i in range(b):
+    #     indexes.extend(get_combinations(m, i + 1))
+    #
+    # decoded = []
+    #
+    # for i in range(len(matrix) - 1, 0, -1):
+    #     delta = 0
+    #     k_arr = []
+    #     for j in range(b):
+    #         if j == 0:
+    #             k_arr.extend(find_pair(matrix[indexes[i - 1][j]]))
+    #             delta = k_arr[1] - k_arr[0]
+    #         else:
+    #             first_k = find_pair(matrix[indexes[i - 1][j]])[1]
+    #             second_k = first_k + delta
+    #             k_arr.append(first_k)
+    #             k_arr.append(second_k)
+    #
+    #     decoded.insert(0, sum([int(code[k]) for k in k_arr]) % 2)
+    #
+    #     if b > 1 and i == C(b, m) - 1:
+    #         b -= 1
+    #
+    # # TODO if added code with errors
+    # decoded.insert(0, str(code[0]))
+    #
+    # if not "".join([str(x) for x in decoded]) == answer:
+    #     return False
+    #
+    # return True
+    if not reed_muller(data, msg=answer) == data['coded']:
         return False
 
     return True
@@ -159,8 +163,10 @@ def generate_for_encode():
 
 
 def generate_for_decode():
-    generated = generate_for_encode()['message']
-    return [reed_muller(generated) if i == 2 else generated[i] for i in range(len(generated))]
+    data = generate_for_encode()
+    data['coded'] = reed_muller(data)
+    data['zeros'] = [0 for i in range(sum_C(data['b'], data['m']))]
+    return data
 
 
 def get_details():

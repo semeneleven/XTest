@@ -37,6 +37,7 @@ def assert_code(data, answer):
 
 
 def assert_decode(data, answer):
+    data = data['message']
     length_r = 0
     if len(data) in range(14, 16):
         length_r = 4
@@ -73,7 +74,7 @@ def generate_for_decode():
     encoded = hemming_code(generate_for_encode()['message'])
     n = random.randint(0, len(encoded) - 1)
     encoded = encoded[:n] + ('0' if encoded[n] == '1' else '1') + encoded[(n + 1):]
-    return encoded
+    return {'message': encoded}
 
 
 def get_details():
