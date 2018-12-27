@@ -1,0 +1,72 @@
+
+<p align="center"><font size="5"><i>Код Еллайеса. Короткі теоретичні відомості.</i></font></p>
+<p>Код Еллайеса як ітеративний код містить 2 системи перевірок всередині кожної кодової комбінації. Інформаційні елементи записуються у вигляді таблиці. Потім до кожного рядка і колонки таблиці дописують перевірочні елементи відповідно з будь-яким кодом.</p>
+<div style="float: left; width: 321; height: 104">
+  <table border=1 width=300>
+    <tr>
+      <td width=58 align=center>1</td>
+      <td width=59 align=center bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bordercolor="#FFFFFF">1</td>
+      <td width=59 align=center bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">0</td>
+      <td width=59 align=center bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">1</td>
+      <td width=59 align=center bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">1</td>
+    </tr>
+    <tr>
+      <td width=58 align=center>0</td>
+      <td width=59 align=center bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bordercolor="#FFFFFF">1</td>
+      <td width=59 align=center bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">1</td>
+      <td width=59 align=center bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">0</td>
+      <td width=59 align=center bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF">0</td>
+    </tr>
+    <tr>
+      <td width=58 align=center>1</td>
+      <td width=59 align=center bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bordercolor="#FFFFFF">0</td>
+      <td width=59 align=center bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bordercolor="#FFFFFF">1</td>
+      <td width=59 align=center bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bordercolor="#FFFFFF">0</td>
+      <td width=59 align=center bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF" bordercolor="#FFFFFF">0</td>
+    </tr>
+    <tr>
+      <td width=58 align=center>&nbsp;</td>
+      <td width=59 align=center>0</td>
+      <td width=59 align=center>0</td>
+      <td width=59 align=center>1</td>
+      <td width=59 align=center>1</td>
+    </tr>
+  </table>
+</div>
+<div style="float: right; width: 316; height: 104">
+<table border=1 width=300>
+  <tr>
+    <td width=20% align=center>
+      <p align=center>
+        0
+    </td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  </tr>
+  <tr>
+    <td width=20% align=center>1</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+  </tr>
+  <tr>
+    <td width=20% align=center>1</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+    <td width=20% align=center bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  </tr>
+  <tr>
+    <td width=20% align=center>&nbsp;</td>
+    <td width=20% align=center>1</td>
+    <td width=20% align=center>1</td>
+    <td width=20% align=center>0</td>
+    <td width=20% align=center>0</td>
+  </tr>
+</table>
+</div>
+<p>У роботі застосовується код з контролем на парність, в розглянутому прикладі лівий стовпець і нижня рядок - контрольні. Потім інформація підрядник передається в канал зв'язку. На приймальному кінці з неї знову формується матриця, обчислюються її контрольні елементи і порівнюються з прийнятими значеннями. Невідповідність прийнятих і знову обчислених перевірочних елементів вказує на наявність помилки в даному стовпці (рядку). Таким чином, код виявляє помилки кратністю до 3 і всі помилки непарної кратності. Виправлення деяких помилок можливо таким чином: якщо не виконується перевірка для i-го рядка і j-го стовпця, інформаційний елемент в цій позиції замінюється на зворотний. В роботі присутні два етапи контролю знань - кодування і декодування. Потрібно спочатку правильно закодувати випадкове інформаційне повідомлення, а потім виправити помилки в прийнятому повідомленні на підставі безпомилкових перевірочних елементів вихідного повідомлення. Вдале виконання обох етапів свідчать про засвоєння навчального матеріалу.</p>
+

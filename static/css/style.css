@@ -75,7 +75,8 @@ body, html {
 }
 #theory{
     width: 100%;
-    height: 60%;
+    height: 450px;
+    overflow-y: scroll;
     margin-bottom: 20px;
     background: #E7F5DC;
     border: 3px solid #4C6255;/*linear-gradient(132.51deg, #4C6255 0%, #C0DFD8 100%);*/
