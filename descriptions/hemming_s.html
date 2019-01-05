@@ -1,0 +1,125 @@
+﻿
+<p align=center><font size=5><i>Код Хэмминга. Краткие теоретические сведения.</i></font></p>
+<p>&nbsp;&nbsp;&nbsp; Код Хэмминга – один из наиболее распространенных систематических кодов. К кодам Хэмминга относятся коды с минимальным кодовым расстоянием <i>d<sub>min</sub> = 3</i>, исправляющие все одиночные ошибки.</p>
+<p>&nbsp;&nbsp;&nbsp; Формирование <i>r</i> проверочных элементов в комбинации этого кода осуществляется по <i>k</i> информационным элементам. Таким образом, длина кодовой комбинации <i>n</i> = <i>r</i> + <i>k</i>. Проверочные элементы представляют собой линейные комбинации информационных элементов, т.е. взвешенные суммы информационных элементов с весовыми коэффициентами 1 и 0. Для двоичных кодов в качестве линейной операции используют сложение по модулю 2. Операция вычитания совпадает с операцией сложения.</p>
+<p>&nbsp;&nbsp;&nbsp; Последовательность 0 и 1 в кодовой комбинации иначе называют кодовым вектором. Коду Хэмминга присущи свойства линейных кодов:</p>
+<ol>
+  <li><p>Сумма или разность кодовых комбинаций кода дает вектор, принадлежащий данному коду.</li>
+  <li><p>Линейные коды образуют алгебраическую группу по отношению к операции сложения по модулю 2.</li>
+  <li><p>Минимальое кодовое расстояние между кодовыми векторами группового кода равно минимальному весу ненулевых кодовых векторов.</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp; При передаче кодового вектора может быть искажен любой элемент, число таких ситуаций равно <i>C<sup>1</sup><sub>n </sub>= n. </i>К этому следует добавить еще одну ситуацию, когда ошибка не произошла. Таким образом, общее число комбинаций проверочных элементов <i>2<sup>r</sup></i> должно превышать число возможных ошибочных ситуаций в коде с учетом отсутствия ошибок для правильного их различия и определения мест ошибок: <i>2<sup>r</sup> &gt;= n + 1</i>. Поскольку <i>2<sup>n</sup> = 2<sup>r+k </sup>= 2<sup>k</sup>2<sup>r</sup></i>, можно записать: <i>2<sup>n</sup> &gt;= ( n + 1 ) 2<sup>k</sup></i>, где <i>2<sup>n </sup></i>– полное число комбинаций кода.</p>
+<p>&nbsp;&nbsp;&nbsp; Минимальное соотношение корректирующих и информационных разрядов, ниже которого код не может сохранять свои корректирующие способности, определяется из выражения <i>2<sup>r</sup> - 1 = n</i>.</p>
+<p>&nbsp;&nbsp;&nbsp; Для вычисления основных параметров кода Хэмминга можно задать число проверочных элементов <i>r</i>, когда из последнего выражения определяют <i>n</i> и <i>k = n - r</i>. Соотношения между r, n и k для кода Хэмминга приведены в таблице:</p>
+<table border=1 width=100%>
+<tr>
+  <td align=center>r</td><td align=center>2</td><td align=center>3</td><td align=center>3</td><td align=center>3</td><td align=center>3</td><td align=center>4</td><td align=center>4</td><td align=center>4</td><td align=center>4</td><td align=center>4</td><td align=center>4</td><td align=center>4</td><td align=center>4</td><td align=center>5</td>
+</tr>
+<tr>
+  <td align=center>n</td><td align=center>3</td><td align=center>4</td><td align=center>5</td><td align=center>6</td><td align=center>7</td><td align=center>8</td><td align=center>9</td><td align=center>10</td><td align=center>11</td><td align=center>12</td><td align=center>13</td><td align=center>14</td><td align=center>15</td><td align=center>16</td>
+</tr>
+<tr>
+  <td align=center>k</td><td align=center>1</td><td align=center>1</td><td align=center>2</td><td align=center>3</td><td align=center>4</td><td align=center>4</td><td align=center>5</td><td align=center>6</td><td align=center>7</td><td align=center>8</td><td align=center>9</td><td align=center>10</td><td align=center>11</td><td align=center>11</td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Характерной особенностью проверочной матрицы кода с <i>d<sub>min</sub> = 3 </i>является то, что ее столбцы представляют собой различные ненулевые комбинации длиной <i>r</i>. Например, при <i>r = 4</i> и <i>n = 15, </i> код <i>(15, 11),</i> проверочная матрица имеет вид:</p>
+<table border=1 width=100%>
+<tr>
+  <td rowspan=4><i>H<sub>15,11</sub></i> = </td>
+  <td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td>
+</tr>
+<tr>
+  <td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td>
+</tr>
+<tr>
+  <td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td>
+</tr>
+<tr>
+  <td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>0</td><td align=center>1</td>
+</tr>
+<tr>
+  <td bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF"></td>
+  <td align=center>u<sub>1</sub></td><td align=center>u<sub>2</sub></td><td align=center>u<sub>3</sub></td><td align=center>u<sub>4</sub></td><td align=center>u<sub>5</sub></td><td align=center>u<sub>6</sub></td><td align=center>u<sub>7</sub></td><td align=center>u<sub>8</sub></td><td align=center>u<sub>9</sub></td><td align=center>u<sub>10</sub></td><td align=center>u<sub>11</sub></td><td align=center>u<sub>12</sub></td><td align=center>u<sub>13</sub></td><td align=center>u<sub>14</sub></td><td align=center>u<sub>15</sub></td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Итак, если взять комбинации простого четырехэлементного кода и отбросить нулевыю комбинацию, то можно легко получить проверочную матрицу, записав все кодовые комбинации последовательно в столбцы матрицы <i>H</i>.</p>
+<p>&nbsp;&nbsp;&nbsp; Перестановкой столбцов, содержащих одну единицу, вправо матрицу приводим к виду:</p>
+<table border=1 width=100%>
+<tr>
+  <td rowspan=4><i>H<sub>15,11</sub></i> = </td>
+  <td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center><i><b>1</b></i></td><td align=center><i><b>0</b></i></td><td align=center><i><b>0</b></i></td><td align=center><i><b>0</b></i></td>
+</tr>
+<tr>
+  <td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center>1</td><td align=center><i><b>0</b></i></td><td align=center><i><b>1</b></i></td><td align=center><i><b>0</b></i></td><td align=center><i><b>0</b></i></td>
+</tr>
+<tr>
+  <td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center><i><b>0</b></i></td><td align=center><i><b>0</b></i></td><td align=center><i><b>1</b></i></td><td align=center><i><b>0</b></i></td>
+</tr>
+<tr>
+  <td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center>0</td><td align=center>1</td><td align=center><i><b>0</b></i></td><td align=center><i><b>0</b></i></td><td align=center><i><b>0</b></i></td><td align=center><i><b>1</b></i></td>
+</tr>
+<tr>
+  <td bordercolor="#FFFFFF" bordercolorlight="#FFFFFF" bordercolordark="#FFFFFF"></td>
+  <td align=center>a<sub>1</sub></td><td align=center>a<sub>2</sub></td><td align=center>a<sub>3</sub></td><td align=center>a<sub>4</sub></td><td align=center>a<sub>5</sub></td><td align=center>a<sub>6</sub></td><td align=center>a<sub>7</sub></td><td align=center>a<sub>8</sub></td><td align=center>a<sub>9</sub></td><td align=center>a<sub>10</sub></td><td align=center>a<sub>11</sub></td><td align=center>a<sub>12</sub></td><td align=center>a<sub>13</sub></td><td align=center>a<sub>14</sub></td><td align=center>a<sub>15</sub></td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; В соответствии с этой матрицей, получаем систему проверочных уравнений, с помощью которой вычисляем проверочные разряды:</p>
+<table border=0 width=100%>
+<tr>
+  <td>b<sub>1</sub> = </td><td>a<sub>5</sub> (+) </td><td>a<sub>6</sub> (+) </td><td>a<sub>7</sub> (+) </td><td>a<sub>8</sub> (+) </td><td>a<sub>9</sub> (+) </td><td>a<sub>10</sub> (+) </td><td>a<sub>11</sub></td>
+</tr>
+<tr>
+  <td>b<sub>2</sub> = </td><td>a<sub>2</sub> (+) </td><td>a<sub>3</sub> (+) </td><td>a<sub>4</sub> (+) </td><td>a<sub>8</sub> (+) </td> <td>a<sub>9</sub> (+) </td><td>a<sub>10</sub> (+) </td><td>a<sub>11</sub></td>
+</tr>
+<tr>
+  <td>b<sub>3</sub> = </td><td>a<sub>1</sub> (+) </td><td>a<sub>3</sub> (+) </td><td>a<sub>4</sub> (+) </td><td>a<sub>6</sub> (+) </td><td>a<sub>7</sub> (+) </td><td>a<sub>10</sub> (+) </td><td>a<sub>11</sub></td>
+</tr>
+<tr>
+  <td>b<sub>4</sub> = </td><td>a<sub>1</sub> (+) </td><td>a<sub>2</sub> (+) </td><td>a<sub>4</sub> (+) </td><td>a<sub>5</sub> (+) </td><td>a<sub>7</sub> (+) </td><td>a<sub>9</sub>&nbsp; (+) </td><td>a<sub>11</sub></td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; При появлении ошибки в кодовой комбинации окажутся невыполненными те проверочные отношения, в которые входит значение ошибочного разряда.</p>
+<p>&nbsp;&nbsp;&nbsp; Так, если ошибка возникла в 7-м информационном разряде, то окажутся невыполненными 1, 3 и 4 уравнения, т.е синдром равен 1011 (совпадает с 7-м столбцом матрицы H). Таким образом, местоположение столбца матрицы H, совпадающего с вычисленным синдромом, указывает место ошибки. Вычисленное значение синдрома обязательно совпадает с одним из столбцов матрицы H, т.к. в качестве столбцов выбраны все возможные двоичные r-разрядные числа.</p>
+<p>&nbsp;&nbsp;&nbsp; Хэмминг предложил расположить столбцы проверочной матрицы так, чтобы номер i-го столбца матрицы H и номер ошибочного разряда кодовой комбинации соответствовали двоичному представлению числа i. Тогда синдром, полученный из проверочных уравнений, будет двоичным представлением номера разряда кодовой комбинации, в котором произошла ошибка. Для этого проверочные разряды должны находиться не в конце кодовой комбинации, а на номерах позиций, которые выражаются степенью двойки ( 2<sup>0</sup>, 2<sup>1</sup>, 2<sup>2</sup>, ... 2<sup>r-1</sup> ), как это имеет место в непреобразованной матрице H, потому что каждый из них входит только в одно из проверочных уравнений.</p>
+<p>&nbsp;&nbsp;&nbsp; В последнем случае проверочные разряды размещаются между информационными. Синдром, согласно непреобразованной проверочной матрице H<sub>15,11</sub>, определяется из уравнений:</p>
+<table border=0 width=100%>
+<tr>
+  <td>S<sub>1</sub> =</td><td>u<sub>1</sub></td><td>(+) u<sub>3</sub> </td><td>(+) u<sub>5</sub> </td><td>(+) u<sub>7</sub> </td><td>(+) u<sub>9</sub> </td><td>(+) u<sub>11</sub> </td><td>(+) u<sub>13</sub></td><td>(+) u<sub>15</sub></td>
+</tr>
+<tr>
+  <td>S<sub>2</sub> = </td><td>u<sub>2</sub> </td><td>(+) u<sub>3</sub> </td><td> (+) u<sub>6</sub> </td><td> (+) u<sub>7</sub> </td><td> (+) u<sub>10</sub> </td><td> (+) u<sub>11</sub> </td><td> (+) u<sub>14</sub></td><td>(+) u<sub>15</sub></td>
+</tr>
+<tr>
+  <td>S<sub>3</sub> = </td><td>u<sub>4</sub> </td><td>(+) u<sub>5</sub> </td><td>(+) u<sub>6</sub> </td><td>(+) u<sub>7</sub> </td><td>(+) u<sub>12</sub> </td><td>(+) u<sub>13</sub> </td><td>(+) u<sub>14</sub></td><td>(+) u<sub>15</sub></td>
+</tr>
+<tr>
+  <td>S<sub>4</sub> = </td><td>u<sub>8</sub> </td><td>(+) u<sub>9</sub> </td><td>(+) u<sub>10</sub> </td><td>(+) u<sub>11</sub> </td><td>(+) u<sub>12</sub> </td><td>(+) u<sub>13</sub>&nbsp; </td><td>(+) u<sub>14</sub></td><td>(+) u<sub>15</sub></td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; В качестве проверочных выбирают разряды u<sub>1</sub>, u<sub>2</sub>, u<sub>4</sub> и u<sub>8</sub>, которые&nbsp; встречаются&nbsp; в этой системе уравнений по одному разу.</p>
+<p>&nbsp;&nbsp;&nbsp; Например, если необходимо&nbsp; закодировать сообщение простого кода 11001010110 ( k = 11 ) в коде Хэмминга, нужно определить проверочные разряды в комбинации: u<sub>1 </sub>u<sub>2 </sub>1 u<sub>4 </sub>100 u<sub>8 </sub>1010110. Из проверочной матрицы получаем:</p>
+<table border=0 width=100%>
+<tr>
+  <td>u<sub>1</sub> = </td><td>u<sub>3</sub> </td><td> (+) u<sub>5</sub> </td><td> (+) u<sub>7</sub> </td><td> (+) u<sub>9</sub> </td><td> (+) u<sub>11</sub> </td><td> (+) u<sub>13</sub></td><td>(+) u<sub>15</sub></td>
+</tr>
+<tr>
+  <td>u<sub>2</sub> = </td><td>u<sub>3</sub> </td><td> (+) u<sub>6</sub> </td><td> (+) u<sub>7</sub> </td><td> (+) u<sub>10</sub> </td><td> (+) u<sub>11</sub> </td><td> (+) u<sub>14</sub></td><td>(+) u<sub>15</sub></td>
+</tr>
+<tr>
+  <td>u<sub>4</sub> = </td><td>u<sub>5</sub> </td><td> (+) u<sub>6</sub> </td><td> (+) u<sub>7</sub> </td><td> (+) u<sub>12</sub> </td><td> (+) u<sub>13</sub> </td><td> (+) u<sub>14</sub></td><td>(+) u<sub>15</sub></td>
+</tr>
+<tr>
+  <td>u<sub>8</sub> = </td><td>u<sub>9</sub> </td><td> (+) u<sub>10</sub> </td><td> (+) u<sub>11</sub> </td><td> (+) u<sub>12</sub> </td><td> (+) u<sub>13</sub>&nbsp; </td><td> (+) u<sub>14</sub></td><td>(+) u<sub>15</sub></td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Вычисляя проверочные разряды согласно этой системе, получим для данного сообщения:</p>
+<p>u<sub>1</sub> = 1 (+) 1 (+) 0 (+) 1 (+) 1 (+) 1 (+) 0 = 1,<br>u<sub>2</sub> = 1 (+) 0 (+) 0 (+) 0 (+) 1 (+) 1 (+) 0 = 1,<br>u<sub>4</sub> = 1 (+) 0 (+) 0 (+) 0 (+) 1 (+) 1 (+) 0 = 1,<br>u<sub>8</sub> = 1 (+) 0 (+) 1 (+) 0 (+) 1 (+) 1 (+) 0 = 1.</p>
+<p>&nbsp;&nbsp;&nbsp; Следовательно, комбинация кода Хэмминга для рассматриваемого сообщения будет иметь вид 111110001010110.</p>
+<p>&nbsp;&nbsp;&nbsp; Предположим, что 8-й єлемент кодовой комбинации принят ошибочно, т.е. получено сообщение 1111100<b>1</b>1010110. Вычисляя синдром, получим: <i>S<sub>1</sub> = 0</i>; <i>S2 =
+0</i>; <i>S<sub>3</sub> = 0</i>; <i>S<sub>4</sub> = 1</i>,&nbsp; т.е. синдром имеет вид
+1000<sub>2 </sub>= 8<sub>10 </sub>(очевидно, что для
+получения правильного результата биты
+синдрома необходимо записать, начиная со
+старшего, т.е. S<sub>4</sub>S<sub>3</sub>S<sub>2</sub>S<sub>1</sub>). Таким образом, необходимо исправить
+8-й разряд кодовой принятой комбинации.</p>
+

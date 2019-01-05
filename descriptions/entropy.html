@@ -1,0 +1,95 @@
+﻿
+<p align=center><i>Количество информации. Энтропия. Краткие теоретические сведения.</i></p>
+<p align=center><b>Количество информации.</b></p>
+<p>&nbsp;&nbsp;&nbsp;Количество информации является апостериорной характеристикой и определяет количество информации, которое получают после приема сообщений. Если p( X<sub>i</sub> ) – вероятность i-ого сообщения, то индивидуальное количество информации:</p>
+
+<p>&nbsp;&nbsp;&nbsp; Следовательно, количество информации, содержащееся в ансамбле из N сообщений равно:</p>
+<p><img border=0 src="Entrop2.gif"></p>
+<p align=center><u1:f eqn="sum @0 1 0"/><b>Безусловная энтропия.</b></p>
+<p>&nbsp;&nbsp;&nbsp;Энтропия – это средняя величина неопределенности состояния источника сообщения. Является обьективной характеристикой источника сообщений, и, если известна статистика сообщений, может быть определена априорно, т.е до получения сообщений.</p>
+<p><img border=0 src="Entrop3.gif"></p>
+<p>Свойства энтропии:</p>
+<ol start=1 type=1>
+  <li>Энтропия есть величина вещественная, ограниченная и неотрицательная.</li>
+  <li>Энтропия детерминированных сообщений равна нулю.</li>
+  <li>Энтропия максимальна, если сообщения равновероятны: <i>H(X) = </i>log<i>(N).</i></li>
+  <li>Энтропия системы двух альтернативных событий изменяется от 0 до 1.</li>
+</ol>
+<p align=center><b>Условная энтропия.</b></p>
+<p>&nbsp;&nbsp;&nbsp; Условная вероятность P(X<sub>i</sub>/Y<sub>i</sub>) показывает вероятность того, что при приеме сообщения Y<sub>i</sub> было действительно передано сообщение X<sub>i</sub>. Индивидуальная энтропия: <i>H(X<sub>i</sub>) = - </i>log<i>( P(X<sub>i </sub>) )</i>. Индивидуальная условная энтропия: <i>H( X<sub>i</sub>/Y<sub>j </sub>) = - </i>log<i>( P(X<sub>i</sub>/Y<sub>j </sub>) )</i>. Тогда количество информации (полное): <i>I( X/Y ) = H( X ) - H( X/Y )</i>, а это не что иное, как полное количество информации с учетом условной энтропии. Условную энтропию принято показывать в виде матрицы: со стороны источника и со стороны приемника:</p>
+<table border=1 cellpadding=0 width=100%>
+<tr>
+  <td><p align=center><b>X \ Y</b></p></td>
+  <td><p align=center><b>Y<sub>1</sub></b></p></td>
+  <td><p align=center><b>Y<sub>2</sub></b></p></td>
+  <td><p align=center><b>...</b></p></td>
+  <td><p align=center><b>Y<sub>j</sub></b></p></td>
+  <td><p align=center><b>...</b></p></td>
+  <td><p align=center><b>Y<sub>n</sub></b></p></td>
+</tr>
+<tr>
+  <td><p align=center><b>X<sub>1</sub></b></p></td>
+  <td><p align=center>P( Y<sub>1</sub>/X<sub>1</sub> )</p></td>
+  <td><p align=center>P( Y<sub>2</sub>/X<sub>1</sub> )</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>P( Y<sub>j</sub>/X<sub>1</sub> )</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>P( Y<sub>n</sub>/X<sub>1</sub> )</p></td>
+</tr>
+<tr>
+  <td><p align=center><b>X<sub>2</sub></b></p></td>
+  <td><p align=center>P( Y<sub>1</sub>/X<sub>2</sub> )</p></td>
+  <td><p align=center>P( Y<sub>2</sub>/X<sub>2</sub> )</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>P( Y<sub>j</sub>/X<sub>2</sub> )</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>P( Y<sub>n</sub>/X<sub>2</sub> )</p></td>
+</tr>
+<tr>
+  <td><p align=center><b>...</b></p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+</tr>
+<tr>
+  <td><p align=center><b>X<sub>i</sub></b></p></td>
+  <td><p align=center>P( Y<sub>1</sub>/X<sub>i</sub> )</p></td>
+  <td><p align=center>P( Y<sub>2</sub>/X<sub>i</sub> )</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>P( Y<sub>j</sub>/X<sub>i</sub> )</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>P( Y<sub>n</sub>/X<sub>i</sub> )</p></td>
+</tr>
+<tr>
+  <td><p align=center><b>...</b></p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>...</p></td>
+</tr>
+<tr>
+  <td><p align=center><b>X<sub>n</sub></b></p></td>
+  <td><p align=center>P( Y<sub>1</sub>/X<sub>n</sub> )</p></td>
+  <td><p align=center>P( Y<sub>2</sub>/X<sub>n</sub> )</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>P( Y<sub>j</sub>/X<sub>n</sub> )</p></td>
+  <td><p align=center>...</p></td>
+  <td><p align=center>P( Y<sub>n</sub>/X<sub>n</sub> )</p></td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Для данной матрицы:</p>
+<p><img border=0 src="Entrop4.gif"></p>
+<p>&nbsp;&nbsp;&nbsp;Полная условная энтропия вычисляется по формуле:</p>
+<p><img border="0" src="Entrop5.gif"></p>
+<p>Свойства условной энтропии:</p>
+<ol start=1 type=1>
+  <li>Если ансамбли сообщений Х и Y жестко статистически связаны между собой, т.е. при возникновении Х1 принимается Y1 , при Х2 – Y2 и т.д., тогда условная энтропия равна нулю: <i>H( X/Y ) = </i>0 и <i>H( Y/X ) = </i>0.</li>
+  <li>Если ансамбль сообщений Х и Y взаимно независимы, то полная условная энтропия Х относительно Y равняется безусловной энтропии Х: <i>H( X/Y ) = H( X ) и H( Y/X ) = H( Y )</i>.</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp; При выполнении данной лабораторной работы вводите результаты с точностью до 0.001, т.е. с тремя знаками после запятой. Вычисления желательно выполнять более точно, а затем выполнять округления, т.к. допустимая погрешность ±0.001.</p>
+

@@ -28,14 +28,14 @@
                     <div></div>
                 </div>
                 <div class="button-container">
-                    <div class="regular-button" onclick="startExam()"><p class="button-text">Exam</p></div>
-                    <div class="regular-button" onclick="showModal()"><p class = "button-text">Test</p></div>
+                    <div class="regular-button" onclick="startExam()"><p class="button-text">Іспит</p></div>
+                    <div class="regular-button" onclick="showModal()"><p class = "button-text">Тест</p></div>
                 </div>
             </div>
             <div id="modalWindow" class="modal">
               <div class="modal-content">
-                  <div class="regular-button to-center" onclick="beginEncode()"><p class = "button-text">Encode</p></div>
-                  <div class="regular-button to-center" onclick="beginDecode()"><p class = "button-text">Decode</p></div>
+                  <div class="regular-button to-center" style="width:150px" onclick="beginEncode()"><p class = "button-text">Кодування</p></div>
+                  <div class="regular-button to-center" style="width:150px" onclick="beginDecode()"><p class = "button-text">Декодування</p></div>
               </div>
             </div>
              <div id="modalResultWindow" class="modal">
@@ -54,18 +54,18 @@
                 <div style="display:inline-flex;">
                     <div id="check" class="regular-button" onclick="check()">
                         <p class="button-text">
-                        Check
+                        Перевірити
                         </p>
 
                     </div>
-                    <p id="rightAnswer" >True</p>
-                    <p id="wrongAnswer" style="display: none; color: firebrick">False</p>
+                    <p id="rightAnswer" >Вірно</p>
+                    <p id="wrongAnswer" style="display: none; color: firebrick">Помилка</p>
                 </div>
             </div>
             <div id="bottom" style="display: none">
                 <div id="back" class="regular-button" onclick="goBack()">
                     <p class="button-text">
-                    Back
+                    Назад
                     </p>
                 </div>
             </div>

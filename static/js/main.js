@@ -265,9 +265,9 @@ function showResultModal(){
         var modal = document.getElementById('modalResultWindow');
         var resultTextParagraph = document.getElementById('resultText');
         var resultParagraph = document.getElementById('result');
-        resultTextParagraph.innerText = "Правильных ответов: " + rightExamAnswers +" из " + examTasks;
-        resultParagraph.innerText = "Оценка: " + (rightExamAnswers/examTasks*100).toFixed(1);
-        modal.style.display = 'block';
+        resultTextParagraph.innerText = "Вірних відповідей: " + rightExamAnswers +" из " + examTasks;
+        resultParagraph.innerText = "Оцінка: " + (rightExamAnswers/examTasks*100).toFixed(1);
+        modal.style.display = 'block';  
         window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
