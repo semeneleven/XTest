@@ -54,4 +54,4 @@ def get_details():
 
 
 def get_name():
-    return 'Реккурентные'
+    return 'Рекурентні'
