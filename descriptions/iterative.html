@@ -1,0 +1,128 @@
+<p align=center><font size=5><i>Недвійковий ітеративний код. Короткі теоретичні відомості.</i></font></p>
+<p>&nbsp;&nbsp;&nbsp; Для передачі інформації широко використовуються ітеративні коди. При визначенні перевірочних елементів q-ічних ітеративних кодів виробляють складання елементів кодових комбінацій базового коду по модулю q. Виявлення помилок здійснюється за аналогією з двійковим кодом - порівнянням перевірочних елементів кожного рядка (стовпчика), прийнятих з каналу і отриманих на приймальній стороні шляхом обчислень.</p>
+<p>&nbsp;&nbsp;&nbsp; Виправлення спотвореного елемента роблять у такий спосіб. Якщо не виконується перевірка для i-го рядка і j-ого стовпця, то елемент, що знаходиться на перетині i-го рядка і j-ого стовпця, замінюється елементом, обчисленим шляхом складання даного прийнятого елемента (помилкового) зі значенням, отриманим шляхом віднімання значень прийнятого з каналу і обчисленого на приймальній стороні перевірочних елементів i-го рядка (або j-ого стовпця).</p>
+<p>&nbsp;&nbsp;&nbsp; Приклад:</p>
+<p>Код з q = 8, k = 16: 0721650135741226</p>
+<table border=1 width="200">
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>7</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  <td><b>6</b></td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>6</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>5</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  <td><b>4</b></td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>3</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>5</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>7</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>4</td>
+  <td><b>5</b></td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>6</td>
+  <td><b>5</b></td>
+</tr>
+<tr align=center>
+  <td><b>6</b></td>
+  <td><b>5</b></td>
+  <td><b>5</b></td>
+  <td><b>4</b></td>
+  <td><b>4</b></td>
+</tr>
+</table>
+<p>6 = q - ( 0 + 7 + 2 + 1 ) mod q, де q = 8<br>Закодована послідовність:0721665014357451226565544</p>
+<p>&nbsp;&nbsp;&nbsp; Після отримання повідомлення отримуємо:</p>
+<table border=1 width="240">
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF >0</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF >7</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF >2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF >1</td>
+  <td align=center><b>6</b></td>
+  <td align=center>0</td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>6</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>5</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  <td align=center><b>4</b></td>
+  <td align=center>0</td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>3</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>5</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>7</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>4</td>
+  <td align=center><b>5</b></td>
+  <td align=center>0</td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>6</td>
+  <td align=center><b>5</b></td>
+  <td align=center>0</td>
+</tr>
+<tr align=center>
+  <td><b>6</b></td><td><b>5</b></td><td><b>5</b></td><td><b>4</b></td><td><b>4</b></td><td>0</td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+<p>0 = ( 0 + 7 + 2 + 1 + 6 ) mod q, де q = 8</p>
+<p>Після отримання повідомлення з однією помилкою отримаємо:
+072166501435<i><b>1</b></i>451226565544</p>
+<table border=1 width=240>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>7</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  <td><b>6</b></td>
+  <td>0</td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>6</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>5</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>0</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  <td><b>4</b></td>
+  <td>0</td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>3</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>5</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF><i><b>1</b></i></td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>4</td>
+  <td><b>5</b></td>
+  <td>6</td>
+</tr>
+<tr align=center>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>1</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>2</td>
+  <td bordercolor=#FFFFFF bordercolorlight=#FFFFFF bordercolordark=#FFFFFF>6</td>
+  <td><b>5</b></td>
+  <td>0</td>
+</tr>
+<tr align=center>
+  <td><b>6</b></td><td><b>5</b></td><td><b>5</b></td><td><b>4</b></td><td><b>4</b></td><td>0</td>
+</tr>
+<tr align=center>
+ <td>0</td><td>0</td><td>6</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+<p>7 = <b><i>1</i></b> + 6 mod q, де q = 8.</p>

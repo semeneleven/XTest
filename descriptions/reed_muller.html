@@ -1,0 +1,147 @@
+﻿
+<p align=center><i><font size=5>Коды Рида-Маллера. Краткие теоретические сведения.</font></i></p>
+<p>&nbsp;&nbsp;&nbsp; Коды Рида-Маллера образуют класс двоичных систематическихкодов, имеющих различные значения избыточности R = r / n и значения минимальных кодовых расстояний d<sub>min</sub>. Эти коды характеризуются следующими значениями параметров: длина кода n = 2<sup>m</sup>; количество информационных разрядов:</p>
+<p><img src="Rid.ht1.gif"><br> минимальное кодовое расстояние d = 2<sup>m-b</sup>, где m &gt;= 3 – любое целое положительное число; b &lt; m – порядок кода.</p>
+<p>&nbsp;&nbsp;&nbsp; Построение кодов Рида-Маллера сводится к следующему. Вначале строится производящая матрица G, первая строка которой содержит n единиц. Далее следует m строк, совокупность которых удобно рассматривать как (m x n) – матрицу, в качестве столбцов которой выбраны двоичные числа (начиная с нуля). Номера разрядов двоичных чисел удобно считать сверху вниз. Эти m строк составляют векторы первого порядка b. Далее идут строки векторов второго порядка, которые получаются из всех произведений двух строк первого порядка, затем – строки третьего порядка, являющиеся всеми произведениями трех строк первого порядка, и т.д.</p>
+<p>&nbsp;&nbsp;&nbsp; Таким образом, если строится матрица G для кода порядка b, то она содержит одну строку со всеми единицами, m строк первого порядка, C<sup>2</sup><sub>m</sub><sup> </sup>строк второго порядка, C<sup>2</sup><sub>m</sub>строк третьего порядка и т.д. В общем случае количество строк:</p>
+<p><img src="Rid.ht2.gif"></p>
+<p>и совпадает с количеством информационных разрядов k.</p>
+<p>&nbsp;&nbsp;&nbsp; Декодирование кодов Рида-Маллера проводится очень просто. В этих кодах каждый из информационных символов uk<sub>i</sub><br> может быть описан не менее чем d = 2<sup>m-b</sup> независимыми проверочными уравнениями, аргументами которых являются символы u<sub>i</sub> кодового слова. Анализ результатов решения этих уравнений по принципу большинства позволяет определить значение информационных символов. Тем самым при исправлении ошибок исключается этап определения места ошибок.</p>
+<p>&nbsp;&nbsp;&nbsp; Простота структуры производящей матрицы этих кодов позволяет установить связь между информационными символами uk<sub>i</sub> и символами кодового слова u<sub>i</sub>. Каждый из информационных символов может быть описан уравнениями d = 2<sup>m-b</sup>.</p>
+<p>&nbsp;&nbsp;&nbsp; В общем случае для каждого uk<sub>i</sub> должно быть не менее 2 независимых уравнений. Суммы каких именно символов кодового слова должны быть равны информационнлому символу uk<sub>i</sub>, можно определить следующим образом. Назовем компоненту, соответствующую j-му нулю в векторе x<sub>i</sub>, и компоненту, соответствующую j-й единице в векторе x<sub>i</sub>, парными компонентами.</p>
+<p align=center><b><font size=4>Пример построения матрицы</font></b></p>
+<p>&nbsp;&nbsp;&nbsp; Построить матрицу для кода Рида - Маллера второго порядка ( b = 2 ) и m = 3 ( b &lt; m ). Первая строка содержит n = 2<sup>3 </sup>единиц (11111111). Строим матрицу первого порядка (3 x 8):</p>
+<table border=1 width=100%>
+<tr align=center valign=middle>
+  <th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th>
+</tr>
+<tr align=center>
+  <td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Для дальнейшего построения строк необходимо иметь в виду, что если перемножаются строки, например 01010101 и 00110011, результат получается путем поразрядного перемножения строк:&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; 0 1 0 1 0 1 0 1<br><sub>*</sub><br>&nbsp;&nbsp;&nbsp; 0 0 1 1 0 0 1 1<br>&nbsp;&nbsp;&nbsp;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;<br>&nbsp;&nbsp;&nbsp; 0 0 0 1 0 0 0 1</p>
+<p>&nbsp;&nbsp;&nbsp; Далее построение матрицы сводится к получению строк второго порядка. Для этого перемножим первую и вторую строки, первую и третью, затем вторую и третью. В результате получим последующие три строки:</p>
+<table border=1 width=100%>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Полностью построенная матрица для кода Рида - Маллера второго порядка и m = 3, одинадцать информационных символов которого uk<sub>1</sub>, uk<sub>2</sub>, uk<sub>3</sub>, uk<sub>4</sub>, uk<sub>5</sub>, ... uk<sub>11</sub> имеет вид:&nbsp;</p>
+<table border=1 width=100% height=275>
+<tr align=center>
+  <th rowspan=12><p><b>G =</b></th>
+  <td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td><i>x<sub>0</sub></i></td><td><i>uk<sub>1</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td><i>x<sub>1</sub></i></td><td><i>uk<sub>2</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td><i>x<sub>2</sub></i></td><td><i>uk<sub>3</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td><i>x<sub>3</sub></i></td><td><i>uk<sub>4</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td><i>x<sub>4</sub></i></td><td><i>uk<sub>5</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td><i>x<sub>1</sub>x<sub>2</sub></i></td><td><i>uk<sub>6</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td><i>x<sub>1</sub>x<sub>3</sub></i></td><td><i>uk<sub>7</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td><i>x<sub>1</sub>x<sub>4</sub></i></td><td><i>uk<sub>8</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td><i>x<sub>2</sub>x<sub>3</sub></i></td><td><i>uk<sub>9</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td><i>x<sub>2</sub>x<sub>4</sub></i></td><td><i>uk<sub>10</sub></i></td>
+</tr>
+<tr align=center>
+  <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td><i>x<sub>3</sub>x<sub>4</sub></i></td><td><i>uk<sub>11</sub></i></td>
+</tr>
+<tr align=center>
+  <td><i>u<sub>1</sub></i></td><td><i>u<sub>2</sub></i></td><td><i>u<sub>3</sub></i></td><td><i>u<sub>4</sub></i></td><td><i>u<sub>5</sub></i></td><td><i>u<sub>6</sub></i></td><td><i>u<sub>7</sub></i></td><td><i>u<sub>8</sub></i></td><td><i>u<sub>9</sub></i></td><td><i>u<sub>10</sub></i></td><td><i>u<sub>11</sub></i></td><td><i>u<sub>12</sub></i></td><td><i>u<sub>13</sub></i></td><td><i>u<sub>14</sub></i></td><td><i>u<sub>15</sub></i></td><td><i>u<sub>16</sub></i></td><td colspan=2></td>
+</tr>
+</table>
+<p align=center><font size=4><b>Пpимеp кодиpования</b></font></p>
+<p> Koдовый вектор (
+закодированные информационные символы )
+имеет вид: V = uk<sub>1</sub>x<sub>0</sub> + uk<sub>2</sub>x<sub>1</sub>
++ uk<sub>3</sub>x<sub>2</sub> + uk<sub>4</sub>x<sub>3</sub> + uk<sub>5</sub>x<sub>4</sub>
++ uk<sub>6</sub>x<sub>1</sub>x<sub>2</sub> + uk<sub>7</sub>x<sub>1</sub>x<sub>3</sub>
++ uk<sub>8</sub>x<sub>1</sub>x<sub>4</sub> + uk<sub>9</sub>x<sub>2</sub>x<sub>3</sub>
++ uk<sub>10</sub>x<sub>2</sub>x<sub>4</sub> + uk<sub>11</sub>x<sub>3</sub>x<sub>4</sub>
+=&nbsp; f(u<sub>1</sub>, u<sub>2</sub>, u<sub>3</sub>, ..., u<sub>16</sub>).</p>
+<p>&nbsp;&nbsp;&nbsp; Из приведенной матрицы следует, что:</p>
+<table border=1 width=100%>
+<tr>
+  <td>u<sub>1</sub> = uk<sub>1</sub>;</td><td>u<sub>5</sub> = uk<sub>1</sub> + uk<sub>4</sub>;</td><td>u<sub>9</sub> = uk<sub>1</sub> + uk<sub>5</sub>;</td><td>u<sub>13</sub> = uk<sub>1 </sub>+ uk<sub>4</sub> + uk<sub>5</sub> + uk<sub>11</sub></td>
+</tr>
+<tr>
+  <td>u<sub>2</sub> = uk<sub>1</sub> + uk<sub>2</sub>;</td><td>u<sub>6</sub> = uk<sub>1</sub> + uk<sub>2</sub> + uk<sub>4</sub> + uk<sub>7</sub>;</td><td>u<sub>10</sub> = uk<sub>1</sub> + uk<sub>2</sub> + uk<sub>5</sub> + uk<sub>8</sub>;</td><td>u<sub>14</sub> = uk<sub>1</sub> + uk<sub>2</sub> + uk<sub>4</sub> + uk<sub>5</sub> + uk<sub>7</sub> + uk<sub>8</sub> + uk<sub>11</sub></td>
+</tr>
+<tr>
+  <td>u<sub>3</sub> = uk<sub>1</sub> + uk<sub>3</sub>;</td><td>u<sub>7</sub> = uk<sub>1</sub> + uk<sub>3</sub> + uk<sub>4</sub> + uk<sub>9</sub>;</td><td>u<sub>11</sub> = uk<sub>1</sub> + uk<sub>3</sub> + uk<sub>5</sub> + uk<sub>10</sub>;</td><td>u<sub>15</sub> = uk<sub>1</sub> + uk<sub>3</sub> + uk<sub>4</sub> + uk<sub>5</sub> + uk<sub>9</sub> + uk<sub>10</sub> + uk<sub>11</sub></td>
+</tr>
+<tr>
+  <td>u<sub>4</sub> = uk<sub>1</sub> + uk<sub>2</sub> + uk<sub>3</sub> + uk<sub>6</sub>;</td><td>u<sub>8</sub> = uk<sub>1</sub> + uk<sub>2</sub> + uk<sub>3</sub> + uk<sub>4</sub> + uk<sub>6</sub> + uk<sub>7</sub> + uk<sub>9</sub>;</td><td>u<sub>12</sub> = uk<sub>1</sub> + uk<sub>2</sub> + uk<sub>3</sub> + uk<sub>5</sub> + uk<sub>6</sub> + uk<sub>8</sub> + uk<sub>10</sub>;</td><td>u<sub>16</sub> = uk<sub>1</sub>+ uk<sub>2</sub>+ uk<sub>3</sub> + uk<sub>4</sub> + uk<sub>5</sub> + uk<sub>6</sub>+ uk<sub>7</sub>+ uk<sub>8</sub> + uk<sub>9</sub> + uk<sub>10</sub> + uk<sub>11</sub></td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Предположим, что исходное сообщение имеет вид 10001011011. Тогда закодированное сообщение (кодовый вектор) выглядит как 1111101001101100.</p>
+<p align=center><font size=4><b>Пример декодирования.</b></font></p>
+<p>&nbsp;&nbsp;&nbsp; Пусть наш код характеризуется следующими параметрами: m = 4, b = 2. Из них считаем остальные показатели: n = 2<sup>m </sup>= 2<sup>4</sup> = 8; d = 2<sup>m-b</sup> = 2<sup>2 </sup>= 4.</p>
+<p>&nbsp;&nbsp;&nbsp; Закодированное кодом Рида - Мллера сообщение имеет вид: 1111101001101100. Определим исходное сообщение. Воспользовавшись любым из соотношений, определим uk<sub>i</sub> для векторов второго порядка:</p>
+<table border=0 width=100%>
+<tr>
+  <td>uk<sub>11</sub>&nbsp;</td><td> = u<sub>1</sub> + u<sub>5</sub> + u<sub>9</sub> + u<sub>13</sub></td><td> = u<sub>2</sub> + u<sub>6</sub> + u<sub>10</sub> + u<sub>14</sub></td><td> = u<sub>3</sub> + u<sub>7</sub> + u<sub>11</sub> + u<sub>15</sub></td><td> = u<sub>4</sub> + u<sub>8</sub> + u<sub>12</sub> + u<sub>16</sub></td><td> = 1 + 1 + 0 + 1</td><td> = 1 ;</td>
+</tr>
+<tr>
+  <td>uk<sub>10</sub>&nbsp;</td><td> = u<sub>1</sub> + u<sub>3</sub> + u<sub>9</sub> + u<sub>11</sub></td><td> = u<sub>2</sub> + u<sub>4</sub> + u<sub>10</sub> + u<sub>12</sub></td><td> = u<sub>5</sub> + u<sub>7</sub> + u<sub>13</sub> + u<sub>15</sub>&nbsp;</td><td> = u<sub>6</sub> + u<sub>8</sub> + u<sub>14</sub> + u<sub>16</sub></td><td> = 1 + 1 + 1 + 0</td><td> = 1;</td>
+</tr>
+<tr>
+  <td>uk<sub>9</sub></td><td> = u<sub>1</sub> + u<sub>3</sub> + u<sub>5</sub> + u<sub>7</sub></td><td> = u<sub>2</sub> + u<sub>4</sub> + u<sub>6</sub> + u<sub>8</sub></td><td> = u<sub>9</sub> + u<sub>11</sub> + u<sub>14</sub> + u<sub>16</sub></td><td> = u<sub>10</sub> + u<sub>12</sub> + u<sub>14</sub> + u<sub>16</sub></td><td> = 0 + 1 + 1 + 0&nbsp;</td><td> = 1 ;</td>
+</tr>
+<tr>
+  <td>uk<sub>8</sub></td><td> = u<sub>1</sub> + u<sub>2</sub> + u<sub>9</sub> + u<sub>10</sub>&nbsp;</td><td> = u<sub>3</sub> + u<sub>4</sub> + u<sub>11</sub> + u<sub>12</sub></td><td> = u<sub>5</sub> + u<sub>6</sub> + u<sub>13</sub> + u<sub>14</sub></td><td> = u<sub>7</sub> + u<sub>8</sub> + u<sub>15</sub> + u<sub>16</sub></td><td> = 1 + 1 + 0 + 1</td><td> = 1;</td>
+</tr>
+<tr>
+  <td>uk<sub>7</sub></td><td>= u<sub>1</sub> + u<sub>2</sub> + u<sub>5</sub> + u<sub>6</sub></td><td> = u<sub>3</sub> + u<sub>4</sub> + u<sub>7</sub> + u<sub>8</sub></td><td> = u<sub>9</sub> + u<sub>10</sub> + u<sub>13</sub> + u<sub>14</sub></td><td> = u<sub>11</sub> + u<sub>12</sub> + u<sub>15</sub> + <sub>16</sub>&nbsp;</td><td> = 1 + 1 + 1 + 0&nbsp;</td><td> = 1 ;</td>
+</tr>
+<tr>
+  <td>uk<sub>6</sub></td><td> = u<sub>1</sub> + u<sub>2</sub> + u<sub>3</sub> + u<sub>4</sub>&nbsp;</td><td>= u<sub>5</sub> + u<sub>6</sub> + u<sub>7</sub> + u<sub>8</sub></td><td>= u<sub>9</sub> + u<sub>10</sub> + u<sub>11</sub> + u<sub>12</sub></td><td>= u<sub>13</sub> + u<sub>14</sub> + u<sub>15</sub> + u<sub>16</sub></td><td>= 1 + 1 + 1 + 1</td><td> = 0 ;</td>
+</tr>
+</table>
+<p>&nbsp;&nbsp;&nbsp; Нами найдены информационные символы uk<sub>6</sub> ... uk<sub>11 </sub>(коэффициенты, соответствующие векторам второго порядка x<sub>i </sub>x<sub>j </sub>).</p>
+<p>&nbsp;&nbsp;&nbsp; Определим uk<sub>5</sub> ... uk<sub>2</sub>:</p> 
+<table border=0 width=100%>
+<tr>
+  <td>uk<sub>5&nbsp;</sub></td><td>= u<sub>1</sub> + u<sub>9</sub></td><td>= u<sub>2</sub> + u<sub>10</sub></td><td>= u<sub>3</sub> + u<sub>11</sub></td><td>= u<sub>4</sub> + u<sub>12&nbsp;</sub></td><td>= u<sub>5</sub> + u<sub>15</sub>&nbsp;</td><td>= u<sub>6</sub> + u<sub>14&nbsp;</sub></td><td> = u<sub>7</sub> + u<sub>15</sub></td><td>= u<sub>8</sub> + u<sub>16&nbsp;</sub></td><td>= 1 + 0&nbsp;</td><td>= 1;</td>
+</tr>
+<tr>
+  <td>uk<sub>4</sub>&nbsp;</td><td> = u<sub>1</sub> + u<sub>5&nbsp;</sub></td><td>= u<sub>2</sub> + u<sub>6</sub>&nbsp;</td><td>= u<sub>3</sub> + u<sub>7</sub>&nbsp;</td><td>= u<sub>4</sub> + u<sub>8</sub>&nbsp;</td><td>= u<sub>9</sub> + u<sub>13</sub>&nbsp;</td><td>= u<sub>10</sub> + u<sub>14&nbsp;</sub></td><td>= u<sub>11</sub> + u<sub>15</sub>&nbsp;</td><td>= u<sub>12</sub> + u<sub>16</sub>&nbsp;</td><td>= 1 + 1&nbsp;</td><td>= 0;</td>
+</tr>
+<tr>
+  <td>uk<sub>3</sub>&nbsp;</td><td> = u<sub>1</sub> + u<sub>3</sub>&nbsp;</td><td> = u<sub>2</sub> + u<sub>4</sub>&nbsp;</td><td>= u<sub>5</sub> + u<sub>7&nbsp;</sub></td><td>= u<sub>6</sub> + u<sub>8</sub>&nbsp;</td><td>= u<sub>9</sub> + u<sub>11&nbsp;</sub></td><td>=&nbsp; u<sub>10</sub> + u<sub>12</sub>&nbsp;</td><td> = u<sub>13</sub> + u<sub>15</sub>&nbsp;</td><td>= u<sub>14</sub> + u<sub>16</sub>&nbsp;</td><td>= 1 + 1&nbsp;</td><td>= 0;</td>
+</tr>
+<tr>
+  <td>uk<sub>2&nbsp;</sub></td><td> = u<sub>1</sub> + u<sub>2</sub>&nbsp;</td><td>= u<sub>3</sub> + u<sub>4</sub>&nbsp;</td><td>= u<sub>5</sub> + u<sub>6</sub>&nbsp;</td><td>= u<sub>7</sub> + u<sub>8</sub>&nbsp;</td><td>= u<sub>9</sub> + u<sub>10</sub>&nbsp;</td><td>= u<sub>11</sub> + u<sub>12</sub></td><td> = u<sub>13</sub> + u<sub>14</sub></td><td> = u<sub>15</sub> + u<sub>16</sub></td><td>= 1 + 1</td><td>= 0;</td>
+</tr>
+</table>
+<p> Для нахождения uk1 необходимо снова вычислить uk<sub>i</sub> и x<sub>i</sub> и сложить их с преобразованным сообщением. Если в результате сложения получим вектор, содержащий все единицы, uk<sub>1</sub> = 1 , если полученный вектор содержит все нули, uk<sub>1 </sub>= 0. Так как uk<sub>4</sub> = uk<sub>3</sub> = uk<sub>2</sub> = 0, то<br>0000000011111111 - uk<sub>5</sub>x<sub>4</sub><br>1111111100000000 - преобразованное сообщение<br>&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;<br>1111111111111111, т.е. uk<sub>1</sub> = 1.</p>
+<p>&nbsp;&nbsp;&nbsp; Таким образом, исходное сообщение, выделенное из кодового слова, имеет вид 10001011011.</p>

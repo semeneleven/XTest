@@ -96,7 +96,7 @@ class Base(object):
         # TODO
         module_name = cherrypy.request.json["module_name"]
         return {'name': module_name,
-                'description': "<p class='theory-text'>" + 'Description' + '</p>',
+                'description': util.get_description(module_name),
                 'details': util.get_details(module_name)()
                 }
 

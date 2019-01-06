@@ -1,3 +1,4 @@
+import codecs
 import inspect
 import os
 import pkgutil
@@ -26,9 +27,14 @@ def get_path_info():
     prefix = codes.__name__ + '.'
 
     for path in [x[0] for x in os.walk(next(codes.__path__.__iter__()))]:
-        if re.compile(r'^\/(\w*\/)*(codes)(\/\w*)(?!\/)$').match(path):
-            path_info[0].append(path + '/')
-            path_info[1].append(prefix + path[path.rfind("/") + 1:] + '.')
+        if re.compile(r'^\/(\w*\/)*(codes)(\/\w*)(?!\/)$').match(path) or re.compile(r'^(\w*|\S*)\\{1}(\w*)\\{1}(codes)\\{1}(\w*|\S*)$').match(path):
+            if not os.name == 'nt':
+                path_info[0].append(path + '/')
+                path_info[1].append(prefix + path[path.rfind("/") + 1:] + '.')
+            else:
+                path_info[0].append(path + '\\')
+                path_info[1].append(prefix + path[path.rfind("\\") + 1:] + '.')
+
 
     return path_info
 
@@ -80,3 +86,12 @@ def get_details(modname):
 
 def get_name(modname):
     return get_method('get_name')[modname]
+
+def get_description(modname):
+    if os.name != 'nt':
+        text = str(open('descriptions/' + modname + '.html', 'r').read())
+    else:
+        text = str(codecs.open('descriptions/' + modname + '.html', 'r','utf-8').read())
+
+    return text
+#F:\\XTEST\\XTest\\codes\\cyclics
